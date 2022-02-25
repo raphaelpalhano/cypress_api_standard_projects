@@ -19,3 +19,10 @@ The script here is an example of a low Virtual User (VU) load test of the excell
 https://swapi.dev/
 
 If you're tinkering with the script, it is just a friendly open source API, be gentle!
+
+
+Run it
+```
+docker-compose up -d influxdb grafana
+docker-compose run k6 run /scripts/ewoks.js
+```

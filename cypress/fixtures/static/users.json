@@ -1,0 +1,277 @@
+{
+    "manager": 
+    {
+        "menu": [
+            {
+                "id": 1,
+                "createdAt": "2022-11-14T10:04:44.486Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "DisplaySettings",
+                "title": "Painel inicial",
+                "domClass": "",
+                "path": "/",
+                "level": 0,
+                "order": 0,
+                "entity": "manager"
+            },
+            {
+                "id": 2,
+                "createdAt": "2022-11-14T10:04:44.494Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "AppRegistration",
+                "title": "Gestão",
+                "domClass": "",
+                "level": 0,
+                "order": 0,
+                "entity": "manager",
+                "items": [
+                    {
+                        "id": 4,
+                        "createdAt": "2022-11-14T10:04:44.517Z",
+                        "updatedAt": "2022-12-15T13:13:23.783Z",
+                        "icon": "",
+                        "title": "Termos de cessão",
+                        "domClass": "",
+                        "path": "/order-signatures",
+                        "level": 1,
+                        "order": 1,
+                        "entity": "manager"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "createdAt": "2022-11-14T10:04:44.499Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "Supply",
+                "title": "Insumos e Leilão",
+                "domClass": "",
+                "level": 0,
+                "order": 0,
+                "entity": "manager",
+                "items": [
+                    {
+                        "id": 5,
+                        "createdAt": "2022-11-14T10:04:44.528Z",
+                        "updatedAt": "2022-11-14T10:04:44.591Z",
+                        "icon": "",
+                        "title": "Cadastrar notas e rebate",
+                        "domClass": "",
+                        "path": "/register-invoice-and-intermediation",
+                        "level": 1,
+                        "order": 1,
+                        "entity": "manager"
+                    }
+                ]
+            }
+        ]
+    },
+
+    "investor": {
+        "menu": [
+            {
+                "id": 10,
+                "createdAt": "2022-11-14T10:04:44.558Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "DisplaySettings",
+                "title": "Painel inicial",
+                "domClass": "",
+                "path": "/",
+                "level": 0,
+                "order": 0,
+                "entity": "investor"
+            },
+            {
+                "id": 11,
+                "createdAt": "2022-11-14T10:04:44.561Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "AppRegistration",
+                "title": "Gestão",
+                "domClass": "",
+                "level": 0,
+                "order": 0,
+                "entity": "investor",
+                "items": [
+                    {
+                        "id": 13,
+                        "createdAt": "2022-11-14T10:04:44.573Z",
+                        "updatedAt": "2022-11-14T10:04:44.573Z",
+                        "icon": "",
+                        "title": "Resumo das Operações",
+                        "domClass": "",
+                        "path": "/operations-summary",
+                        "level": 1,
+                        "order": 1,
+                        "entity": "investor"
+                    },
+                    {
+                        "id": 14,
+                        "createdAt": "2022-11-14T10:04:44.583Z",
+                        "updatedAt": "2022-12-15T13:13:23.783Z",
+                        "icon": "",
+                        "title": "Termos de cessão",
+                        "domClass": "",
+                        "path": "/order-signatures",
+                        "level": 1,
+                        "order": 2,
+                        "entity": "investor"
+                    }
+                ]
+            },
+            {
+                "id": 12,
+                "createdAt": "2022-11-14T10:04:44.564Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "Supply",
+                "title": "Insumos e Leilão",
+                "domClass": "",
+                "level": 0,
+                "order": 0,
+                "entity": "investor",
+                "items": [
+                    {
+                        "id": 15,
+                        "createdAt": "2022-11-14T10:04:44.592Z",
+                        "updatedAt": "2022-11-14T10:04:44.592Z",
+                        "icon": "",
+                        "title": "Cadastrar taxas e limites",
+                        "domClass": "",
+                        "path": "/upload-fees-and-register-limits",
+                        "level": 1,
+                        "order": 1,
+                        "entity": "investor"
+                    }
+                ]
+            }
+        ],
+        "entity": {
+            "id": "0dc9055a-5480-4577-857e-3e3fefb3318c",
+            "createdAt": "2022-10-25T21:07:15.094Z",
+            "updatedAt": "2022-11-28T18:05:55.031Z",
+            "document": "62237425000176",
+            "corporateName": "BANCO FIDIS S/A",
+            "tradingName": "BANCO FIDIS",
+            "establishment": null,
+            "cnae": "any value",
+            "address": {
+                "id": "d0665960-cf7a-436b-ba64-cf94a4e5aa9b",
+                "createdAt": "2022-10-25T21:07:15.152Z",
+                "updatedAt": "2022-11-28T18:09:31.964Z",
+                "zipCode": "32669900 ",
+                "line": "Av. Contorno",
+                "number": "3455",
+                "city": "Betim",
+                "district": "Paulo Camilo",
+                "state": "Minas Gerais",
+                "uf": "MG",
+                "country": "Brasil",
+                "complement": "Galpão 09, sala 10",
+                "investorId": "0dc9055a-5480-4577-857e-3e3fefb3318c"
+            },
+            "status": "UNDER_ANALYSIS",
+            "commercialPhone": "any value",
+            "contactName": "any value"
+        }
+    },
+
+    "supplier": 
+    {
+        "menu": [
+            {
+                "id": 6,
+                "createdAt": "2022-11-14T10:04:44.534Z",
+                "updatedAt": "2022-11-14T10:04:44.534Z",
+                "icon": "Receipt",
+                "title": "Antecipar notas",
+                "domClass": "highlight-item",
+                "path": "/",
+                "level": 0,
+                "order": 0,
+                "entity": "supplier"
+            },
+            {
+                "id": 7,
+                "createdAt": "2022-11-14T10:04:44.537Z",
+                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "icon": "AppRegistration",
+                "title": "Gestão",
+                "domClass": "",
+                "level": 0,
+                "order": 0,
+                "entity": "supplier",
+                "items": [
+                    {
+                        "id": 8,
+                        "createdAt": "2022-11-14T10:04:44.545Z",
+                        "updatedAt": "2022-11-14T10:04:44.591Z",
+                        "icon": "",
+                        "title": "Resumo das Operações",
+                        "domClass": "",
+                        "path": "/operations-summary",
+                        "level": 1,
+                        "order": 1,
+                        "entity": "supplier"
+                    },
+                    {
+                        "id": 9,
+                        "createdAt": "2022-11-14T10:04:44.553Z",
+                        "updatedAt": "2022-12-15T13:13:23.783Z",
+                        "icon": "",
+                        "title": "Termos de cessão",
+                        "domClass": "",
+                        "path": "/order-signatures",
+                        "level": 1,
+                        "order": 2,
+                        "entity": "supplier"
+                    }
+                ]
+            }
+        ],
+        "entity": {
+            "id": "768533de-c6eb-4975-ae1a-09050da8aebc",
+            "document": "79922720000164",
+            "corporateName": "FERRAMENTARIA JN LTDA",
+            "tradingName": "FERRAMENTARIA JN",
+            "establishment": null,
+            "cnae": "any value",
+            "commercialPhone": "any value",
+            "contactName": "any value",
+            "status": "APPROVED",
+            "address": {
+                "city": "Joinville",
+                "district": "Glória",
+                "complement": "",
+                "country": "Brasil",
+                "line": "Rua Herbert Hoppe",
+                "number": "135",
+                "state": "Santa Catarina",
+                "uf": "SC",
+                "zipCode": "89216-540"
+            },
+            "legalEntities": [
+                {
+                    "name": "Jair Bonatti",
+                    "document": "44812183987",
+                    "email": "jair.bonatti@fjn.com.br",
+                    "birthDate": "1963-07-25T00:00:00.000Z",
+                    "phone": "any value",
+                    "role": "DIRECTOR"
+                }
+            ],
+            "bankAccounts": [
+                {
+                    "id": "29dcbec5-c63d-4a35-8f88-9d314fafa804",
+                    "account": "8121272",
+                    "accountDigit": "2",
+                    "agency": "0001",
+                    "alias": "any value",
+                    "bank": "274",
+                    "bankName": "MONEY PLUS SOCIEDADE DE CRÉDITO AO ME E EMP. PEQUENO PORTE",
+                    "default": true
+                }
+            ]
+        }
+    }
+
+
+}

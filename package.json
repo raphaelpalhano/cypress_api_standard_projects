@@ -1,0 +1,68 @@
+{
+  "name": "cucumber-preprocessor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "prettier-format": "prettier --config .prettierrc '**/*.ts' --write",
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open",
+    "cy:run:prod": "npx cypress run --env ENV=prod",
+    "cy:open:prod": "npx cypress open --env ENV=prod",
+    "cy:clear": "node ./cypress/support/commands/helpers/clear.ts",
+    "lint": "eslint . --ext .ts",
+    "commit": "git-cz",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "Raphael Angel",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@types/fs-extra": "^9.0.13",
+    "@types/node": "^18.11.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "commitizen": "^4.2.5",
+    "cypress-multi-reporters": "^1.5.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^7.5.0",
+    "ajv": "^8.11.0",
+    "aws-amplify": "^5.0.4",
+    "cypress": "^10.8.0",
+    "cypress-failed-log": "^2.10.0",
+    "cypress-mochawesome-reporter": "^3.2.0",
+    "dotenv": "^16.0.1",
+    "extra": "^0.2.1",
+    "form-data": "^4.0.0",
+    "genson-js": "^0.0.8",
+    "jsonschema": "^1.4.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx}": [
+      "npm run prettier-format",
+      "npm run lint --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  }
+}

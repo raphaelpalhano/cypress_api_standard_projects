@@ -1,0 +1,27 @@
+{
+    "zipcode": {
+        "valid": "88106102",
+        "invalid": "578685846"
+    },
+
+    "UF": {
+        "AC": "AC",
+        "AL": "AL",
+        "AP": "AP",
+        "AM": "AM",
+        "BA": "BA",
+        "CE": "CE",
+        "DF": "DF",
+        "ES": "ES",
+        "GO": "GO",
+        "MA": "MA",
+        "MT": "MT",
+        "MS": "MS",
+        "MG": "MG"
+    },
+
+    "INSS": {
+        "valid": "16701716000156",
+        "invalid": "16701714123423"
+    }
+}

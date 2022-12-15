@@ -1,0 +1,44 @@
+{
+        "id": "768533de-c6eb-4975-ae1a-09050da8aebc",
+        "document": "79922720000164",
+        "corporateName": "FERRAMENTARIA JN LTDA",
+        "tradingName": "FERRAMENTARIA JN",
+        "establishment": "2022-10-18T18:29:39.000Z",
+        "cnae": "any value",
+        "commercialPhone": "any value",
+        "contactName": "any value",
+        "status": "APPROVED",
+        "address": {
+            "city": "São Paulo",
+            "district": "Bela Vista",
+            "complement": "any value",
+            "country": "Brasil",
+            "line": "Av. Paulista, 460 - SL 2 - Bela Vista, São Paulo - SP",
+            "number": "460",
+            "state": "São Paulo",
+            "uf": "SP",
+            "zipCode": "01310-000"
+        },
+        "legalEntities": [
+            {
+                "name": "any value",
+                "document": "any value",
+                "email": "any value",
+                "birthDate": "2022-10-18T18:29:38.000Z",
+                "phone": "any value",
+                "role": "any value"
+            }
+        ],
+        "bankAccounts": [
+            {
+                "id": "29dcbec5-c63d-4a35-8f88-9d314fafa804",
+                "account": "1212666",
+                "accountDigit": "7",
+                "agency": "5376",
+                "alias": "Test",
+                "bank": "234",
+                "bankName": "QA BANK",
+                "default": true
+            }
+        ]
+}

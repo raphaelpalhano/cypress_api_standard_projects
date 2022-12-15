@@ -1,7 +1,7 @@
 import http from 'k6/http';
-import { check, sleep } from "k6";
+import { check, sleep } from 'k6';
 
-export let options = {
+export const options = {
   stages: [
     { duration: '2s', target: 2 }, // below normal load
     { duration: '5s', target: 2 },
@@ -16,7 +16,7 @@ export let options = {
 };
 
 export default function () {
-  const response = http.get("https://swapi.dev/api/people/30/", {headers: {Accepts: "application/json"}});
-  check(response, { "status is 200": (r) => r.status === 200 });
-  sleep(.300);
-};
+  const response = http.get('https://swapi.dev/api/people/30/', { headers: { Accepts: 'application/json' } });
+  check(response, { 'status is 200': (r) => r.status === 200 });
+  sleep(0.3);
+}

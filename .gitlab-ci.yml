@@ -1,0 +1,25 @@
+image: 253882794486.dkr.ecr.us-east-1.amazonaws.com/build-tools:864d3610-node-18
+
+#include:
+#  - project: 'fca/architecture/IaC/cloud-digital/common-ci'
+#    file: 'job-commons.yml'
+
+stages:
+  - test
+
+
+before_script:
+    - apt-get update && apt-get install --yes libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    - npm ci
+    - npm run cy:clear
+
+
+e2e:
+  stage: test
+  only:
+    - develop
+    - master
+  script:  
+    - npm run cy:run
+    #npx cypress run --record --key db0be51e-9439-4266-b7a9-79e9266d42b9
+

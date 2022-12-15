@@ -1,0 +1,273 @@
+{
+  "type": "object",
+  "properties": {
+    "menu": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "domClass": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "level": {
+            "type": "integer"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "entity": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                },
+                "icon": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "domClass": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "integer"
+                },
+                "order": {
+                  "type": "integer"
+                },
+                "entity": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "icon",
+                "title",
+                "domClass",
+                "path",
+                "level",
+                "order",
+                "entity"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "updatedAt",
+          "icon",
+          "title",
+          "domClass",
+          "level",
+          "order",
+          "entity"
+        ]
+      }
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "document": {
+          "type": "string"
+        },
+        "corporateName": {
+          "type": "string"
+        },
+        "tradingName": {
+          "type": "string"
+        },
+        "establishment": {
+          "type": "null"
+        },
+        "cnae": {
+          "type": "string"
+        },
+        "commercialPhone": {
+          "type": "string"
+        },
+        "contactName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "district": {
+              "type": "string"
+            },
+            "complement": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "line": {
+              "type": "string"
+            },
+            "number": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "uf": {
+              "type": "string"
+            },
+            "zipCode": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "city",
+            "district",
+            "complement",
+            "country",
+            "line",
+            "number",
+            "state",
+            "uf",
+            "zipCode"
+          ]
+        },
+        "legalEntities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "document": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "birthDate": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "document",
+              "email",
+              "birthDate",
+              "phone",
+              "role"
+            ]
+          }
+        },
+        "bankAccounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "account": {
+                "type": "string"
+              },
+              "accountDigit": {
+                "type": "string"
+              },
+              "agency": {
+                "type": "string"
+              },
+              "alias": {
+                "type": "string"
+              },
+              "bank": {
+                "type": "string"
+              },
+              "bankName": {
+                "type": "string"
+              },
+              "default": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "account",
+              "accountDigit",
+              "agency",
+              "alias",
+              "bank",
+              "bankName",
+              "default"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "document",
+        "corporateName",
+        "tradingName",
+        "establishment",
+        "cnae",
+        "commercialPhone",
+        "contactName",
+        "status",
+        "address",
+        "legalEntities",
+        "bankAccounts"
+      ]
+    }
+  },
+  "required": [
+    "menu",
+    "entity"
+  ]
+}

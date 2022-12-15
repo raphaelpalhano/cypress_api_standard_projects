@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "investorId": {
+            "type": "string"
+          },
+          "enterpriseId": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "investorId",
+          "enterpriseId",
+          "limit"
+        ]
+      }
+    },
+    "fees": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "investorId": {
+            "type": "string"
+          },
+          "enterpriseId": {
+            "type": "string"
+          },
+          "days": {
+            "type": "integer"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "group": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "investorId",
+          "enterpriseId",
+          "days",
+          "fee",
+          "group"
+        ]
+      }
+    }
+  },
+  "required": [
+    "limits",
+    "fees"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "statusCode": {
+      "type": "integer"
+    },
+    "error": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "keys": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "keys",
+            "message"
+          ]
+        }
+      },
+      "required": [
+        "body"
+      ]
+    }
+  },
+  "required": [
+    "statusCode",
+    "error",
+    "message",
+    "validation"
+  ]
+}

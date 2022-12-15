@@ -31,9 +31,9 @@ services:
       - GF_AUTH_BASIC_ENABLED=false
       - GF_SERVER_SERVE_FROM_SUB_PATH=true
     volumes:
-      - ./dashboards:/var/lib/grafana/dashboards
-      - ./grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
-      - ./grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./performance/dashboards:/var/lib/grafana/dashboards
+      - ./performance/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./performance/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
   k6:
     image: loadimpact/k6:latest
@@ -46,4 +46,4 @@ services:
     environment:
       - K6_OUT=influxdb=http://influxdb:8086/k6
     volumes:
-      - ./scripts:/scripts
+      - ./performance/scripts:/performance/scripts

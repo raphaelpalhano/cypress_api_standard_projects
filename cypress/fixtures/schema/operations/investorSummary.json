@@ -1,0 +1,122 @@
+{
+  "type": "object",
+  "properties": {
+    "enterprises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "APPROVED": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "CANCELLED": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "NOT_APPROVED": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "ON_APPROVAL": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "PAID": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "AVAILABLE": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "enterpriseId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "APPROVED",
+          "CANCELLED",
+          "NOT_APPROVED",
+          "ON_APPROVAL",
+          "PAID",
+          "AVAILABLE",
+          "name",
+          "enterpriseId"
+        ]
+      }
+    }
+  },
+  "required": [
+    "enterprises"
+  ]
+}

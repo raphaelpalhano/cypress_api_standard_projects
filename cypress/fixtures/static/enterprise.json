@@ -1,0 +1,28 @@
+{
+    "enpterprises": [
+        {
+            "id": "5e5e9bbb-f0ce-4d9f-b4b4-85361372c90b",
+            "corporateName": "FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA.",
+            "document": "16701716000156",
+            "tradingName": "FCA FIAT",
+            "createdAt": "2022-11-01T15:12:50.293Z",
+            "updatedAt": "2022-11-16T14:29:41.104Z"
+        },
+        {
+            "id": "eed6cf42-e6e1-4c4a-9339-9675f5c177d9",
+            "corporateName": "Empresa 2",
+            "document": "68636794000118",
+            "tradingName": "Empresa 2",
+            "createdAt": "2022-09-27T18:08:53.156Z",
+            "updatedAt": "2022-10-28T11:30:56.387Z"
+        },
+        {
+            "id": "c566b177-e47b-488f-8d5f-0bbd4476e4fb",
+            "corporateName": "Empresa 1",
+            "document": "83597185000190",
+            "tradingName": "Empresa 1",
+            "createdAt": "2022-09-27T17:59:59.520Z",
+            "updatedAt": "2022-10-28T11:30:56.038Z"
+        }
+    ]
+}

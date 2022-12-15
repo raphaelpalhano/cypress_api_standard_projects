@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "fee": {
+            "type": "string"
+          },
+          "enterpriseId": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "fee",
+          "enterpriseId",
+          "author",
+          "createdAt",
+          "updatedAt"
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

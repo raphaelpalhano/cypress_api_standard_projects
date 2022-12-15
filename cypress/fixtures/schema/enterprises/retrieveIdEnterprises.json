@@ -1,0 +1,18 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "governmentId": {
+        "type": "string"
+      },
+      "enterpriseId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "governmentId",
+      "enterpriseId"
+    ]
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "type": "object",
+  "properties": {
+    "enterprises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "AVAILABLE": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "APPROVED": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "ON_APPROVAL": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "NOT_PAID": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "PAID": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "enterpriseId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "AVAILABLE",
+          "APPROVED",
+          "ON_APPROVAL",
+          "NOT_PAID",
+          "PAID",
+          "name",
+          "enterpriseId"
+        ]
+      }
+    }
+  },
+  "required": [
+    "enterprises"
+  ]
+}

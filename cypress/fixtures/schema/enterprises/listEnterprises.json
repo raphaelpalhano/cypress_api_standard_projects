@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "corporateName": {
+            "type": "string"
+          },
+          "document": {
+            "type": "string"
+          },
+          "tradingName": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "corporateName",
+          "document",
+          "tradingName",
+          "createdAt",
+          "updatedAt"
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

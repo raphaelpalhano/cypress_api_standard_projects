@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "credentials": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "createdAt": {
+                  "type": "string"
+                },
+                "updatedAt": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "key": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                },
+                "integrationId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "createdAt",
+                "updatedAt",
+                "type",
+                "key",
+                "value",
+                "integrationId"
+              ]
+            }
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "credentials",
+          "createdAt",
+          "updatedAt"
+        ]
+      }
+    },
+    "total": {
+      "type": "integer"
+    },
+    "perPage": {
+      "type": "integer"
+    },
+    "currentPage": {
+      "type": "integer"
+    },
+    "lastPage": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "data",
+    "total",
+    "perPage",
+    "currentPage",
+    "lastPage"
+  ]
+}

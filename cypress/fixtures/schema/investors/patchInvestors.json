@@ -2,13 +2,13 @@
   "type": "object",
   "properties": {
     "id": {
-      "type": "string"
+      "type": "integer"
     },
     "investorId": {
-      "type": "string"
+      "type": "integer"
     },
     "enterpriseId": {
-      "type": "string"
+      "type": "integer"
     },
     "limit": {
       "type": "integer"

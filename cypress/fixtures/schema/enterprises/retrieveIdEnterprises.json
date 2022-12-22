@@ -7,7 +7,7 @@
         "type": "string"
       },
       "enterpriseId": {
-        "type": "string"
+        "type": "integer"
       }
     },
     "required": [

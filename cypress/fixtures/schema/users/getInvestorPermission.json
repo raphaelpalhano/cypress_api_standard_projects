@@ -104,7 +104,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "createdAt": {
           "type": "string"
@@ -127,11 +127,20 @@
         "cnae": {
           "type": "string"
         },
+        "status": {
+          "type": "string"
+        },
+        "commercialPhone": {
+          "type": "string"
+        },
+        "contactName": {
+          "type": "string"
+        },
         "address": {
           "type": "object",
           "properties": {
             "id": {
-              "type": "string"
+              "type": "integer"
             },
             "createdAt": {
               "type": "string"
@@ -167,7 +176,7 @@
               "type": "string"
             },
             "investorId": {
-              "type": "string"
+              "type": "integer"
             }
           },
           "required": [
@@ -185,15 +194,6 @@
             "complement",
             "investorId"
           ]
-        },
-        "status": {
-          "type": "string"
-        },
-        "commercialPhone": {
-          "type": "string"
-        },
-        "contactName": {
-          "type": "string"
         }
       },
       "required": [
@@ -205,10 +205,10 @@
         "tradingName",
         "establishment",
         "cnae",
-        "address",
         "status",
         "commercialPhone",
-        "contactName"
+        "contactName",
+        "address"
       ]
     }
   },

@@ -7,7 +7,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "integer"
           },
           "name": {
             "type": "string"
@@ -18,7 +18,7 @@
               "type": "object",
               "properties": {
                 "id": {
-                  "type": "string"
+                  "type": "integer"
                 },
                 "createdAt": {
                   "type": "string"
@@ -36,7 +36,7 @@
                   "type": "string"
                 },
                 "integrationId": {
-                  "type": "string"
+                  "type": "integer"
                 }
               },
               "required": [

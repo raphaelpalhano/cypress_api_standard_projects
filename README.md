@@ -1,20 +1,35 @@
-# Forked repo from: docker-k6-grafana-influxdb
 
-## Conteúdo utilizado na palestra [Performance além dos testes](https://www.youtube.com/watch?v=7YaIYFHRZRE)
+# Configuração inicial
 
-## ORIGINAL CONTENT BELOW!
+## 1. VSC
+  **Plugins**
+  * EditorConfig for VS Code
+  * ESLint
+  * Draw.io Integration
+  
+
+## 2. instalações
+ * npm i 
+ * npm i --production
+
+## 3. Verificação do ambiente
+  * Criar um arquivo ou mudar a url do cypress.config.js
+
+**Configurando multiplos ambientes:**
+
+1. Vá até o arquivo cypress.config.js
+
+Verifique os envs e users.
 
 
 
-    ## docker-k6-grafana-influxdb
+
+# docker-k6-grafana-influxdb
     Demonstrates how to run load tests with containerised instances of K6, Grafana and InfluxDB.
-
-    #### Article
-    This is the accompanying source code for the following article. Please read for a detailed breakdown of the code and how K6, Grafana and InfluxDB work together using Docker Compose:
-
+### Article
     https://medium.com/swlh/beautiful-load-testing-with-k6-and-docker-compose-4454edb3a2e3
 
-    #### Dashboards
+### Dashboards
     The dashboard in /dashboards is adapted from the excellent K6 / Grafana dashboard here:
     https://grafana.com/grafana/dashboards/2587
 
@@ -22,12 +37,9 @@
     * the data source is configured to use the docker created InfluxDB data source
     * the time period is set to now-15m, which I feel is a better view for most tests
 
-    #### Scripts
+### Scripts
     The script here is an example of a low Virtual User (VU) load test of the excellent Star Wars API:
     https://swapi.dev/
-
-    If you're tinkering with the script, it is just a friendly open source API, be gentle!
-
 
     Run it
     ```

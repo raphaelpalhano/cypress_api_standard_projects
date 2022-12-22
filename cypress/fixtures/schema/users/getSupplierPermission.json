@@ -104,7 +104,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "document": {
           "type": "string"
@@ -213,7 +213,7 @@
             "type": "object",
             "properties": {
               "id": {
-                "type": "string"
+                "type": "integer"
               },
               "account": {
                 "type": "string"
@@ -271,5 +271,3 @@
     "entity"
   ]
 }
-
-

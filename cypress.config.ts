@@ -33,62 +33,12 @@ module.exports = defineConfig({
     supportFile: 'cypress/support/e2e.ts',
 
     async setupNodeEvents(on, config) {
-      require('cypress-failed-log/on')(on);
-      require('cypress-mochawesome-reporter/plugin')(on);
-      on('task', {
-        readFileMaybe(filename) {
-          if (fs.existsSync(filename)) {
-            return true;
-          }
-
-          return false;
-        },
-      });
+      return require('./cypress/env/index')(on, config);
     },
   },
   env: {
-    api: 'https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy/',
     cognito: 'https://cognito-idp.us-east-1.amazonaws.com/',
     TOKEN_BAREAR: process.env.TOKEN_BAREAR,
-
-    AWS_AMPLYF: {
-      COGNITO_CLIENT_APP_ID: process.env.COGNITO_CLIENT_APP_ID,
-      COGNITO_USER_POOL_ID: process.env.COGNITO_USER_POOL_ID,
-      COGNITO_REGION: process.env.COGNITO_REGION,
-      COGNITO_CLIENT_APP_ID_PROD: process.env.COGNITO_CLIENT_APP_ID_PROD,
-      COGNITO_USER_POOL_ID_PROD: process.env.COGNITO_USER_POOL_ID_PROD,
-    },
-
-    USERS: {
-      USER_BACK_INVESTOR: 'investidor_back_test@mailinator.com',
-      USER_BACK_SUPPLIER: 'fornecedor_back_test@mailinator.com',
-      USER_BACK_MANAGER: 'gestor_back_test@mailinator.com',
-      USER_INVESTOR_PROD: 'investidor.prod@mailinator.com',
-      INVESTOR_PROD_PASS: 'Teste@123',
-      USER_SUPPLIER_PROD: 'fornecedor.prod@mailinator.com',
-      SUPPLIER_PROD_PASS: 'Teste@1234',
-      USER_MANAGER_PROD: 'gestor.prod@mailinator.com',
-      MANAGER_PROD_PASS: 'Teste@12345',
-      OTP_PASS: '#eL9vLkL',
-      PASS_BACK: 'backBack55221@',
-      INVALID_PASS: '123456@S',
-    },
-
-    ROUTERS: {
-      home: 'dashboard',
-      login: 'login',
-      forgotPass: 'login/forgot-password',
-      firstAccess: 'login/first-access',
-      integration: 'integrations',
-      intermadiation_fees: 'register-invoice-and-intermediation',
-      integration_create: 'integrations/create',
-      fees: 'upload-fees-and-register-limits',
-      operations_summary: 'operations-summary',
-      register: 'register-entity',
-      registry_entity: 'register-entity/enterprise',
-      fees_and_limits: 'upload-fees-and-register-limits',
-      term: 'order-signatures',
-    },
 
     TAGS: 'not @ignore',
   },

@@ -3,8 +3,8 @@ import { Amplify, Auth } from 'aws-amplify';
 const amplifyConfig = {
   Auth: {
     region: Cypress.env('AWS_AMPLYF').COGNITO_REGION,
-    userPoolId: Cypress.env('ENV') === 'prod' ? Cypress.env('AWS_AMPLYF').COGNITO_USER_POOL_ID_PROD : Cypress.env('AWS_AMPLYF').COGNITO_USER_POOL_ID,
-    userPoolWebClientId: Cypress.env('ENV') === 'prod' ? Cypress.env('AWS_AMPLYF').COGNITO_CLIENT_APP_ID_PROD : Cypress.env('AWS_AMPLYF').COGNITO_CLIENT_APP_ID,
+    userPoolId: Cypress.env('AWS_AMPLYF').COGNITO_USER_POOL_ID,
+    userPoolWebClientId: Cypress.env('AWS_AMPLYF').COGNITO_CLIENT_APP_ID,
     mandatorySignIn: false,
     signUpVerificationMethod: 'code',
     authenticationFlowType: 'USER_PASSWORD_AUTH',
@@ -22,40 +22,40 @@ Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor
   const typesUsers = {
     supplier: {
       user: Cypress.env('USERS').USER_BACK_SUPPLIER,
-      password: Cypress.env('USERS').PASS_BACK,
+      password: Cypress.env('USERS').SUPPLIER_PASS,
     },
     manager: {
       user: Cypress.env('USERS').USER_BACK_MANAGER,
-      password: Cypress.env('USERS').PASS_BACK,
+      password: Cypress.env('USERS').MANAGER_PASS,
     },
     investor: {
       user: Cypress.env('USERS').USER_BACK_INVESTOR,
-      password: Cypress.env('USERS').PASS_BACK,
+      password: Cypress.env('USERS').INVESTOR_PASS,
     },
   };
 
   const typeuser = typesUsers[userType];
 
-  if (Cypress.env('ENV') === 'prod') {
-    switch (userType) {
-      case 'supplier':
-        typeuser.user = Cypress.env('USERS').USER_SUPPLIER_PROD;
-        typeuser.password = Cypress.env('USERS').SUPPLIER_PROD_PASS;
-        break;
-      case 'manager':
-        typeuser.user = Cypress.env('USERS').USER_MANAGER_PROD;
-        typeuser.password = Cypress.env('USERS').MANAGER_PROD_PASS;
-        break;
-      case 'investor':
-        typeuser.user = Cypress.env('USERS').USER_INVESTOR_PROD;
-        typeuser.password = Cypress.env('USERS').INVESTOR_PROD_PASS;
-        break;
-      default:
-        cy.log('Error AuthSystem', {
-          userType,
-        });
-    }
-  }
+  // if (Cypress.env('prod') === 'prod') {
+  //   switch (userType) {
+  //     case 'supplier':
+  //       typeuser.user = Cypress.env('USERS').USER_SUPPLIER_PROD;
+  //       typeuser.password = Cypress.env('USERS').SUPPLIER_PROD_PASS;
+  //       break;
+  //     case 'manager':
+  //       typeuser.user = Cypress.env('USERS').USER_MANAGER_PROD;
+  //       typeuser.password = Cypress.env('USERS').MANAGER_PROD_PASS;
+  //       break;
+  //     case 'investor':
+  //       typeuser.user = Cypress.env('USERS').USER_INVESTOR_PROD;
+  //       typeuser.password = Cypress.env('USERS').INVESTOR_PROD_PASS;
+  //       break;
+  //     default:
+  //       cy.log('Error AuthSystem', {
+  //         userType,
+  //       });
+  //   }
+  // }
 
   console.log(typeuser);
 

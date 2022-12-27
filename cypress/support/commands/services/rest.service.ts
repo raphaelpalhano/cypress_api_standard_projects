@@ -14,13 +14,13 @@ Cypress.Commands.add('requestWithBody', (method: string, endpoint: string, body:
 
   cy.log('requestWithBody', {
     methodHttp: method,
-    route: `${Cypress.env('api')}${endpoint}`,
+    route: `${endpoint}`,
     requestBody: body,
   });
 
   cy.request({
     method,
-    url: `${Cypress.env('api')}${endpoint}`,
+    url: `${endpoint}`,
     body,
     failOnStatusCode,
     timeout,
@@ -45,13 +45,13 @@ Cypress.Commands.add(
 
     cy.log('requestWithBodyAndHeader', {
       methodHttp: method,
-      route: `${Cypress.env('api')}${endpoint}`,
+      route: `${endpoint}`,
       requestBody: body,
     });
 
     cy.request({
       method,
-      url: `${Cypress.env('api')}${endpoint}`,
+      url: `${endpoint}`,
       headers: {
         header,
       },
@@ -105,7 +105,7 @@ Cypress.Commands.add('requestWithoutBody', (method: string, endpoint: string, fa
 
   cy.log('requestWithoutBody', {
     methodHttp: method,
-    route: `${Cypress.env('api')}${endpoint}`,
+    route: `${endpoint}`,
   });
 
   log.snapshot('before');
@@ -113,7 +113,7 @@ Cypress.Commands.add('requestWithoutBody', (method: string, endpoint: string, fa
   cy.request({
     method,
 
-    url: `${Cypress.env('api')}${endpoint}`,
+    url: `${endpoint}`,
     failOnStatusCode,
     timeout,
     log: true,
@@ -136,7 +136,7 @@ Cypress.Commands.add(
     log.snapshot('before');
     cy.request({
       method,
-      url: `${Cypress.env('api')}${endpoint}/${param}`,
+      url: `${endpoint}/${param}`,
 
       failOnStatusCode,
       timeout,
@@ -152,7 +152,7 @@ Cypress.Commands.add(
   (method: string, endpoint: string, body: string, param: string, header: object, failOnStatusCode = false, timeout = Cypress.env('global_timeout')) =>
     cy.request({
       method,
-      url: `${Cypress.env('api')}${endpoint}/${param}`,
+      url: `${endpoint}/${param}`,
       headers: {
         header,
       },
@@ -194,7 +194,7 @@ Cypress.Commands.add(
 
         cy.log('RequestFormData', {
           methodHttp: method,
-          route: `${Cypress.env('api')}${endpoint}`,
+          route: `${endpoint}`,
           paht: filePath,
           type: typeFile,
           enconding: encondingType,
@@ -203,7 +203,7 @@ Cypress.Commands.add(
 
         cy.request({
           method,
-          url: `${Cypress.env('api')}${endpoint}`,
+          url: `${endpoint}`,
 
           headers: {
             'Content-Type': 'multipart/form-data',

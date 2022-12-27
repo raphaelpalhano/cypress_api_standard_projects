@@ -36,11 +36,8 @@ import './commands/services/users.service';
 import './commands/helpers/router.control';
 import './commands/helpers/string.control';
 import './commands/helpers/file.control';
-import { controlEnv } from './commands/helpers/env.control';
 
 Cypress.Server.defaults({
   delay: 500,
   force404: false,
 });
-
-controlEnv();

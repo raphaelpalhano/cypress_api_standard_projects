@@ -1,6 +1,6 @@
 import integration from '../../../factory/integration';
 
-describe('Given integrations at ms8', function () {
+describe.skip('Given integrations at ms8', function () {
   before('Given my authentication with supplier', () => {
     cy.authSystem('supplier');
   });

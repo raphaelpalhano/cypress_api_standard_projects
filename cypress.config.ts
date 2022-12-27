@@ -17,8 +17,8 @@ module.exports = defineConfig({
     json: true,
     embeddedScreenshots: true,
     reportDir: './reports',
-    reportPageTitle: 'Ms8 Report',
-    reportTitle: 'Report Mocha',
+    reportPageTitle: 'My Suppliers Report',
+    reportTitle: 'Report Ms8 Project',
   },
   e2e: {
     video: false,

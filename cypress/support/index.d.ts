@@ -94,7 +94,7 @@ declare namespace Cypress {
 
     uploadInvoices(endpoint: string, filePath: string, formObject: object): Chainable<any>;
 
-    getSupplierInfo(endpoint: string, id: string): Chainable<any>;
+    getSupplierInfo(endpoint: string, id: any): Chainable<any>;
 
     getListOfEnterprises(endpoint: string): Chainable<any>;
 

@@ -31,6 +31,7 @@
         "cypress/assertion-before-screenshot": "warn",
         "cypress/no-force": "off",
         "no-unused-vars": "off",
+        "consistent-return": "off",
         "cypress/no-async-tests": "error",
         "cypress/no-pause": "error",
         "no-restricted-syntax": "off",
@@ -48,6 +49,7 @@
         "object-curly-newline": "off",
         "prefer-const": "off",
         "no-plusplus": "off",
+        "import/no-named-as-default-member": "off",
         "operator-linebreak": "off",
         "max-len": [
           "error",

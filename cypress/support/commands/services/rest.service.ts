@@ -168,15 +168,18 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'requestFormData',
   (method: string, endpoint: string, filePath: string, typeFile: string, encondingType: string, formObject = {}, failOnStatusCode = false) => {
+    if (encondingType === 'text/csv') cy.createInvoiceCsv();
+
     cy.fixture(filePath, 'binary')
-      .then((txtEdit) => {
-        const dataRegex = /[0-9]{2}[-|\\/]{1}[0-12]{2}[-|\\/]{1}[0-9]{4}/;
-        const invoiceEndRegex = /0{5}/;
-        if (txtEdit.match(dataRegex)) {
-          return txtEdit.replace(dataRegex, dataIncrement(10)).replace(invoiceEndRegex, faker.random.numeric(5));
-        }
-        return txtEdit;
-      })
+      .then(
+        (txtEdit) =>
+          // const dataRegex = /[0-9]{2}[-|\\/]{1}[0-12]{2}[-|\\/]{1}[0-9]{4}/;
+          // const invoiceEndRegex = /0{5}/;
+          // if (txtEdit.match(dataRegex)) {
+          //   return txtEdit.replace(dataRegex, dataIncrement(10)).replace(invoiceEndRegex, faker.random.numeric(5));
+          // }
+          txtEdit,
+      )
       .then((txtBin) => Cypress.Blob.binaryStringToBlob(txtBin, encondingType))
       .then((blob) => {
         const log = Cypress.log({

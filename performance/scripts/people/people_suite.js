@@ -1,13 +1,9 @@
-import http from 'k6/http';
-import { check, sleep, group } from 'k6';
-
-import { lk } from '../helper/helper.js';
-
 export const options = {
   thresholds: {
     http_req_failed: ['rate<0.05'], // http errors should be less than 1%
     http_req_duration: ['p(95)<1000'], // 95% of requests should be below 200ms
   },
+  systemTags: ['scenario', 'url', 'check', 'status', 'error', 'error_code'],
   scenarios: {
     load: {
       executor: 'ramping-vus',
@@ -28,7 +24,7 @@ export const options = {
 
       stages: [
         { duration: '5s', target: 40 }, // ramp up to  users
-        { duration: '50s', target: 40 }, // stay at 40 for 50s
+        { duration: '40s', target: 30 }, // stay at 40 for 50s
         { duration: '5s', target: 0 }, // scale down. (optional)
       ],
     },
@@ -37,11 +33,11 @@ export const options = {
 
       stages: [
         { duration: '2s', target: 2 }, // below normal load
-        { duration: '1m', target: 2 },
+        { duration: '20s', target: 2 },
         { duration: '2s', target: 14 }, // spike to 14 users
-        { duration: '3m', target: 14 }, // stay at 14 for 3 minutes
+        { duration: '40s', target: 14 }, // stay at 14 for 3 minutes
         { duration: '2s', target: 2 }, // scale down. Recovery stage.
-        { duration: '3m', target: 2 },
+        { duration: '40s', target: 2 },
         { duration: '2s', target: 0 },
       ],
     },
@@ -60,12 +56,21 @@ export const options = {
         { duration: '10s', target: 0 }, // scale down. Recovery stage.
       ],
     },
+    endurance: {
+      executor: 'ramping-vus',
+
+      stages: [
+        { duration: '5s', target: 40 }, // beyond the breaking point
+        { duration: '50s', target: 50 },
+        { duration: '5s', target: 0 }, // scale down. Recovery stage.
+      ],
+    },
   },
 };
 
 export default function () {
   group('Peoples', () => {
-    const response = http.get(`${lk()}30`, { headers: { Accepts: 'application/json' } });
+    const response = http.get(`https://swapi.dev/api/people/30`, { headers: { Accepts: 'application/json' } });
     check(response, { 'status is 200': (r) => r.status === 200 });
   });
 

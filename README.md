@@ -100,3 +100,5 @@ export let options = {
 ## Entendendo como funciona o sorry-cypress
 
 **URL**: `https://docs.sorry-cypress.dev/guide/get-started`
+
+**Tutorial**: `https://www.youtube.com/watch?v=xyFe3QAK9IY&t=205s`

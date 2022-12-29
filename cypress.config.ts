@@ -9,7 +9,7 @@ dotenv.config({
 });
 
 module.exports = defineConfig({
-  projectId: '9s2d6m',
+  projectId: 'T4Uq0n',
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,

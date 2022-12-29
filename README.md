@@ -91,3 +91,12 @@ export let options = {
     docker-compose up -d influxdb grafana
     docker-compose run k6 run //performance//scripts//
     ```
+
+
+# Dash board
+
+**URL**: `https://app.currents.dev/projects/T4Uq0n/runs`
+
+## Entendendo como funciona o sorry-cypress
+
+**URL**: `https://docs.sorry-cypress.dev/guide/get-started`

@@ -15,7 +15,7 @@ declare namespace Cypress {
     getEntityId(): Chainable<any>;
 
     converterToJson(file: string): Chainable<any>;
-    createInvoiceCsv(document: string): Chainable<any>;
+    createInvoiceCsv(): Chainable<any>;
 
     /* -------------------------------------------------------BACK-END --------------------------------------------------------------------*/
 

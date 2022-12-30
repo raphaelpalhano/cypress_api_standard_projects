@@ -20,5 +20,5 @@ e2e:
     - develop
     - master
   script:  
-    - npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF --ci-build-id results-e2e-${CI_COMMIT_SHA:0:8}
+    - npm run cy:run:homolog #npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF --ci-build-id results-e2e-${CI_COMMIT_SHA:0:8}
 

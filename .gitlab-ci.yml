@@ -20,6 +20,5 @@ e2e:
     - develop
     - master
   script:  
-    - npm run cy:dash
-    #npx cypress run --record --key db0be51e-9439-4266-b7a9-79e9266d42b9
+    - npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF --ci-build-id results-e2e-${CI_COMMIT_SHA:0:8}
 

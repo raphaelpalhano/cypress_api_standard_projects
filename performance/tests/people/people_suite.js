@@ -1,13 +1,19 @@
+import { group } from 'k6';
+import { getPeople, getAllPeople, getSpecies, getPlanets } from '../../scripts/people.service.js';
+
+// import requestPeople from './people.service.js';
+
 export const options = {
   thresholds: {
     http_req_failed: ['rate<0.05'], // http errors should be less than 1%
     http_req_duration: ['p(95)<1000'], // 95% of requests should be below 200ms
   },
-  systemTags: ['scenario', 'url', 'check', 'status', 'error', 'error_code'],
+  // systemTags: ['scenario', 'url', 'check', 'status', 'error', 'error_code'],
   scenarios: {
     load: {
       executor: 'ramping-vus',
-
+      // exec: 'loadT',
+      tags: { my_custom_tag: 'loadT' },
       stages: [
         // Ramp-up from 1 to 5 virtual users (VUs) in 5s
         { duration: '5s', target: 5 },
@@ -21,6 +27,8 @@ export const options = {
     },
     soak: {
       executor: 'ramping-vus',
+      // exec: 'soakT',
+      tags: { my_custom_tag: 'soak' },
 
       stages: [
         { duration: '5s', target: 40 }, // ramp up to  users
@@ -30,6 +38,8 @@ export const options = {
     },
     spike: {
       executor: 'ramping-vus',
+      // exec: 'spikeT',
+      tags: { my_custom_tag: 'spike' },
 
       stages: [
         { duration: '2s', target: 2 }, // below normal load
@@ -43,6 +53,8 @@ export const options = {
     },
     stress: {
       executor: 'ramping-vus',
+      // exec: 'stressT',
+      tags: { my_custom_tag: 'stress' },
 
       stages: [
         { duration: '2s', target: 2 }, // below normal load
@@ -56,8 +68,10 @@ export const options = {
         { duration: '10s', target: 0 }, // scale down. Recovery stage.
       ],
     },
-    endurance: {
+    immersion: {
       executor: 'ramping-vus',
+      // exec: 'immersionT',
+      tags: { my_custom_tag: 'stress' },
 
       stages: [
         { duration: '5s', target: 40 }, // beyond the breaking point
@@ -69,15 +83,16 @@ export const options = {
 };
 
 export default function () {
-  group('Peoples', () => {
-    const response = http.get(`https://swapi.dev/api/people/30`, { headers: { Accepts: 'application/json' } });
-    check(response, { 'status is 200': (r) => r.status === 200 });
+  group('people', function () {
+    getPeople();
+    getAllPeople();
   });
 
-  group('Species', () => {
-    const response = http.get('https://swapi.dev/api/species/13/', { headers: { Accepts: 'application/json' } });
-    check(response, { 'status is 200': (r) => r.status === 200 });
+  group('species', function () {
+    getSpecies();
   });
 
-  sleep(0.3);
+  group('planets', function () {
+    getPlanets();
+  });
 }

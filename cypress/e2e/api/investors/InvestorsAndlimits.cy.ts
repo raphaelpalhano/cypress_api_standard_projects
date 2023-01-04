@@ -24,7 +24,7 @@ describe('User operation the intermediation fees', function () {
       });
     });
 
-    cy.uploadFees(`${investor.id}/upload-fee-file`, 'upload/fees.xlsx').then((res) => {
+    cy.uploadFees(`${investor.id}/upload-fee-file`, 'cypress/fixtures/upload/fees.xlsx').then((res) => {
       console.log(res);
       expect(res.status).to.be.eq(201);
       expect(res.statusText).to.be.eq('Created');

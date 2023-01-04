@@ -4,27 +4,42 @@ import * as investor from '../../../fixtures/static/investors.json';
 
 describe('Given I want to see summary', function () {
   before('Given my authentication with manager', function () {
-    cy.authSystem('supplier');
-    cy.getEntityId().then((entityId) => {
-      cy.getSupplierInfo('suppliers', entityId).then((supplier) => {
-        cy.wrap(supplier.body.document).as('documentSupplier');
-        cy.wrap(supplier.body.bankAccounts[0].id).as('bankId');
-      });
-    });
-    cy.getListOfEnterprises('enterprises').then((res) => {
-      cy.wrap(res.body.data[0].document).as('enterpriseDocument');
-      cy.wrap(res.body.data[0].id).as('enterpriseID');
-    });
-
-    cy.authSystem('investor')
-      .getInvestors('')
-      .then((res) => {
-        cy.wrap(res.body.data[0].id).as('investorsId');
-        cy.uploadFees(`${investor.id}/upload-fee-file`, 'upload/fees.xlsx').then((resp) => {
-          expect(resp.status).to.be.eq(201);
-          expect(resp.statusText).to.be.eq('Created');
+    cy.authSystem('supplier')
+      .getEntityId()
+      .then((entityId) => {
+        cy.getSupplierInfo('suppliers', entityId).then((supplier) => {
+          cy.wrap(supplier.body.document).as('documentSupplier');
+          cy.wrap(supplier.body.bankAccounts[0].id).as('bankId');
         });
       });
+    cy.getListOfEnterprises('enterprises').then((resEnterprise) => {
+      cy.wrap(resEnterprise.body.data[0].document).as('enterpriseDocument');
+      cy.wrap(resEnterprise.body.data[0].id).as('enterpriseID');
+
+      const bodyPatchInvestors = {
+        enterpriseId: resEnterprise.body.data[0].id,
+        limit: 10000000,
+      };
+
+      cy.authSystem('investor')
+        .getInvestors(`order?enterpriseId=${resEnterprise.body.data[0].id}&document=${resEnterprise.body.data[0].document}`)
+        .then((resLimite) => {
+          if (!resLimite.body.limits) {
+            cy.postInvestors(`${investor.id}/limits`, { enterpriseId: enterprises.enpterprises[0].id, limit: 10000000 }).then((respPostInvestor) => {
+              expect(respPostInvestor.status).to.be.eq(201);
+            });
+          }
+
+          cy.patchInvestors(`${resLimite.body.limits[0].investorId}/limits/${resLimite.body.limits[0].id}`, bodyPatchInvestors).then((response) => {
+            expect(response.status).to.be.eq(200);
+          });
+
+          cy.uploadFees(`${investor.id}/upload-fee-file`, 'cypress/fixtures/upload/fees.xlsx').then((resp) => {
+            expect(resp.status).to.be.eq(201);
+            expect(resp.statusText).to.be.eq('Created');
+          });
+        });
+    });
   });
 
   beforeEach(function () {
@@ -33,12 +48,8 @@ describe('Given I want to see summary', function () {
       value: enterprises.enpterprises[0].id,
     };
 
-    cy.postInvestors(`${this.investorsId}/limits`, { enterpriseId: this.enterpriseID, limit: 10000000 }).then((res) => {
-      expect(res.status).to.be.eq(201);
-    });
-
     cy.authSystem('manager')
-      .uploadInvoices('invoices/upload-file', 'upload/invoicesBack.csv', formobject)
+      .uploadInvoices('invoices/upload-file', 'cypress/fixtures/upload/invoicesBack.csv', formobject)
       .then((res) => {
         expect(res.status).to.be.eq(201);
       });

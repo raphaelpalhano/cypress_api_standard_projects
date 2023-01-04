@@ -16,15 +16,8 @@ export const options = {
 };
 
 export default function () {
-  group('Peoples', () => {
-    const response = http.get(`https://swapi.dev/api/people/30`, { headers: { Accepts: 'application/json' } });
-    check(response, { 'status is 200': (r) => r.status === 200 });
-  });
-
-  group('Species', () => {
-    const response = http.get('https://swapi.dev/api/species/13/', { headers: { Accepts: 'application/json' } });
-    check(response, { 'status is 200': (r) => r.status === 200 });
-  });
+  const response = http.get(`https://swapi.dev/api/people/30`, { headers: { Accepts: 'application/json' } });
+  check(response, { 'status is 200': (r) => r.status === 200 });
 
   sleep(0.3);
 }

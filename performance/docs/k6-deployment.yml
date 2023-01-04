@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k6
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: k6
+  template:
+    metadata:
+      labels:
+        app: k6
+    spec:
+      containers:
+      - name: k6
+        image: loadimpact/k6
+        command: ["k6", "run", "--vus", "10", "--duration", "30s"]
+        envFrom:
+        - configMapRef:
+            name: k6-config
+        volumeMounts:
+        - name: k6-scripts
+          mountPath: /scripts
+      volumes:
+      - name: k6-scripts
+        configMap:
+          name: k6-config
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: k6
+spec:
+  type: LoadBalancer
+  selector:
+    app: k6
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

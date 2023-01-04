@@ -16,16 +16,16 @@ export const options = {
 };
 
 export default function () {
-  group('people', function () {
+  group('orders', function () {
     getPeople();
     getAllPeople();
   });
 
-  group('species', function () {
+  group('summary', function () {
     getSpecies();
   });
 
-  group('planets', function () {
+  group('signatures', function () {
     getPlanets();
   });
 }

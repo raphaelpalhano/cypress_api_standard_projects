@@ -35,6 +35,24 @@ services:
       - ./performance/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ./performance/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
+  k6_load:
+    image: loadimpact/k6
+    container_name: test_k6
+    volumes:
+       - ./:/specs
+    command: run /tests/test_spec.js
+    ports:
+       - "6565:6565"
+
+  k6_stress:
+    image: loadimpact/k6
+    container_name: test_k6
+    volumes:
+       - ./:/specs
+    command: run /tests/test_spec.js
+    ports:
+       - "6565:6565"
+
   k6:
     image: loadimpact/k6:latest
 #    entrypoint: /bin/sh

@@ -27,7 +27,6 @@ spec:
         configMap:
           name: k6-config
 
----
 
 apiVersion: v1
 kind: Service

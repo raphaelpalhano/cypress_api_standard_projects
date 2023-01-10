@@ -82,7 +82,7 @@ declare namespace Cypress {
 
     getOperations(endpoint: string): Chainable<any>;
 
-    getOneOperations(endpoint: string, id: number): Chainable<any>;
+    getOneOperations(endpoint: string, params: string): Chainable<any>;
 
     postOperations(endpoint: string, body: object): Chainable<any>;
 

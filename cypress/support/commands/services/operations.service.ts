@@ -2,8 +2,8 @@ Cypress.Commands.add('getOperations', (endpoint: string) => {
   cy.requestWithoutBody('GET', `operations/api/v1/${endpoint}`);
 });
 
-Cypress.Commands.add('getOneOperations', (endpoint: string, id: number) => {
-  cy.requestWithoutBody(`GET`, `operations/api/v1/${endpoint}/${id}`);
+Cypress.Commands.add('getOneOperations', (endpoint: string, params: string) => {
+  cy.requestWithoutBodyButParam(`GET`, `operations/api/v1/${endpoint}/`, params);
 });
 
 Cypress.Commands.add('postOperations', (endpoint: string, body: object) => {

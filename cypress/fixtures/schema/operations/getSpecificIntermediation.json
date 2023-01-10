@@ -26,25 +26,9 @@
           "supplierName"
         ]
       }
-    },
-    "total": {
-      "type": "integer"
-    },
-    "perPage": {
-      "type": "integer"
-    },
-    "page": {
-      "type": "integer"
-    },
-    "lastPage": {
-      "type": "integer"
     }
   },
   "required": [
-    "data",
-    "total",
-    "perPage",
-    "page",
-    "lastPage"
+    "data"
   ]
 }

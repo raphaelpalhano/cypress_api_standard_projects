@@ -1,7 +1,6 @@
 import { group } from 'k6';
-import { getPeople, getAllPeople, getSpecies, getPlanets } from '../../scripts/people.service.js';
 
-// import requestPeople from './people.service.js';
+import { getPeople, getAllPeople, getSpecies, getPlanets } from '../../../../scripts/people.service.js';
 
 export const options = {
   thresholds: {
@@ -25,32 +24,7 @@ export const options = {
         { duration: '5s', target: 0 },
       ],
     },
-    soak: {
-      executor: 'ramping-vus',
-      // exec: 'soakT',
-      tags: { my_custom_tag: 'soak' },
 
-      stages: [
-        { duration: '5s', target: 40 }, // ramp up to  users
-        { duration: '40s', target: 30 }, // stay at 40 for 50s
-        { duration: '5s', target: 0 }, // scale down. (optional)
-      ],
-    },
-    spike: {
-      executor: 'ramping-vus',
-      // exec: 'spikeT',
-      tags: { my_custom_tag: 'spike' },
-
-      stages: [
-        { duration: '2s', target: 2 }, // below normal load
-        { duration: '20s', target: 2 },
-        { duration: '2s', target: 14 }, // spike to 14 users
-        { duration: '40s', target: 14 }, // stay at 14 for 3 minutes
-        { duration: '2s', target: 2 }, // scale down. Recovery stage.
-        { duration: '40s', target: 2 },
-        { duration: '2s', target: 0 },
-      ],
-    },
     stress: {
       executor: 'ramping-vus',
       // exec: 'stressT',
@@ -66,17 +40,6 @@ export const options = {
         { duration: '2s', target: 8 }, // beyond the breaking point
         { duration: '5s', target: 8 },
         { duration: '10s', target: 0 }, // scale down. Recovery stage.
-      ],
-    },
-    immersion: {
-      executor: 'ramping-vus',
-      // exec: 'immersionT',
-      tags: { my_custom_tag: 'stress' },
-
-      stages: [
-        { duration: '5s', target: 40 }, // beyond the breaking point
-        { duration: '50s', target: 50 },
-        { duration: '5s', target: 0 }, // scale down. Recovery stage.
       ],
     },
   },

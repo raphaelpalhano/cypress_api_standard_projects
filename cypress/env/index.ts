@@ -9,7 +9,7 @@ function getConfigurationByFile(file) {
 }
 
 module.exports = async (on, config) => {
-  const file = config.env.configFile || config.env.homolog || config.env.prod;
+  const file = config.env.configFile || config.env.nonprod || config.env.prod;
   require('cypress-failed-log/on')(on);
   require('cypress-mochawesome-reporter/plugin')(on);
   on('task', {

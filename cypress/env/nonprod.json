@@ -3,7 +3,7 @@
     "baseUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy",
     "env": {
         "global_timeout": 50000,
-        "environment": "homolog",
+        "environment": "nonprod",
         "USERS": {
             "USER_BACK_INVESTOR": "investidor_back_test@mailinator.com",
             "USER_BACK_SUPPLIER": "fornecedor_back_test@mailinator.com",

@@ -2095,6 +2095,5 @@
     "timezone": "browser",
     "title": "k6 Load Testing Results By Scenarios",
     "uid": "k6",
-    "version": 1,
-    "weekStart": ""
+    "version": 1
   }

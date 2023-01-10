@@ -25,75 +25,48 @@ Verifique os envs e users.
 
 
 # docker-k6-grafana-influxdb
-    Demonstrates how to run load tests with containerised instances of K6, Grafana and InfluxDB.
 
 
-### Article
-    https://medium.com/swlh/beautiful-load-testing-with-k6-and-docker-compose-4454edb3a2e3
+## Execução
 
-#### test suite
+### Subir o grafana
 
-Você pode executar qualquer um dos scripts individuais como k6 run test01.js, e também pode executar todos eles via test-suite.js. Claro, test-suite.jspode ser muito mais dinâmico, com algumas variáveis ​​de ambiente e funções auxiliares, você pode construir pipelines de execução muito mais flexíveis e complexos, se necessário.
+**Subir o grafana e influxdb:** `docker-compose up -d influxdb grafana`
 
-~~~js
-import test01 from "./test01.js";
-import test02 from "./test02.js";
-import test03 from "./test03.js";
+### Executar os testes
 
-export let options = {
-  execution: {
-    "test1": {
-      type: "composite",
-      exec: "test01.default",
-      options: test01.options,
-    },
-    "test2": {
-      type: "composite",
-      exec: "test01.default",
-      options: test02.options,
-      startAfter: "test1",
-    },
-    "test3": {
-      type: "composite",
-      exec: "test02.default",
-      options: test02.options,
-      startAfter: "test2",
-    },
-  }
-}
-~~~
+**Executando arquivo específico com cli:** `docker-compose run --rm k6-cli run //performance//tests//api//swapi//swapi_suite.js`
 
+**Executando vários arquivos:** `docker-compose up swapi_immersion swapi_stress --abort-on-container-exit --exit-code-from swapi_immersion swapi_stress`
+
+
+
+## Estrutura de pastas do framework de performance
+
+### Constants
+
+Será reservado para exportar as constantes utilizadas no testes, como URL e outras, para não precisar repetir o valor.
 
 ### Dashboards
-    The dashboard in /dashboards is adapted from the excellent K6 / Grafana dashboard here:
-    https://grafana.com/grafana/dashboards/2587
 
-    There are only two small modifications:
-    * the data source is configured to use the docker created InfluxDB data source
-    * the time period is set to now-15m, which I feel is a better view for most tests
-
-### Scripts
-    The script here is an example of a low Virtual User (VU) load test of the excellent Star Wars API:
-    https://swapi.dev/
-
-    Run it
-
-  docker-compose run k6 run //scripts//es6sample.js
-    Ou:
-
-    MSYS_NO_PATHCONV=1 docker-compose run k6 run /scripts/es6sample.js
-  
-  Confirmado que funciona com o Git Bash 2.29.2 e o Docker 20.10.2 instalado por meio do Docker Desktop no Windows 10 Pro.
-  É um problema causado pela conversão de caminho do MSYS2, que por algum motivo não era um problema quando WORKDIRera /, mas é quando você especifica caminhos absolutos como este.
-  Você pode ver detalhes adicionais sobre isso nesta edição 29e maneiras de habilitar o env var globalmente.
-
-    ```
-    docker-compose up -d influxdb grafana
-    docker-compose run k6 run //performance//scripts//
-    ```
+São os arquivos json, ou, arquivos yaml que estruturam os gráficos no grafana, como, linhas, dashboards, métricas, cor, tamanho, etc.
 
 
-# Dash board
+### docs
+
+Documentos de anotações relacionados aos testes de performance
+
+### helper
+
+Arquivos com funções auxiliares, como: `conectar ao banco para executar querys`, `Criar reports automaticos`
+
+### tests
+
+Estrutura as pastas de serviços, endpoint que serão testadas.
+
+[api](`somente testes que fazem request direto no microsserviço`) -->  [sap](`nome do microsserviço`) --> [sponsors](`nome do endpoint`) --> [group](`dentro de cada arquivo de teste será separado por grupo de métodos HTTP POST/sponsors, GET/sponsors`)
+
+## Dash board
 
 **URL**: `https://app.currents.dev/projects/T4Uq0n/runs`
 

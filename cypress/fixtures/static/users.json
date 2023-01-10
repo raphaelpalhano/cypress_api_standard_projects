@@ -4,8 +4,8 @@
         "menu": [
             {
                 "id": 1,
-                "createdAt": "2022-11-14T10:04:44.486Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "createdAt": "2023-01-06T18:36:01.840Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "DisplaySettings",
                 "title": "Painel inicial",
                 "domClass": "",
@@ -16,8 +16,8 @@
             },
             {
                 "id": 2,
-                "createdAt": "2022-11-14T10:04:44.494Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "createdAt": "2023-01-06T18:36:01.846Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "AppRegistration",
                 "title": "Gestão",
                 "domClass": "",
@@ -27,22 +27,34 @@
                 "items": [
                     {
                         "id": 4,
-                        "createdAt": "2022-11-14T10:04:44.517Z",
-                        "updatedAt": "2022-11-14T10:04:44.591Z",
+                        "createdAt": "2023-01-06T18:36:01.888Z",
+                        "updatedAt": "2023-01-06T18:36:02.020Z",
+                        "icon": "",
+                        "title": "Entidades",
+                        "domClass": "",
+                        "path": "/manage-entities",
+                        "level": 1,
+                        "order": 1,
+                        "entity": "manager"
+                    },
+                    {
+                        "id": 5,
+                        "createdAt": "2023-01-06T18:36:01.905Z",
+                        "updatedAt": "2023-01-06T18:36:02.020Z",
                         "icon": "",
                         "title": "Termos de cessão",
                         "domClass": "",
                         "path": "/order-signatures",
                         "level": 1,
-                        "order": 1,
+                        "order": 2,
                         "entity": "manager"
                     }
                 ]
             },
             {
                 "id": 3,
-                "createdAt": "2022-11-14T10:04:44.499Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "createdAt": "2023-01-06T18:36:01.852Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "Supply",
                 "title": "Insumos e Leilão",
                 "domClass": "",
@@ -51,9 +63,9 @@
                 "entity": "manager",
                 "items": [
                     {
-                        "id": 5,
-                        "createdAt": "2022-11-14T10:04:44.528Z",
-                        "updatedAt": "2022-11-14T10:04:44.591Z",
+                        "id": 6,
+                        "createdAt": "2023-01-06T18:36:01.918Z",
+                        "updatedAt": "2023-01-06T18:36:02.020Z",
                         "icon": "",
                         "title": "Cadastrar notas e rebate",
                         "domClass": "",
@@ -70,9 +82,9 @@
     "investor": {
         "menu": [
             {
-                "id": 10,
-                "createdAt": "2022-11-14T10:04:44.558Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "id": 11,
+                "createdAt": "2023-01-06T18:36:01.969Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "DisplaySettings",
                 "title": "Painel inicial",
                 "domClass": "",
@@ -82,9 +94,9 @@
                 "entity": "investor"
             },
             {
-                "id": 11,
-                "createdAt": "2022-11-14T10:04:44.561Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "id": 12,
+                "createdAt": "2023-01-06T18:36:01.976Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "AppRegistration",
                 "title": "Gestão",
                 "domClass": "",
@@ -93,9 +105,9 @@
                 "entity": "investor",
                 "items": [
                     {
-                        "id": 13,
-                        "createdAt": "2022-11-14T10:04:44.573Z",
-                        "updatedAt": "2022-11-14T10:04:44.573Z",
+                        "id": 14,
+                        "createdAt": "2023-01-06T18:36:01.995Z",
+                        "updatedAt": "2023-01-06T18:36:01.995Z",
                         "icon": "",
                         "title": "Resumo das Operações",
                         "domClass": "",
@@ -105,9 +117,9 @@
                         "entity": "investor"
                     },
                     {
-                        "id": 14,
-                        "createdAt": "2022-11-14T10:04:44.583Z",
-                        "updatedAt": "2022-11-14T10:04:44.583Z",
+                        "id": 15,
+                        "createdAt": "2023-01-06T18:36:02.010Z",
+                        "updatedAt": "2023-01-06T18:36:02.010Z",
                         "icon": "",
                         "title": "Termos de cessão",
                         "domClass": "",
@@ -119,9 +131,9 @@
                 ]
             },
             {
-                "id": 12,
-                "createdAt": "2022-11-14T10:04:44.564Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "id": 13,
+                "createdAt": "2023-01-06T18:36:01.982Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "Supply",
                 "title": "Insumos e Leilão",
                 "domClass": "",
@@ -130,9 +142,9 @@
                 "entity": "investor",
                 "items": [
                     {
-                        "id": 15,
-                        "createdAt": "2022-11-14T10:04:44.592Z",
-                        "updatedAt": "2022-11-14T10:04:44.592Z",
+                        "id": 16,
+                        "createdAt": "2023-01-06T18:36:02.021Z",
+                        "updatedAt": "2023-01-06T18:36:02.021Z",
                         "icon": "",
                         "title": "Cadastrar taxas e limites",
                         "domClass": "",
@@ -178,9 +190,9 @@
     {
         "menu": [
             {
-                "id": 6,
-                "createdAt": "2022-11-14T10:04:44.534Z",
-                "updatedAt": "2022-11-14T10:04:44.534Z",
+                "id": 7,
+                "createdAt": "2023-01-06T18:36:01.927Z",
+                "updatedAt": "2023-01-06T18:36:01.927Z",
                 "icon": "Receipt",
                 "title": "Antecipar notas",
                 "domClass": "highlight-item",
@@ -190,9 +202,9 @@
                 "entity": "supplier"
             },
             {
-                "id": 7,
-                "createdAt": "2022-11-14T10:04:44.537Z",
-                "updatedAt": "2022-11-14T10:04:44.591Z",
+                "id": 8,
+                "createdAt": "2023-01-06T18:36:01.933Z",
+                "updatedAt": "2023-01-06T18:36:02.020Z",
                 "icon": "AppRegistration",
                 "title": "Gestão",
                 "domClass": "",
@@ -201,9 +213,9 @@
                 "entity": "supplier",
                 "items": [
                     {
-                        "id": 8,
-                        "createdAt": "2022-11-14T10:04:44.545Z",
-                        "updatedAt": "2022-11-14T10:04:44.591Z",
+                        "id": 9,
+                        "createdAt": "2023-01-06T18:36:01.945Z",
+                        "updatedAt": "2023-01-06T18:36:02.020Z",
                         "icon": "",
                         "title": "Resumo das Operações",
                         "domClass": "",
@@ -213,9 +225,9 @@
                         "entity": "supplier"
                     },
                     {
-                        "id": 9,
-                        "createdAt": "2022-11-14T10:04:44.553Z",
-                        "updatedAt": "2022-11-14T10:04:44.591Z",
+                        "id": 10,
+                        "createdAt": "2023-01-06T18:36:01.959Z",
+                        "updatedAt": "2023-01-06T18:36:02.020Z",
                         "icon": "",
                         "title": "Termos de cessão",
                         "domClass": "",
@@ -272,6 +284,5 @@
             ]
         }
     }
-
 
 }

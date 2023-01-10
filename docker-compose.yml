@@ -35,35 +35,57 @@ services:
       - ./performance/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
       - ./performance/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
-  k6_load:
+  sponsors_smoke:
     image: loadimpact/k6
     container_name: test_k6
-    volumes:
-       - ./:/specs
-    command: run /tests/test_spec.js
-    ports:
-       - "6565:6565"
-
-  k6_stress:
-    image: loadimpact/k6
-    container_name: test_k6
-    volumes:
-       - ./:/specs
-    command: run /tests/test_spec.js
-    ports:
-       - "6565:6565"
-
-  k6:
-    image: loadimpact/k6:latest
-#    entrypoint: /bin/sh
-#    user: root
     networks:
       - k6
-    ports:
-      - "6565:6565"
     environment:
       - K6_OUT=influxdb=http://influxdb:8086/k6
     volumes:
-      - ./performance/:/performance
+       - ./performance/:/performance
+    command: run //performance//tests//api//sap//sponsors//sponsors_smoke.js
+    ports:
+       - "6565:6565"
+
+  sponsors_load:
+    image: loadimpact/k6
+    container_name: test_k6
+    networks:
+      - k6
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+       - ./performance/:/performance
+    command: run //performance//tests//api//sap//sponsors//sponsors_load.js
+    ports:
+       - "6566:6566"
+
+  sponsors_stress:
+    image: loadimpact/k6
+    container_name: test_k6
+    networks:
+      - k6
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+       - ./performance/:/performance
+    command: run //performance//tests//api//sap//sponsors//sponsors_stress.js
+    ports:
+       - "6566:6567"
+
+
+  k6-cli:
+    image: loadimpact/k6:latest
+    # entrypoint: /bin/sh
+    # user: root
+    networks:
+       - k6
+    ports:
+       - "9090:9090"
+    environment:
+       - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+       - ./performance/:/performance
 
       

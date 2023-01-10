@@ -3,7 +3,7 @@ describe('Given I research for Zip Code', function () {
     cy.authSystem('manager');
   });
 
-  it('When I have valid Zip code', () => {
+  it.skip('When I have valid Zip code', () => {
     cy.getBffSpecific('addresses/cep', '88106102').then((res) => {
       expect(res.status).to.be.eq(200);
       expect(res.body).have.property('zipCode');

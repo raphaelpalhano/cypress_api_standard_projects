@@ -59,6 +59,6 @@ reports/.jsons
 cypress/videos/frontend
 cypress/videos/api
 
-
+cypress/downloads/*
 
 

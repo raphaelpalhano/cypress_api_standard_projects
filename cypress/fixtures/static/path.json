@@ -1,0 +1,6 @@
+{
+  "feesFile": "cypress/fixtures/upload/fees.xlsx",
+  "wrongFile": "cypress/fixtures/upload/wrong.xlsx",
+  "wrongInvoice": "cypress/fixtures/upload/frontWrongInvoice.csv",
+  "csv": "cypress/fixtures/upload/invoicesBack.csv"
+}

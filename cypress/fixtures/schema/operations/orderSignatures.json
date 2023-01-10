@@ -1,0 +1,26 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "hash": {
+        "type": "string"
+      },
+      "orderId": {
+        "type": "integer"
+      },
+      "date": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "hash",
+      "orderId",
+      "date"
+    ]
+  }
+}

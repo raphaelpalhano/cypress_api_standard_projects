@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fee": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer"
+          },
+          "supplierGovernmentId": {
+            "type": "string"
+          },
+          "supplierName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fee",
+          "id",
+          "supplierGovernmentId",
+          "supplierName"
+        ]
+      }
+    },
+    "total": {
+      "type": "integer"
+    },
+    "perPage": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "lastPage": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "data",
+    "total",
+    "perPage",
+    "page",
+    "lastPage"
+  ]
+}

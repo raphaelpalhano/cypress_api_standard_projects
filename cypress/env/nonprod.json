@@ -1,0 +1,25 @@
+{
+    "$schema": "https://on.cypress.io/cypress.schema.json",
+    "baseUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy",
+    "env": {
+        "global_timeout": 50000,
+        "environment": "nonprod",
+        "USERS": {
+            "USER_BACK_INVESTOR": "investidor_back_test@mailinator.com",
+            "USER_BACK_SUPPLIER": "fornecedor_back_test@mailinator.com",
+            "USER_BACK_MANAGER": "gestor_back_test@mailinator.com",
+            "OTP_PASS": "#eL9vLkL",
+            "MANAGER_PASS": "backBack55221@",
+            "INVESTOR_PASS": "backBack55221@",
+            "SUPPLIER_PASS": "backBack55221@",
+
+            "INVALID_PASS": "123456@S"
+        },
+
+        "AWS_AMPLYF": {
+            "COGNITO_CLIENT_APP_ID": "o9od3jf3nqmfb0s8k8v3p1hcg",
+            "COGNITO_USER_POOL_ID": "us-east-1_Enxdo9USw",
+            "COGNITO_REGION": "us-east-1"
+        }
+    }
+}

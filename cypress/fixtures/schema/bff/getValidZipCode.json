@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "zipCode": {
+      "type": "string"
+    },
+    "line": {
+      "type": "string"
+    },
+    "city": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "code"
+      ]
+    },
+    "uf": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "abbreviation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "abbreviation"
+      ]
+    },
+    "district": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "zipCode",
+    "line",
+    "city",
+    "uf",
+    "district",
+    "country"
+  ]
+}

@@ -1,0 +1,7 @@
+node_modules/*
+test-report/*
+videos/*
+package-lock.json
+reports/*
+
+

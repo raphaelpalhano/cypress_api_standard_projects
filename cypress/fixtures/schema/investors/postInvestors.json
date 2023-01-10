@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "investorId": {
+      "type": "string"
+    },
+    "enterpriseId": {
+      "type": "integer"
+    },
+    "limit": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "investorId",
+    "enterpriseId",
+    "limit"
+  ]
+}

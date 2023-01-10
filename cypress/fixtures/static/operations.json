@@ -1,0 +1,9 @@
+{
+    "status": {
+        "ON_APPROVAL": "ON_APPROVAL",
+        "APPROVED": "APPROVED",
+        "NOT_APPROVED": "NOT_APPROVED",
+        "PAID": "PAID",
+        "CANCELLED": "CANCELLED"
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "corporateName": {
+      "type": "string"
+    },
+    "tradingName": {
+      "type": "string"
+    },
+    "establishment": {
+      "type": "string"
+    },
+    "cnae": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "corporateName",
+    "tradingName",
+    "establishment",
+    "cnae"
+  ]
+}

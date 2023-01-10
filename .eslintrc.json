@@ -1,0 +1,74 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true,
+        "cypress/globals": true
+    },
+    "plugins": [
+        "cypress"
+      ],
+    "extends": [
+        "airbnb-base",
+        "plugin:cypress/recommended"
+    ],
+
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "func-names": "off",
+      "prefer-arrow-callback": "off" ,
+        "valid-typeof": "off",
+        "import/no-unresolved": "off",
+        "implicit-arrow-linebreak": "off",
+        "cypress/no-assigning-return-values": "error",
+        "cypress/no-unnecessary-waiting": "error",
+        "cypress/assertion-before-screenshot": "warn",
+        "cypress/no-force": "off",
+        "no-unused-vars": "off",
+        "consistent-return": "off",
+        "cypress/no-async-tests": "error",
+        "cypress/no-pause": "error",
+        "no-restricted-syntax": "off",
+        "guard-for-in": "off",
+        "no-param-reassign": "off",
+        "no-console": "off",
+        "no-undef": "off",
+        "global-require": "off",
+        "import/extensions": "off",
+        "import/no-import-module-exports": "off",
+        "import/prefer-default-export": "off",
+        "no-array-constructor": "off",
+        "default-param-last": "off",
+        "function-paren-newline": "off",
+        "object-curly-newline": "off",
+        "prefer-const": "off",
+        "no-plusplus": "off",
+        "import/no-named-as-default-member": "off",
+        "operator-linebreak": "off",
+        "max-len": [
+          "error",
+          {
+            "code": 165
+          }
+        ],
+        "indent": [
+          "error",
+          2,
+          {
+            "SwitchCase": 1,
+            "ignoredNodes": ["ConditionalExpression"]
+          }
+        ],
+        "quotes": [
+           "error" ,
+           "single",  {  "avoidEscape" : false ,  "allowTemplateLiterals" : true  }
+          ],
+        "semi": [2, "always"]
+    }
+}

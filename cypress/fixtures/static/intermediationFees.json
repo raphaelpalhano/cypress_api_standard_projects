@@ -1,0 +1,19 @@
+{
+  "ui": {
+  "maxFees": "99,9999999",
+  "minFees": "0,0000001",
+  "negative": "0"
+ },
+
+ "api": {
+  "max": {
+      "fee": 99.9999999,
+      "enterpriseId": 1
+  },
+  "min": {
+    "fee": 0.0000001,
+      "enterpriseId": 1
+  }
+ }
+
+}

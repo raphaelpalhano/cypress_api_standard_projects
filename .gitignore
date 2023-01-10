@@ -1,0 +1,64 @@
+
+# compiled output
+/dist
+/node_modules
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+gitlab.txt
+
+# Tests
+/coverage/*.json
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+node_modules
+
+cypress.env.json
+
+#reports
+cypress/videos/*.mp4
+
+
+#reports e2e
+reports/assets
+
+reports/*.html
+reports/html/index.html
+reports/html/features/*.html
+reports/assets
+
+cypress/screenshots
+
+
+#reports
+
+reports/.jsons
+cypress/videos/frontend
+cypress/videos/api
+
+cypress/downloads/*
+
+

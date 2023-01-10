@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "enterpriseName": {
+      "type": "string"
+    },
+    "invoicesQuantity": {
+      "type": "integer"
+    },
+    "averageTime": {
+      "type": "integer"
+    },
+    "averageFee": {
+      "type": "string"
+    },
+    "total": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "string"
+    },
+    "totalWithDiscount": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "enterpriseName",
+    "invoicesQuantity",
+    "averageTime",
+    "averageFee",
+    "total",
+    "discount",
+    "totalWithDiscount"
+  ]
+}

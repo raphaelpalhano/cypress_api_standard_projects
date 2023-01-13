@@ -4,54 +4,6 @@ describe('User operation the intermediation fees', function () {
   before('Given my authentication with manager', () => {
     cy.authSystem('manager');
   });
-  // beforeEach('create a new feee', function () {
-  //   cy.postOperations('intermediation-fees', fees.api.max).then((res) => {
-  //     cy.wrap(res).as('response');
-  //     expect(res.body.fee).equal('99.9999999');
-  //     cy.schemaValidation('operations/postIntermationSuccess.json', res.body).then((validation) => {
-  //       expect(validation).to.be.eq('Schema validated successfully!');
-  //     });
-  //   });
-  // });
-
-  it('Given I get a list the intermedation fees', function () {
-    cy.getOperations('intermediation-fees/suppliers?page=1&sort=corporateName').then((res) => {
-      expect(res.body.data).length.above(1);
-      expect(res.status).to.be.eq(200);
-      expect(res.body.data[0]).to.have.property('fee');
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('supplierGovernmentId');
-      expect(res.body.data[0]).to.have.property('supplierName');
-
-      cy.schemaValidation('operations/getAllIntermediation.json', res.body).then((validation) => {
-        expect(validation).to.be.eq('Schema validated successfully!');
-      });
-    });
-  });
-
-  it('Given I one intermediation fees', function () {
-    cy.getOneOperations('intermediation-fees/suppliers?', 'page=All&search=ALLE ALUMINIO&sort=corporateName').then((res) => {
-      expect(res.body.data).length.above(0);
-      expect(res.status).to.be.eq(200);
-      expect(res.body.data[0]).to.have.property('fee');
-      expect(res.body.data[0]).to.have.property('id');
-      expect(res.body.data[0]).to.have.property('supplierGovernmentId');
-      expect(res.body.data[0]).to.have.property('supplierName');
-      cy.schemaValidation('operations/getSpecificIntermediation.json', res.body).then((validation) => {
-        expect(validation).to.be.eq('Schema validated successfully!');
-      });
-    });
-  });
-
-  it('Given I updated intermedation fee the first supplier', function () {
-    const body = {
-      fee: 15,
-      supplierIds: ['1'],
-    };
-    cy.postOperations('intermediation-fees/suppliers', body).then((resp) => {
-      expect(resp.status).to.be.eq(204);
-    });
-  });
 
   it('Given I updated one global fee', function () {
     const body = {
@@ -66,6 +18,52 @@ describe('User operation the intermediation fees', function () {
           expect(validation).to.be.eq('Schema validated successfully!');
         });
       });
+    });
+  });
+
+  it('Given I get a list of suppliers intermedation fees', function () {
+    cy.getOperations('intermediation-fees/suppliers?page=1&sort=corporateName').then((res) => {
+      expect(res.body.data).length.above(1);
+      expect(res.status).to.be.eq(200);
+      expect(res.body.data[0]).to.have.property('fee');
+      expect(res.body.data[0]).to.have.property('id');
+      expect(res.body.data[0]).to.have.property('supplierGovernmentId');
+      expect(res.body.data[0]).to.have.property('supplierName');
+
+      cy.schemaValidation('operations/getAllIntermediation.json', res.body).then((validation) => {
+        expect(validation).to.be.eq('Schema validated successfully!');
+      });
+    });
+  });
+
+  it('Given I one supplier intermediation fees', function () {
+    cy.getOneOperations('intermediation-fees/suppliers?', 'page=All&search=ALLE ALUMINIO&sort=corporateName').then((res) => {
+      expect(res.body.data).length.above(0);
+      expect(res.status).to.be.eq(200);
+      expect(res.body.data[0]).to.have.property('fee');
+      expect(res.body.data[0]).to.have.property('id');
+      expect(res.body.data[0]).to.have.property('supplierGovernmentId');
+      expect(res.body.data[0]).to.have.property('supplierName');
+      cy.schemaValidation('operations/getSpecificIntermediation.json', res.body).then((validation) => {
+        expect(validation).to.be.eq('Schema validated successfully!');
+      });
+    });
+  });
+
+  it('Given I one intermediation fees', function () {
+    cy.getOneOperations('intermediation-fees/suppliers?', 'page=All&search=ms8&sort=corporateName').then((res) => {
+      expect(res.body.data).length.lessThan(1);
+      expect(res.status).to.be.eq(200);
+    });
+  });
+
+  it('Given I updated intermedation fee the first supplier', function () {
+    const body = {
+      fee: 15,
+      supplierIds: ['1'],
+    };
+    cy.postOperations('intermediation-fees/suppliers', body).then((resp) => {
+      expect(resp.status).to.be.eq(204);
     });
   });
 

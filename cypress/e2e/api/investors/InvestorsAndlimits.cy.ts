@@ -52,7 +52,7 @@ describe('User operation the intermediation fees', function () {
     });
   });
 
-  it('How investor I want to se lists investors', function () {
+  it('How investor I want to registry limit', function () {
     cy.postInvestors(`${this.investorsId}/limits`, { enterpriseId: this.enterpriseID, limit: 10000000 }).then((res) => {
       expect(res.status).to.be.eq(201);
       cy.schemaValidation('investors/postInvestors.json', res.body).then((validation) => {

@@ -5,7 +5,7 @@
       "type": "integer"
     },
     "investorId": {
-      "type": "string"
+      "type": "integer"
     },
     "enterpriseId": {
       "type": "integer"

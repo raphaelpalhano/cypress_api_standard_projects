@@ -1,5 +1,9 @@
 import { Amplify, Auth } from 'aws-amplify';
 
+Cypress.Commands.add('getEntityId', function () {
+  cy.decodeJWT(Cypress.env('ID_TOKEN')).then((body) => body['custom:entityId']);
+});
+
 const amplifyConfig = {
   Auth: {
     region: Cypress.env('AWS_AMPLYF').COGNITO_REGION,
@@ -12,10 +16,6 @@ const amplifyConfig = {
 };
 
 Amplify.configure(amplifyConfig);
-
-Cypress.Commands.add('getEntityId', function () {
-  cy.decodeJWT(Cypress.env('ID_TOKEN')).then((body) => body['custom:entityId']);
-});
 
 // Amazon Cognito
 Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor') => {
@@ -36,32 +36,7 @@ Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor
 
   const typeuser = typesUsers[userType];
 
-  // if (Cypress.env('prod') === 'prod') {
-  //   switch (userType) {
-  //     case 'supplier':
-  //       typeuser.user = Cypress.env('USERS').USER_SUPPLIER_PROD;
-  //       typeuser.password = Cypress.env('USERS').SUPPLIER_PROD_PASS;
-  //       break;
-  //     case 'manager':
-  //       typeuser.user = Cypress.env('USERS').USER_MANAGER_PROD;
-  //       typeuser.password = Cypress.env('USERS').MANAGER_PROD_PASS;
-  //       break;
-  //     case 'investor':
-  //       typeuser.user = Cypress.env('USERS').USER_INVESTOR_PROD;
-  //       typeuser.password = Cypress.env('USERS').INVESTOR_PROD_PASS;
-  //       break;
-  //     default:
-  //       cy.log('Error AuthSystem', {
-  //         userType,
-  //       });
-  //   }
-  // }
-
   console.log(typeuser);
-
-  // if (Cypress.env('REFRESH_TOKEN')) {
-  //   Auth.signOut();
-  // }
 
   cy.wrap(Auth.signIn(typeuser.user, typeuser.password)).then((response: any) => {
     Cypress.env('ID_TOKEN', response.signInUserSession.idToken.jwtToken);
@@ -70,56 +45,37 @@ Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor
   });
 });
 
-// Cypress.Commands.add('authSystem', function (userType: string) {
-//   const typesUsers = {
-//     supplier: Cypress.env('USERS').USER_BACK_SUPPLIER,
-//     manager: Cypress.env('USERS').USER_BACK_MANAGER,
-//     investor: Cypress.env('USERS').USER_BACK_INVESTOR,
-//   };
-//   const headers = {
-//     authority: 'cognito-idp.us-east-1.amazonaws.com',
-//     'content-type': 'application/x-amz-json-1.1',
-//     'sec-fetch-mode': 'cors',
-//     'sec-fetch-site': 'cross-site',
-//     'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth',
-//     'x-amz-user-agent': 'aws-amplify/5.0.4 js',
-//   };
-//   const body = {
-//     AuthFlow: 'USER_PASSWORD_AUTH',
-//     ClientId: 'o9od3jf3nqmfb0s8k8v3p1hcg',
-//     AuthParameters: { USERNAME: '', PASSWORD: Cypress.env('USERS').PASS_BACK },
-//     ClientMetadata: {},
-//   };
+Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'investor') {
+  let typeUser;
+  const typesUsers = {
+    supplier: {
+      user: Cypress.env('USERS').USER_BACK_SUPPLIER,
+      password: Cypress.env('USERS').SUPPLIER_PASS,
+    },
+    manager: {
+      user: Cypress.env('USERS').USER_BACK_MANAGER,
+      password: Cypress.env('USERS').MANAGER_PASS,
+    },
+    investor: {
+      user: Cypress.env('USERS').USER_BACK_INVESTOR,
+      password: Cypress.env('USERS').INVESTOR_PASS,
+    },
+  };
 
-//   for (const type in typesUsers) {
-//     if (userType === type) body.AuthParameters.USERNAME = typesUsers[type];
-//   }
-//   if (Cypress.env('REFRESH_TOKEN')) {
-//     const headerLogout = {
-//       authority: 'cognito-idp.us-east-1.amazonaws.com',
-//       'content-type': 'application/x-amz-json-1.1',
-//       'sec-fetch-mode': 'cors',
-//       'sec-fetch-site': 'cross-site',
-//       'x-amz-target': 'AWSCognitoIdentityProviderService.RevokeToken',
-//       'x-amz-user-agent': 'aws-amplify/5.0.4 js',
-//     };
+  typeUser = typesUsers[userType];
 
-//     const bodyLogout = {
-//       Token: Cypress.env('REFRESH_TOKEN'),
-//       ClientId: body.ClientId,
-//     };
-//     let response = '';
-//     cy.requestCognito('POST', Cypress.env('cognito'), JSON.stringify(bodyLogout), headerLogout).then(function (res) {
-//       const respo = res;
-//       console.log(respo);
-//     });
-//     console.log(response);
-//   }
-//   // headers['x-amz-target'] = 'AWSCognitoIdentityProviderService.InitiateAuth';
-//   cy.requestCognito('POST', Cypress.env('cognito'), JSON.stringify(body), headers).then(function (token) {
-//     const tokenAcess = JSON.parse(token.body);
-//     Cypress.env('ID_TOKEN', tokenAcess.AuthenticationResult.IdToken);
-//     Cypress.env('COGNITO_TOKEN', tokenAcess.AuthenticationResult.AccessToken);
-//     Cypress.env('REFRESH_TOKEN', tokenAcess.AuthenticationResult.RefreshToken);
-//   });
-// });
+  const headers = {
+    Accept: '*/*',
+    'content-type': 'application/x-www-form-urlencoded',
+  };
+
+  const payload = `username=${typeUser.username}&password=${typeUser.password}&client_id=${typeUser.client_id}&client_secret=${typeUser.client_secret}`;
+
+  // headers['x-amz-target'] = 'AWSCognitoIdentityProviderService.InitiateAuth';
+  cy.requestWithBodyAndHeader('POST', `${Cypress.env('sapUrl')}auth/token`, payload, headers).then(function (token) {
+    const tokenAcess = JSON.parse(token.body);
+    Cypress.env('ID_TOKEN', tokenAcess.AuthenticationResult.IdToken);
+    Cypress.env('COGNITO_TOKEN', tokenAcess.AuthenticationResult.AccessToken);
+    Cypress.env('REFRESH_TOKEN', tokenAcess.AuthenticationResult.RefreshToken);
+  });
+});

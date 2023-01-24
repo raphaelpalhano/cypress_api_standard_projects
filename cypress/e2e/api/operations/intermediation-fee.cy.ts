@@ -57,7 +57,7 @@ describe('User operation the intermediation fees', function () {
     });
   });
 
-  it('Given I updated intermedation fee the first supplier', function () {
+  it('Given I registry intermedation fee the first supplier', function () {
     const body = {
       fee: 15,
       supplierIds: ['1'],

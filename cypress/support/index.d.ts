@@ -51,6 +51,7 @@ declare namespace Cypress {
 
     requestWithBodyAndParamAndHeader(method: string, endpoint: string, body: string, param: string, headers: any): Chainable<any>;
 
+    authSap(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
     authSystem(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
 
     /**

@@ -62,3 +62,6 @@ cypress/videos/api
 cypress/downloads/*
 
 
+# Data files
+
+cypress/fixtures/upload/invoicesBack.csv

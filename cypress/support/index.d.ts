@@ -89,7 +89,7 @@ declare namespace Cypress {
 
     deleteOperations(endpoint: string, id: string): Chainable<any>;
 
-    patchOperations(endpoint: string, id: string, body: object): Chainable<any>;
+    patchOperations(endpoint: string, id: number, body: object): Chainable<any>;
 
     updateOperations(endpoint: string, id: string, body: object): Chainable<any>;
 

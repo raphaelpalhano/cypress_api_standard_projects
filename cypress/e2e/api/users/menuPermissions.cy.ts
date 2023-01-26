@@ -1,4 +1,4 @@
-import * as users from '../../../fixtures/static/users.json';
+// import * as users from '../../../fixtures/static/users.json';
 
 describe('Given I have specific permissions each entity', function () {
   it('When I have manager permissions', () => {

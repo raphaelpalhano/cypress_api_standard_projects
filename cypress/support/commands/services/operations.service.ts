@@ -14,7 +14,7 @@ Cypress.Commands.add('deleteOperations', (endpoint: string, id: string) => {
   cy.requestWithoutBody(`DELETE`, `operations/api/v1/${endpoint}/${id}`);
 });
 
-Cypress.Commands.add('patchOperations', (endpoint: string, id: string, body: object) => {
+Cypress.Commands.add('patchOperations', (endpoint: string, id: number, body: object) => {
   cy.requestWithBody(`PATCH`, `operations/api/v1/${endpoint}/${id}`, body);
 });
 

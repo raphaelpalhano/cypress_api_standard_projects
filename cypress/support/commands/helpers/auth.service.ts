@@ -46,7 +46,6 @@ Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor
 });
 
 Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'investor') {
-  let typeUser;
   const typesUsers = {
     supplier: {
       user: Cypress.env('USERS').USER_BACK_SUPPLIER,
@@ -60,22 +59,32 @@ Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'in
       user: Cypress.env('USERS').USER_BACK_INVESTOR,
       password: Cypress.env('USERS').INVESTOR_PASS,
     },
+    client_id: Cypress.env('AWS_AMPLYF').COGNITO_CLIENT_SAP,
+    client_secret: Cypress.env('AWS_AMPLYF').CLIENTE_SECRET_SAP,
   };
 
-  typeUser = typesUsers[userType];
+  const typeUser = typesUsers[userType];
 
-  const headers = {
-    Accept: '*/*',
-    'content-type': 'application/x-www-form-urlencoded',
+  const params = {
+    headers: {
+      Accept: '*/*',
+      'content-type': 'application/x-www-form-urlencoded',
+    },
   };
 
-  const payload = `username=${typeUser.username}&password=${typeUser.password}&client_id=${typeUser.client_id}&client_secret=${typeUser.client_secret}`;
+  const body = {
+    username: typeUser.user,
+    password: typeUser.password,
+    client_id: typesUsers.client_id,
+    client_secret: typesUsers.client_secret,
+  };
+  // `username=${typeUser.username}&password=${typeUser.password}&client_id=${typesUsers.client_id}&client_secret=${typesUsers.client_secret}`;
 
-  // headers['x-amz-target'] = 'AWSCognitoIdentityProviderService.InitiateAuth';
-  cy.requestWithBodyAndHeader('POST', `${Cypress.env('sapUrl')}auth/token`, payload, headers).then(function (token) {
-    const tokenAcess = JSON.parse(token.body);
-    Cypress.env('ID_TOKEN', tokenAcess.AuthenticationResult.IdToken);
-    Cypress.env('COGNITO_TOKEN', tokenAcess.AuthenticationResult.AccessToken);
-    Cypress.env('REFRESH_TOKEN', tokenAcess.AuthenticationResult.RefreshToken);
+  cy.requestFormUrlEncoded('POST', `${Cypress.env('sapUrl')}auth/token`, body, params).then(function (token) {
+    console.log(JSON.stringify(token.body));
+    const tokenAcess = token.body;
+    Cypress.env('TOKEN_SAP', tokenAcess.access_token);
+    Cypress.env('REFRESH_TOKEN', tokenAcess.refresh_token);
+    Cypress.env('EXPIRES_IN', tokenAcess.expires_in);
   });
 });

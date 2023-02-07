@@ -1,8 +1,6 @@
-import { faker } from '@faker-js/faker';
 import * as FormData from 'form-data';
-import { dataIncrement } from '../helpers/string.control';
 
-Cypress.Commands.add('requestWithBody', (method: string, endpoint: string, body: object, failOnStatusCode = false, timeout = Cypress.env('global_timeout')) => {
+Cypress.Commands.add('requestWithBody', (method: string, endpoint: string, body: any, failOnStatusCode = false, timeout = Cypress.env('global_timeout')) => {
   const log = Cypress.log({
     displayName: 'requestWithBody',
     message: [`Request for post/path/put/delete`],
@@ -55,6 +53,42 @@ Cypress.Commands.add(
       headers: {
         header,
       },
+      body,
+      failOnStatusCode,
+      timeout,
+      log: true,
+    });
+
+    log.snapshot('after');
+    log.end();
+  },
+);
+
+Cypress.Commands.add(
+  'requestFormUrlEncoded',
+  (method: string, endpoint: string, body: any, header: any, failOnStatusCode = false, timeout = Cypress.env('global_timeout')) => {
+    const log = Cypress.log({
+      displayName: 'requestWithBodyAndHeader',
+      message: [`Request for post/path/put/delete with header`],
+      // @ts-ignore
+      autoEnd: false,
+    });
+
+    log.snapshot('before');
+
+    cy.log('requestWithBodyAndHeader', {
+      methodHttp: method,
+      route: `${endpoint}`,
+      requestBody: body,
+    });
+
+    cy.request({
+      method,
+      url: `${endpoint}`,
+      headers: {
+        header,
+      },
+      form: true,
       body,
       failOnStatusCode,
       timeout,

@@ -9,10 +9,13 @@
             "USER_BACK_INVESTOR": "investidor_back_test@mailinator.com",
             "USER_BACK_SUPPLIER": "fornecedor_back_test@mailinator.com",
             "USER_BACK_MANAGER": "gestor_back_test@mailinator.com",
+            "USER_SAP_MANAGER": "integracao.api@mailinator.com",
             "OTP_PASS": "#eL9vLkL",
             "MANAGER_PASS": "backBack55221@",
             "INVESTOR_PASS": "backBack55221@",
             "SUPPLIER_PASS": "backBack55221@",
+            "SAP_PASS": "backApi@2023",
+
 
             "INVALID_PASS": "123456@S"
         },

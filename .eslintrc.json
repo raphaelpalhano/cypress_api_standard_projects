@@ -29,6 +29,7 @@
         "cypress/no-assigning-return-values": "error",
         "cypress/no-unnecessary-waiting": "error",
         "cypress/assertion-before-screenshot": "warn",
+        "no-underscore-dangle": "off",
         "cypress/no-force": "off",
         "no-unused-vars": "off",
         "consistent-return": "off",

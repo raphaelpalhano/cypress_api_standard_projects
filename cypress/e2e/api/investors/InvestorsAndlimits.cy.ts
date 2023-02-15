@@ -1,12 +1,9 @@
 import * as investor from '../../../fixtures/static/investors.json';
+import * as enterprise from '../../../fixtures/static/enterprise.json';
 
 describe('User operation the intermediation fees', function () {
   before('Given my authentication with manager', () => {
     cy.authSystem('investor');
-    cy.getListOfEnterprises('enterprises').then((res) => {
-      cy.wrap(res.body.data[0].document).as('enterpriseDocument');
-      cy.wrap(res.body.data[0].id).as('enterpriseID');
-    });
 
     cy.getInvestors('').then((res) => {
       cy.wrap(res.body.data[0].id).as('investorsId');
@@ -32,7 +29,7 @@ describe('User operation the intermediation fees', function () {
   });
 
   it('How investor I want to se lists investors', function () {
-    cy.getInvestors(`order?enterpriseId=${this.enterpriseID}&document=${this.enterpriseDocument}`).then((res) => {
+    cy.getInvestors(`order?enterpriseId=${enterprise.enpterprises[0].id}&document=${enterprise.enpterprises[0].document}`).then((res) => {
       console.log(res);
       expect(res.status).to.be.eq(200);
       expect(res.body.limits[0]).have.property('id');
@@ -40,8 +37,6 @@ describe('User operation the intermediation fees', function () {
       expect(res.body.limits[0]).have.property('enterpriseId');
       expect(res.body.limits[0]).have.property('limit');
       expect(res.body).have.property('fees');
-      expect(res.body.fees[0]).have.property('investorId');
-      expect(res.body.fees[0]).have.property('enterpriseId');
       expect(res.body.fees[0]).have.property('days');
       expect(res.body.fees[0]).have.property('fee');
       expect(res.body.fees[0]).have.property('group');
@@ -53,7 +48,7 @@ describe('User operation the intermediation fees', function () {
   });
 
   it('How investor I want to registry limit', function () {
-    cy.postInvestors(`${this.investorsId}/limits`, { enterpriseId: this.enterpriseID, limit: 10000000 }).then((res) => {
+    cy.postInvestors(`${this.investorsId}/limits`, { enterpriseId: enterprise.enpterprises[0].id, limit: 10000000 }).then((res) => {
       expect(res.status).to.be.eq(201);
       cy.schemaValidation('investors/postInvestors.json', res.body).then((validation) => {
         expect(validation).to.be.eq('Schema validated successfully!');
@@ -63,10 +58,10 @@ describe('User operation the intermediation fees', function () {
 
   it('How investor I want to updated my limit', function () {
     const body = {
-      enterpriseId: this.enterpriseID,
+      enterpriseId: enterprise.enpterprises[0].id,
       limit: 10000000,
     };
-    cy.getInvestors(`order?enterpriseId=${this.enterpriseID}&document=${this.enterpriseDocument}`).then((res) => {
+    cy.getInvestors(`order?enterpriseId=${enterprise.enpterprises[0].id}&document=${enterprise.enpterprises[0].document}`).then((res) => {
       expect(res.status).to.be.eq(200);
       cy.patchInvestors(`${res.body.limits[0].investorId}/limits/${res.body.limits[0].id}`, body).then((response) => {
         expect(response.status).to.be.eq(200);

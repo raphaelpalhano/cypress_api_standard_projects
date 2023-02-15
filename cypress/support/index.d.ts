@@ -131,6 +131,6 @@ declare namespace Cypress {
 
     sapUploadInvoices(id: string, body: string): Chainable<any>;
 
-    getInvoiceList(id: string, params: { search: ''; size: ''; sort: '' }): Chainable<any>;
+    filterInvoices(id: string, search?: string, size?: string, sort?: string): Chainable<any>;
   }
 }

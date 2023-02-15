@@ -1,107 +1,30 @@
 {
   "type": "object",
   "properties": {
-    "menu": {
+    "entity": {
+      "type": "null"
+    },
+    "permissions": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer"
-          },
-          "createdAt": {
+          "action": {
             "type": "string"
           },
-          "updatedAt": {
+          "resource": {
             "type": "string"
-          },
-          "icon": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "domClass": {
-            "type": "string"
-          },
-          "path": {
-            "type": "string"
-          },
-          "level": {
-            "type": "integer"
-          },
-          "order": {
-            "type": "integer"
-          },
-          "entity": {
-            "type": "string"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
-                },
-                "icon": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                },
-                "domClass": {
-                  "type": "string"
-                },
-                "path": {
-                  "type": "string"
-                },
-                "level": {
-                  "type": "integer"
-                },
-                "order": {
-                  "type": "integer"
-                },
-                "entity": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "createdAt",
-                "updatedAt",
-                "icon",
-                "title",
-                "domClass",
-                "path",
-                "level",
-                "order",
-                "entity"
-              ]
-            }
           }
         },
         "required": [
-          "id",
-          "createdAt",
-          "updatedAt",
-          "icon",
-          "title",
-          "domClass",
-          "level",
-          "order",
-          "entity"
+          "action",
+          "resource"
         ]
       }
     }
   },
   "required": [
-    "menu"
+    "entity",
+    "permissions"
   ]
 }

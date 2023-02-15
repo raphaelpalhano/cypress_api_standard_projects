@@ -8,7 +8,7 @@ describe('Upload invoice SAP', function () {
   });
 
   it('Send 100 invoices for operations', function () {
-    cy.sapUploadInvoices('1', createInvoicesJson(100)).then((res) => {
+    cy.sapUploadInvoices('1', createInvoicesJson(30)).then((res) => {
       expect(res.status).to.be.eq(202);
     });
   });

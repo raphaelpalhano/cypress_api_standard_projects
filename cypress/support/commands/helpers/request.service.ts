@@ -17,13 +17,9 @@
 
 Cypress.Commands.overwrite('request', (originalFunction, ...options) => {
   if (options.length === 1) {
-    if (Cypress.env('COGNITO_TOKEN')) {
+    if (Cypress.env('AUTH_TOKEN')) {
       options[0].headers = {
-        Authorization: `Bearer ${Cypress.env('COGNITO_TOKEN')}`,
-      };
-    } else {
-      options[0].headers = {
-        Authorization: `Bearer ${Cypress.env('TOKEN_SAP')}`,
+        Authorization: `Bearer ${Cypress.env('AUTH_TOKEN')}`,
       };
     }
   }

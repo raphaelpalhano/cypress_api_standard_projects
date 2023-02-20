@@ -53,7 +53,7 @@ declare namespace Cypress {
 
     requestFormUrlEncoded(method: string, endpoint: string, body: any, header: any): Chainable<any>;
 
-    authSap(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
+    authSap(userType: 'supplier' | 'investor' | 'manager' | 'integrator'): Chainable<any>;
     authSystem(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
 
     /**

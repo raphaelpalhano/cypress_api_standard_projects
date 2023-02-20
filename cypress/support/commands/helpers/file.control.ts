@@ -26,12 +26,12 @@ Cypress.Commands.add('createInvoiceCsv', () => {
   const header = 'Nota Fiscal;ExternalID;Emissão;Vencimento;Valor;CNPJ;Fornecedor\n';
   let num1 = faker.finance.routingNumber();
   let num2 = faker.datatype.number({ min: 1000, max: 9000 });
-  let date = dataIncrement(5);
+  let date = dataIncrement(5, '/');
   cy.writeFile(path.csv, header, 'latin1');
   let invoice =
     `${num1}-${num2};` +
     `${num1}-${num2}${invoiceData.document};` +
-    `${dataIncrement(0)};` +
+    `${dataIncrement(0, '/')};` +
     `${date};` +
     `${faker.datatype.float({ min: 1000, max: 2000 })};` +
     `${invoiceData.document};` +

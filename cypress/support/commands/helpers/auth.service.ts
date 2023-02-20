@@ -40,12 +40,12 @@ Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor
 
   cy.wrap(Auth.signIn(typeuser.user, typeuser.password)).then((response: any) => {
     Cypress.env('ID_TOKEN', response.signInUserSession.idToken.jwtToken);
-    Cypress.env('COGNITO_TOKEN', response.signInUserSession.accessToken.jwtToken);
+    Cypress.env('AUTH_TOKEN', response.signInUserSession.accessToken.jwtToken);
     Cypress.env('REFRESH_TOKEN', response.signInUserSession.refreshToken.token);
   });
 });
 
-Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'investor') {
+Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'investor' | 'integrator') {
   const typesUsers = {
     supplier: {
       user: Cypress.env('USERS').USER_BACK_SUPPLIER,
@@ -59,11 +59,17 @@ Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'in
       user: Cypress.env('USERS').USER_BACK_INVESTOR,
       password: Cypress.env('USERS').INVESTOR_PASS,
     },
+    integrator: {
+      user: Cypress.env('USERS').USER_INTEGRATOR,
+      password: Cypress.env('USERS').PASSOWRD_INTEGRATOR,
+    },
     client_id: Cypress.env('AWS_AMPLYF').COGNITO_CLIENT_SAP,
     client_secret: Cypress.env('AWS_AMPLYF').CLIENTE_SECRET_SAP,
   };
 
   const typeUser = typesUsers[userType];
+
+  console.log(typeUser);
 
   const params = {
     headers: {
@@ -83,7 +89,7 @@ Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'in
   cy.requestFormUrlEncoded('POST', `${Cypress.env('sapUrl')}auth/token`, body, params).then(function (token) {
     console.log(JSON.stringify(token.body));
     const tokenAcess = token.body;
-    Cypress.env('TOKEN_SAP', tokenAcess.access_token);
+    Cypress.env('AUTH_TOKEN', tokenAcess.access_token);
     Cypress.env('REFRESH_TOKEN', tokenAcess.refresh_token);
     Cypress.env('EXPIRES_IN', tokenAcess.expires_in);
   });

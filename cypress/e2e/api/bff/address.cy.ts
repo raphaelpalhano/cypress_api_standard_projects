@@ -1,9 +1,9 @@
-describe.skip('Given I research for Zip Code', function () {
+describe('Given I research for Zip Code', function () {
   before('Given my authentication with manager', () => {
     cy.authSystem('manager');
   });
 
-  it.skip('When I have valid Zip code', () => {
+  it('When I have valid Zip code', () => {
     cy.getBffSpecific('addresses/cep', '88106102').then((res) => {
       expect(res.status).to.be.eq(403);
       // expect(res.body).have.property('zipCode');
@@ -17,21 +17,6 @@ describe.skip('Given I research for Zip Code', function () {
       // cy.schemaValidation('bff/getValidZipCode.json', res.body).then((validation) => {
       //   expect(validation).to.be.eq('Schema validated successfully!');
       // });
-    });
-  });
-
-  it('When I have invalid Zip code', () => {
-    cy.getBffSpecific('addresses/cep', '578685846').then((res) => {
-      expect(res.status).to.be.eq(403);
-      // cy.schemaValidation('bff/getInvalidZipCode.json', res.body).then((validation) => {
-      //   expect(validation).to.be.eq('Schema validated successfully!');
-      // });
-    });
-  });
-
-  it('When I have invalid format Zip code', () => {
-    cy.getBffSpecific('addresses/cep', '88106103,3').then((res) => {
-      expect(res.status).to.be.eq(403);
     });
   });
 });

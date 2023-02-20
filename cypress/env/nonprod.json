@@ -1,6 +1,7 @@
 {
     "$schema": "https://on.cypress.io/cypress.schema.json",
     "baseUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy",
+    "sapUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/",
     "env": {
         "sapUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/",
         "global_timeout": 50000,
@@ -15,6 +16,8 @@
             "MANAGER_PASS": "backBack55221@",
             "INVESTOR_PASS": "backBack55221@",
             "SUPPLIER_PASS": "backBack55221@",
+            "SAP_PASS": "backApi@2023",
+
 
             "INVALID_PASS": "123456@S"
         },

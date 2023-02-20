@@ -52,8 +52,8 @@ Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'in
       password: Cypress.env('USERS').SUPPLIER_PASS,
     },
     manager: {
-      user: Cypress.env('USERS').USER_BACK_MANAGER,
-      password: Cypress.env('USERS').MANAGER_PASS,
+      user: Cypress.env('USERS').USER_SAP_MANAGER,
+      password: Cypress.env('USERS').SAP_PASS,
     },
     investor: {
       user: Cypress.env('USERS').USER_BACK_INVESTOR,

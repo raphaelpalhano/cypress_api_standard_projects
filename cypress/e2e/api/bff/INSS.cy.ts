@@ -1,6 +1,6 @@
 import * as bffData from '../../../fixtures/static/bff.json';
 
-describe.skip('Given I research for INSS', function () {
+describe('Given I research for INSS', function () {
   before('Given my authentication with manager', () => {
     cy.authSystem('manager');
   });

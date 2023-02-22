@@ -3,16 +3,21 @@
     "baseUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy",
     "sapUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/",
     "env": {
+        "sapUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/",
         "global_timeout": 50000,
         "environment": "nonprod",
         "USERS": {
             "USER_BACK_INVESTOR": "investidor_back_test@mailinator.com",
             "USER_BACK_SUPPLIER": "fornecedor_back_test@mailinator.com",
             "USER_BACK_MANAGER": "gestor_back_test@mailinator.com",
+            "USER_INTEGRATOR": "integracao.api@mailinator.com",
+            "PASSOWRD_INTEGRATOR": "backApi@2023",
             "OTP_PASS": "#eL9vLkL",
             "MANAGER_PASS": "backBack55221@",
             "INVESTOR_PASS": "backBack55221@",
             "SUPPLIER_PASS": "backBack55221@",
+            "SAP_PASS": "backApi@2023",
+
 
             "INVALID_PASS": "123456@S"
         },
@@ -20,7 +25,10 @@
         "AWS_AMPLYF": {
             "COGNITO_CLIENT_APP_ID": "o9od3jf3nqmfb0s8k8v3p1hcg",
             "COGNITO_USER_POOL_ID": "us-east-1_Enxdo9USw",
-            "COGNITO_REGION": "us-east-1"
+            "COGNITO_REGION": "us-east-1",
+            "COGNITO_CLIENT_SAP": "454138p4irfg7gjd428af7pqkf",
+            "CLIENTE_SECRET_SAP": "onmsvsv7nq70g51lpnnsab4mj270ajmu7ere1qcks988ttq610k"
+
         }
     }
 }

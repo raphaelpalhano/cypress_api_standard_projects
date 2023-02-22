@@ -34,7 +34,7 @@ declare namespace Cypress {
      * @param: (method,url,body)
      * @example: cy.requestWithBody('POST', 'admin/user', body.json)
      */
-    requestWithBody(method: string, url: string, body: object): Chainable<any>;
+    requestWithBody(method: string, url: string, body: any): Chainable<any>;
 
     /**
      * @CommandGeneric
@@ -51,7 +51,9 @@ declare namespace Cypress {
 
     requestWithBodyAndParamAndHeader(method: string, endpoint: string, body: string, param: string, headers: any): Chainable<any>;
 
-    authSap(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
+    requestFormUrlEncoded(method: string, endpoint: string, body: any, header: any): Chainable<any>;
+
+    authSap(userType: 'supplier' | 'investor' | 'manager' | 'integrator'): Chainable<any>;
     authSystem(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
 
     /**
@@ -126,5 +128,9 @@ declare namespace Cypress {
     postInvestors(endpoint: string, body: object): Chainable<any>;
 
     getPermissionsUsers(endpoint: string): Chainable<any>;
+
+    sapUploadInvoices(id: string, body: string): Chainable<any>;
+
+    filterInvoices(id: string, search?: string, size?: string, sort?: string): Chainable<any>;
   }
 }

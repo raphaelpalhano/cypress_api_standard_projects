@@ -1,152 +1,74 @@
 {
     "manager": 
     {
-        "menu": [
+        "entity": null,
+        "permissions": [
             {
-                "id": 1,
-               
-                "icon": "DisplaySettings",
-                "title": "Painel inicial",
-                "domClass": "",
-                "path": "/",
-                "level": 0,
-                "order": 0,
-                "entity": "manager"
+                "action": "read",
+                "resource": "permissions"
             },
             {
-                "id": 2,
-               
-                "icon": "AppRegistration",
-                "title": "Gestão",
-                "domClass": "",
-                "level": 0,
-                "order": 0,
-                "entity": "manager",
-                "items": [
-                    {
-                        "id": 4,
-                       
-                        "icon": "",
-                        "title": "Entidades",
-                        "domClass": "",
-                        "path": "/manage-entities",
-                        "level": 1,
-                        "order": 1,
-                        "entity": "manager"
-                    },
-                    {
-                        "id": 5,
-                       
-                        "icon": "",
-                        "title": "Termos de cessão",
-                        "domClass": "",
-                        "path": "/order-signatures",
-                        "level": 1,
-                        "order": 2,
-                        "entity": "manager"
-                    }
-                ]
+                "action": "read",
+                "resource": "home"
             },
             {
-                "id": 3,
-                
-                "icon": "Supply",
-                "title": "Insumos e Leilão",
-                "domClass": "",
-                "level": 0,
-                "order": 0,
-                "entity": "manager",
-                "items": [
-                    {
-                        "id": 6,
-                      
-                        "icon": "",
-                        "title": "Cadastrar notas e rebate",
-                        "domClass": "",
-                        "path": "/register-invoice-and-intermediation",
-                        "level": 1,
-                        "order": 1,
-                        "entity": "manager"
-                    }
-                ]
+                "action": "read",
+                "resource": "operations.summary"
+            },
+            {
+                "action": "read",
+                "resource": "operations.reports.invoices"
+            },
+            {
+                "action": "read",
+                "resource": "manage.entity"
+            },
+            {
+                "action": "read",
+                "resource": "order.signature"
+            },
+            {
+                "action": "download",
+                "resource": "order.signature"
+            },
+            {
+                "action": "read",
+                "resource": "register.invoice.and.intermediation"
+            },
+            {
+                "action": "read",
+                "resource": "enterprises"
+            },
+            {
+                "action": "create",
+                "resource": "invoices.upload"
+            },
+            {
+                "action": "update",
+                "resource": "register.invoice.and.intermediation"
+            },
+            {
+                "action": "create",
+                "resource": "register.invoice.and.intermediation"
+            },
+            {
+                "action": "read",
+                "resource": "intermediation.fee.supplier"
+            },
+            {
+                "action": "create",
+                "resource": "intermediation.fee.supplier"
             }
         ]
     },
+    
 
-    "investor": {
-        "menu": [
-            {
-                "id": 11,
-            
-                "icon": "DisplaySettings",
-                "title": "Painel inicial",
-                "domClass": "",
-                "path": "/",
-                "level": 0,
-                "order": 0,
-                "entity": "investor"
-            },
-            {
-                "id": 12,
-                
-                "icon": "AppRegistration",
-                "title": "Gestão",
-                "domClass": "",
-                "level": 0,
-                "order": 0,
-                "entity": "investor",
-                "items": [
-                    {
-                        "id": 14,
-                        
-                        "icon": "",
-                        "title": "Resumo das Operações",
-                        "domClass": "",
-                        "path": "/operations-summary",
-                        "level": 1,
-                        "order": 1,
-                        "entity": "investor"
-                    },
-                    {
-                        "id": 15,
-                      
-                        "icon": "",
-                        "title": "Termos de cessão",
-                        "domClass": "",
-                        "path": "/order-signatures",
-                        "level": 1,
-                        "order": 2,
-                        "entity": "investor"
-                    }
-                ]
-            },
-            {
-                "id": 13,
-                
-                "icon": "Supply",
-                "title": "Insumos e Leilão",
-                "domClass": "",
-                "level": 0,
-                "order": 0,
-                "entity": "investor",
-                "items": [
-                    {
-                        "id": 16,
-                       
-                        "icon": "",
-                        "title": "Cadastrar taxas e limites",
-                        "domClass": "",
-                        "path": "/upload-fees-and-register-limits",
-                        "level": 1,
-                        "order": 1,
-                        "entity": "investor"
-                    }
-                ]
-            }
-        ],
+    "investor": 
+    {
         "entity": {
             "id": 1,
-            
+            "createdAt": "2022-12-19T23:33:09.046Z",
+            "updatedAt": "2022-12-19T23:33:09.046Z",
             "document": "62237425000176",
             "corporateName": "BANCO FIDIS S/A",
             "tradingName": "BANCO FIDIS",
@@ -157,7 +79,8 @@
             "contactName": "any value",
             "address": {
                 "id": 1,
-                
+                "createdAt": "2022-12-19T23:33:09.050Z",
+                "updatedAt": "2022-12-19T23:33:09.050Z",
                 "zipCode": "32669900",
                 "line": "Av. Contorno",
                 "number": "3455",
@@ -169,58 +92,65 @@
                 "complement": "Galpão 09, sala 10",
                 "investorId": 1
             }
-        }
+        },
+        "permissions": [
+            {
+                "action": "read",
+                "resource": "permissions"
+            },
+            {
+                "action": "read",
+                "resource": "home"
+            },
+            {
+                "action": "read",
+                "resource": "orders"
+            },
+            {
+                "action": "create",
+                "resource": "orders.update-status"
+            },
+            {
+                "action": "create",
+                "resource": "orders.update-payment"
+            },
+            {
+                "action": "read",
+                "resource": "operations.summary"
+            },
+            {
+                "action": "read",
+                "resource": "order.signature"
+            },
+            {
+                "action": "download",
+                "resource": "order.signature"
+            },
+            {
+                "action": "read",
+                "resource": "enterprises"
+            },
+            {
+                "action": "read",
+                "resource": "limits"
+            },
+            {
+                "action": "update",
+                "resource": "limits"
+            },
+            {
+                "action": "create",
+                "resource": "limits"
+            },
+            {
+                "action": "create",
+                "resource": "fee"
+            }
+        ]
     },
 
     "supplier": 
     {
-        "menu": [
-            {
-                "id": 7,
-              
-                "icon": "Receipt",
-                "title": "Antecipar notas",
-                "domClass": "highlight-item",
-                "path": "/",
-                "level": 0,
-                "order": 0,
-                "entity": "supplier"
-            },
-            {
-                "id": 8,
-              
-                "icon": "AppRegistration",
-                "title": "Gestão",
-                "domClass": "",
-                "level": 0,
-                "order": 0,
-                "entity": "supplier",
-                "items": [
-                    {
-                        "id": 9,
-                        
-                        "icon": "",
-                        "title": "Resumo das Operações",
-                        "domClass": "",
-                        "path": "/operations-summary",
-                        "level": 1,
-                        "order": 1,
-                        "entity": "supplier"
-                    },
-                    {
-                        "id": 10,
-                       
-                        "icon": "",
-                        "title": "Termos de cessão",
-                        "domClass": "",
-                        "path": "/order-signatures",
-                        "level": 1,
-                        "order": 2,
-                        "entity": "supplier"
-                    }
-                ]
-            }
-        ],
         "entity": {
             "id": 1,
             "document": "79922720000164",
@@ -264,7 +194,40 @@
                     "default": true
                 }
             ]
-        }
+        },
+        "permissions": [
+            {
+                "action": "read",
+                "resource": "permissions"
+            },
+            {
+                "action": "read",
+                "resource": "home"
+            },
+            {
+                "action": "read",
+                "resource": "invoices"
+            },
+            {
+                "action": "create",
+                "resource": "orders"
+            },
+            {
+                "action": "create",
+                "resource": "orders.submit"
+            },
+            {
+                "action": "read",
+                "resource": "operations.summary"
+            },
+            {
+                "action": "read",
+                "resource": "order.signature"
+            },
+            {
+                "action": "download",
+                "resource": "order.signature"
+            }
+        ]
     }
-
 }

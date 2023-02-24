@@ -1,6 +1,11 @@
+import { createInvoicesJson } from '../../../support/commands/helpers/string.control';
+
 describe('', function () {
   before('Auth', function () {
     cy.authSap('integrator');
+    cy.sapUploadInvoices('1', createInvoicesJson(5)).then((res) => {
+      expect(res.status).to.be.eq(202);
+    });
   });
 
   it('searching invoices no filters', function () {
@@ -33,10 +38,20 @@ describe('', function () {
     });
   });
 
-  it('searching invoices with more then 700 R$', function () {
-    cy.filterInvoices('1', 'paymentValue>700').then((res) => {
+  it('searching invoices with more then R$1000 and return 10 invoices in desc order ', function () {
+    cy.filterInvoices('1', 'paymentValue>1000', '5', 'id,desc').then((res) => {
       const response = res.body;
-      expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(700);
+      const first = response._embedded.payables[0].id;
+      const second = response._embedded.payables[1].id;
+      const invoices = response._embedded.payables.length;
+
+      cy.schemaValidation('sap/filterInvoices.json', response).then((validation) => {
+        expect(validation).to.be.eq('Schema validated successfully!');
+      });
+
+      expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(1000);
+      expect(invoices).to.be.greaterThan(1);
+      expect(first).to.be.greaterThan(second);
     });
   });
 });

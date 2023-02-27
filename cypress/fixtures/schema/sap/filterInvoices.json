@@ -1,0 +1,190 @@
+{
+  "type": "object",
+  "properties": {
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "payables": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "createUserId": {
+                "type": "null"
+              },
+              "createUserIp": {
+                "type": "null"
+              },
+              "lastUserId": {
+                "type": "null"
+              },
+              "lastUserIp": {
+                "type": "null"
+              },
+              "sponsorId": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "null"
+              },
+              "assetType": {
+                "type": "string"
+              },
+              "companyName": {
+                "type": "null"
+              },
+              "governmentId": {
+                "type": "null"
+              },
+              "paymentDate": {
+                "type": "string"
+              },
+              "realPaymentDate": {
+                "type": "string"
+              },
+              "paymentValue": {
+                "type": "string"
+              },
+              "invoiceDate": {
+                "type": "string"
+              },
+              "invoiceNumber": {
+                "type": "string"
+              },
+              "invoiceKey": {
+                "type": "string"
+              },
+              "supplierName": {
+                "type": "string"
+              },
+              "supplierGovernmentId": {
+                "type": "string"
+              },
+              "installment": {
+                "type": "integer"
+              },
+              "totalInstallment": {
+                "type": "integer"
+              },
+              "sponsorTax": {
+                "type": "null"
+              },
+              "purchasedTax": {
+                "type": "null"
+              },
+              "sellerReceivementValue": {
+                "type": "null"
+              },
+              "sponsorReceivementValue": {
+                "type": "null"
+              },
+              "effectivePaymentDate": {
+                "type": "null"
+              },
+              "buyerName": {
+                "type": "null"
+              },
+              "buyerGovernmentId": {
+                "type": "null"
+              },
+              "buyerReceivementBank": {
+                "type": "null"
+              },
+              "buyerReceivementAgency": {
+                "type": "null"
+              },
+              "buyerReceivementAccount": {
+                "type": "null"
+              },
+              "buyerReceivementAccountDigit": {
+                "type": "null"
+              },
+              "externalId": {
+                "type": "string"
+              },
+              "compositeKey": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "createdAt",
+              "updatedAt",
+              "createUserId",
+              "createUserIp",
+              "lastUserId",
+              "lastUserIp",
+              "sponsorId",
+              "status",
+              "assetType",
+              "companyName",
+              "governmentId",
+              "paymentDate",
+              "realPaymentDate",
+              "paymentValue",
+              "invoiceDate",
+              "invoiceNumber",
+              "invoiceKey",
+              "supplierName",
+              "supplierGovernmentId",
+              "installment",
+              "totalInstallment",
+              "sponsorTax",
+              "purchasedTax",
+              "sellerReceivementValue",
+              "sponsorReceivementValue",
+              "effectivePaymentDate",
+              "buyerName",
+              "buyerGovernmentId",
+              "buyerReceivementBank",
+              "buyerReceivementAgency",
+              "buyerReceivementAccount",
+              "buyerReceivementAccountDigit",
+              "externalId",
+              "compositeKey"
+            ]
+          }
+        }
+      },
+      "required": [
+        "payables"
+      ]
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "integer"
+        },
+        "totalElements": {
+          "type": "integer"
+        },
+        "totalPages": {
+          "type": "integer"
+        },
+        "number": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "size",
+        "totalElements",
+        "totalPages",
+        "number"
+      ]
+    }
+  },
+  "required": [
+    "_embedded",
+    "page"
+  ]
+}

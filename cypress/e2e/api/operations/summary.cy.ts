@@ -51,7 +51,7 @@ describe('Given I want to see summary', function () {
         expect(res.body.enterprises[0]).have.property('APPROVED');
         expect(res.body.enterprises[0]).have.property('ON_APPROVAL');
         expect(res.body.enterprises[0]).have.property('NOT_PAID');
-        expect(res.body.enterprises[0]).have.property('PAID');
+        expect(res.body.enterprises[0]).have.property('SOLD');
         expect(res.body.enterprises[0]).have.property('name');
         expect(res.body.enterprises[0]).have.property('enterpriseId');
         cy.schemaValidation('operations/supplierSummary.json', res.body).then((validation) => {
@@ -69,7 +69,7 @@ describe('Given I want to see summary', function () {
         expect(res.body.enterprises[0]).have.property('ON_APPROVAL');
         expect(res.body.enterprises[0]).have.property('CANCELLED');
         expect(res.body.enterprises[0]).have.property('NOT_APPROVED');
-        expect(res.body.enterprises[0]).have.property('PAID');
+        expect(res.body.enterprises[0]).have.property('SOLD');
         expect(res.body.enterprises[0]).have.property('NEGOTIATED');
         expect(res.body.enterprises[0]).have.property('name');
         expect(res.body.enterprises[0]).have.property('enterpriseId');
@@ -88,7 +88,7 @@ describe('Given I want to see summary', function () {
         expect(res.body.enterprises[0]).have.property('CANCELLED');
         expect(res.body.enterprises[0]).have.property('ON_APPROVAL');
         expect(res.body.enterprises[0]).have.property('NOT_APPROVED');
-        expect(res.body.enterprises[0]).have.property('PAID');
+        expect(res.body.enterprises[0]).have.property('SOLD');
         expect(res.body.enterprises[0]).have.property('name');
         expect(res.body.enterprises[0]).have.property('enterpriseId');
         cy.schemaValidation('operations/investorSummary.json', res.body).then((validation) => {

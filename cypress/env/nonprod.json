@@ -1,9 +1,8 @@
 {
     "$schema": "https://on.cypress.io/cypress.schema.json",
-    "baseUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy",
-    "sapUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/",
+    "baseUrl": "https://m7ztiyopb8.execute-api.us-east-1.amazonaws.com/proxy",
     "env": {
-        "sapUrl": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/",
+        "sapUrl": "https://m7ztiyopb8.execute-api.us-east-1.amazonaws.com/api/v1/",
         "global_timeout": 50000,
         "environment": "nonprod",
         "USERS": {

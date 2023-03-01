@@ -96,7 +96,7 @@
               "quantity"
             ]
           },
-          "PAID": {
+          "SOLD": {
             "type": "object",
             "properties": {
               "amount": {
@@ -125,7 +125,7 @@
           "CANCELLED",
           "NOT_APPROVED",
           "ON_APPROVAL",
-          "PAID",
+          "SOLD",
           "name",
           "enterpriseId"
         ]

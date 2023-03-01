@@ -59,7 +59,7 @@ export function createInvoicesJson(numberInvoices: number) {
       invoiceNumber: `${faker.datatype.number({ min: 1, max: 1000000000 })}`,
       paymentDate: `${dateIncremented}`,
       realPaymentDate: `${dateIncremented}`,
-      paymentValue: faker.datatype.number({ min: 10, max: 10000 }),
+      paymentValue: faker.datatype.number({ min: 100, max: 10000 }),
       supplierGovernmentId: '79922720000164',
       supplierName: `FERRAMENTARIA JN LTDA`,
       totalInstallment: installmentValue,

@@ -22,4 +22,10 @@
 Verifique os envs e users.
 
 
+# Ambientes
 
+PREVISÃO:
+
+prod: https://gw-if004-ms8-master.mysuppliers.com.br/
+nonprod: https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/
+develop: https://gw-if004-ms8-develop.nonprod.mysuppliers.com.br/

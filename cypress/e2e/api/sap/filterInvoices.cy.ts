@@ -1,4 +1,5 @@
 import { createInvoicesJson } from '../../../support/commands/helpers/string.control';
+import * as supplier from '../../../fixtures/static/suppliers.json';
 
 describe('', function () {
   before('Auth', function () {
@@ -53,5 +54,17 @@ describe('', function () {
       expect(invoices).to.be.greaterThan(1);
       expect(first).to.be.greaterThan(second);
     });
+  });
+
+  after('submit all invoices', () => {
+    cy.authSystem('supplier')
+      .postOperations('orders', { supplierGovernmentId: supplier.document })
+      .then((resOperation) => {
+        cy.wrap(resOperation.body.id).as('operationId');
+        expect(resOperation.status).to.be.eq(201);
+        cy.submitOrder('orders', resOperation.body.id, { bankAccountId: supplier.bankAccounts[0].id }).then((response) => {
+          expect(response.status).to.be.eq(204);
+        });
+      });
   });
 });

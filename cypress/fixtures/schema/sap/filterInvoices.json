@@ -34,7 +34,7 @@
                 "type": "integer"
               },
               "status": {
-                "type": "null"
+                "type": "string"
               },
               "assetType": {
                 "type": "string"

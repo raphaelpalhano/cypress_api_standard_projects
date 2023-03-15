@@ -33,7 +33,7 @@ Cypress.Commands.add('createInvoiceCsv', () => {
     `${num1}-${num2}${invoiceData.document};` +
     `${dataIncrement(0, '/')};` +
     `${date};` +
-    `${faker.datatype.float({ min: 1000, max: 2000 })};` +
+    `${faker.datatype.float({ min: 10, max: 20 })};` +
     `${invoiceData.document};` +
     `${invoiceData.supplierName}`;
   cy.writeFile(path.csv, invoice, 'latin1', { flag: 'a+' });

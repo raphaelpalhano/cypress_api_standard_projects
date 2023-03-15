@@ -149,6 +149,30 @@
             {
                 "action": "read",
                 "resource": "manage.entity"
+            },
+            {
+                "action": "read",
+                "resource": "limit.enterprise"
+            },
+            {
+                "action": "read",
+                "resource": "limit.enterprise"
+            },
+            {
+                "action": "update",
+                "resource": "api.operations"
+            },
+            {
+                "action": "read",
+                "resource": "fee"
+            },
+            {
+                "action": "create",
+                "resource": "fee"
+            },
+            {
+                "action": "download",
+                "resource": "uploaded.fee"
             }
         ]
     },

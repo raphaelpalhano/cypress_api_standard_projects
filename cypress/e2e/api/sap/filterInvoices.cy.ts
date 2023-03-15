@@ -36,21 +36,21 @@ describe('', function () {
     });
   });
 
-  it('searching invoices with more then 700 R$', function () {
-    cy.filterInvoices('1', 'paymentValue>200').then((res) => {
+  it('searching invoices with more then 5 R$', function () {
+    cy.filterInvoices('1', 'paymentValue>5').then((res) => {
       const response = res.body;
-      expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(200);
+      expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(5);
     });
   });
 
-  it('searching invoices with more then R$300 and return 1 or more invoices in desc order ', function () {
-    cy.filterInvoices('1', 'paymentValue>300', '2', 'id,desc').then((res) => {
+  it('searching invoices with more then R$3 and return 1 or more invoices in desc order ', function () {
+    cy.filterInvoices('1', 'paymentValue>3', '2', 'id,desc').then((res) => {
       const response = res.body;
       const first = response._embedded.payables[0].id;
       const second = response._embedded.payables[1].id;
       const invoices = response._embedded.payables.length;
 
-      expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(300);
+      expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(3);
       expect(invoices).to.be.greaterThan(1);
       expect(first).to.be.greaterThan(second);
     });

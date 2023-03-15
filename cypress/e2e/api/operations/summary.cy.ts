@@ -50,7 +50,7 @@ describe('Given I want to see summary', function () {
         expect(res.body.enterprises[0]).have.property('AVAILABLE');
         expect(res.body.enterprises[0]).have.property('APPROVED');
         expect(res.body.enterprises[0]).have.property('ON_APPROVAL');
-        expect(res.body.enterprises[0]).have.property('NOT_PAID');
+        expect(res.body.enterprises[0]).have.property('NOT_SOLD');
         expect(res.body.enterprises[0]).have.property('SOLD');
         expect(res.body.enterprises[0]).have.property('name');
         expect(res.body.enterprises[0]).have.property('enterpriseId');

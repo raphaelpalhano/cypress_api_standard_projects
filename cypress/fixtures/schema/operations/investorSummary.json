@@ -6,7 +6,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "AVAILABLE": {
+          "APPROVED": {
             "type": "object",
             "properties": {
               "amount": {
@@ -21,7 +21,22 @@
               "quantity"
             ]
           },
-          "APPROVED": {
+          "CANCELLED": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "amount",
+              "quantity"
+            ]
+          },
+          "NOT_APPROVED": {
             "type": "object",
             "properties": {
               "amount": {
@@ -66,7 +81,7 @@
               "quantity"
             ]
           },
-          "NOT_SOLD": {
+          "AVAILABLE": {
             "type": "object",
             "properties": {
               "amount": {
@@ -89,11 +104,12 @@
           }
         },
         "required": [
-          "AVAILABLE",
           "APPROVED",
+          "CANCELLED",
+          "NOT_APPROVED",
           "ON_APPROVAL",
           "SOLD",
-          "NOT_SOLD",
+          "AVAILABLE",
           "name",
           "enterpriseId"
         ]

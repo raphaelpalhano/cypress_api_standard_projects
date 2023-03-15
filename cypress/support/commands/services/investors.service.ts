@@ -6,6 +6,10 @@ Cypress.Commands.add('getInvestors', (endpoint: string) => {
   cy.requestWithoutBody('GET', `investors/api/v1/investors/${endpoint}`);
 });
 
+Cypress.Commands.add('getEnterprisesLimits', (endpoint: string, id: string, search = '', page = '', perPage = '', sort = '') => {
+  cy.requestWithoutBody('GET', `investors/api/v1/investors/${id}/${endpoint}?search=${search}&page=${page}&perPage=${perPage}&sort=${sort}`);
+});
+
 Cypress.Commands.add('patchInvestors', (endpoint: string, body: object) => {
   cy.requestWithBody('PATCH', `investors/api/v1/investors/${endpoint}`, body);
 });

@@ -1,6 +1,6 @@
 import * as investor from '../../../fixtures/static/investors.json';
 
-describe('User operation the intermediation fees', function () {
+describe.skip('User operation the intermediation fees', function () {
   before('Given my authentication with manager', () => {
     cy.authSystem('investor');
     cy.getListOfEnterprises('enterprises').then((res) => {

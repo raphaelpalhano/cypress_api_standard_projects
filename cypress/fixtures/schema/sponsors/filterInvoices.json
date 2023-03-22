@@ -49,7 +49,10 @@
                 "type": "string"
               },
               "realPaymentDate": {
-                "type": "string"
+                "type": [
+                  "null",
+                  "string"
+                ]
               },
               "paymentValue": {
                 "type": "string"

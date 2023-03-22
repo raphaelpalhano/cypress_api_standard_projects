@@ -3,7 +3,7 @@ import * as supplier from '../../../fixtures/static/suppliers.json';
 
 describe('', function () {
   before('Auth', function () {
-    cy.authSap('integrator');
+    cy.authSap('managerApi');
     cy.sapUploadInvoices('1', createInvoicesJson(3)).then((res) => {
       expect(res.status).to.be.eq(202);
     });
@@ -30,7 +30,7 @@ describe('', function () {
       expect(response._embedded.payables[0]).to.have.property('totalInstallment');
       expect(response._embedded.payables[0]).to.have.property('compositeKey');
 
-      cy.schemaValidation('sap/filterInvoices.json', response).then((validation) => {
+      cy.schemaValidation('sponsors/filterInvoices.json', response).then((validation) => {
         expect(validation).to.be.eq('Schema validated successfully!');
       });
     });

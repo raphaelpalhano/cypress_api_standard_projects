@@ -1,20 +1,20 @@
 import * as operations from '../../../fixtures/static/operations.json';
 import * as supplier from '../../../fixtures/static/suppliers.json';
 import * as investor from '../../../fixtures/static/investors.json';
-import { createInvoicesJson } from '../../../support/commands/helpers/string.control';
+import { createFees, createInvoicesJson } from '../../../support/commands/helpers/string.control';
+import * as enterprise from '../../../fixtures/static/enterprise.json';
 
 describe('Given the operator want see market status', function () {
   before('Given my authentication with manager', function () {
-    cy.authSystem('investor');
-
-    cy.uploadFees(`${investor.id}/upload-fee-file`, 'cypress/fixtures/upload/fees.xlsx').then((resp) => {
-      expect(resp.status).to.be.eq(201);
-      expect(resp.statusText).to.be.eq('Created');
-    });
+    cy.authSap('investorApi')
+      .uploadTaxes(`${investor.id}`, enterprise.data[3].document, createFees(100))
+      .then((res) => {
+        expect(res.status).to.be.eq(202);
+      });
   });
 
   beforeEach(function () {
-    cy.authSap('integrator').then((res) => {
+    cy.authSap('managerApi').then((res) => {
       expect(res.status).to.be.eq(200);
     });
     cy.sapUploadInvoices('1', createInvoicesJson(2)).then((res) => {

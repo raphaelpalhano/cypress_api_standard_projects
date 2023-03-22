@@ -53,7 +53,7 @@ declare namespace Cypress {
 
     requestFormUrlEncoded(method: string, endpoint: string, body: any, header: any): Chainable<any>;
 
-    authSap(userType: 'supplier' | 'investor' | 'manager' | 'integrator'): Chainable<any>;
+    authSap(userType: 'supplierApi' | 'managerApi' | 'investorApi'): Chainable<any>;
     authSystem(userType: 'supplier' | 'investor' | 'manager'): Chainable<any>;
 
     /**
@@ -136,5 +136,9 @@ declare namespace Cypress {
     getEnterprisesLimits(id: string, endpoint: string, search?: string, page?: string, perPage?: string, sort?: string): Chainable<any>;
 
     resendWebhook(id: string, body: object): Chainable<any>;
+
+    approveOrRefusedOrder(investorId: string, orderId: string, body: object): Chainable<any>;
+
+    uploadTaxes(investorId: string, supplierGovernmentId: string, body: string): Chainable<any>;
   }
 }

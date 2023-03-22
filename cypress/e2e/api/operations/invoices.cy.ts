@@ -3,7 +3,7 @@ import * as enterprises from '../../../fixtures/static/enterprise.json';
 describe('User operation the intermediation fees', function () {
   const formobject = {
     key: 'enterpriseId',
-    value: enterprises.enpterprises[0].id,
+    value: enterprises.data[3].id,
   };
   before('Given my authentication with manager', () => {
     cy.authSystem('manager');

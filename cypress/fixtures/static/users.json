@@ -156,14 +156,6 @@
             },
             {
                 "action": "read",
-                "resource": "limit.enterprise"
-            },
-            {
-                "action": "update",
-                "resource": "api.operations"
-            },
-            {
-                "action": "read",
                 "resource": "fee"
             },
             {
@@ -173,6 +165,10 @@
             {
                 "action": "download",
                 "resource": "uploaded.fee"
+            },
+            {
+                "action": "download",
+                "resource": "template.fee"
             }
         ]
     },

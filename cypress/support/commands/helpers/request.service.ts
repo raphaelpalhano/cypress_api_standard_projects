@@ -20,6 +20,7 @@ Cypress.Commands.overwrite('request', (originalFunction, ...options) => {
     if (Cypress.env('AUTH_TOKEN')) {
       options[0].headers = {
         Authorization: `Bearer ${Cypress.env('AUTH_TOKEN')}`,
+        entityid: 1,
       };
     }
   }

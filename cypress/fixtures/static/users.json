@@ -145,6 +145,30 @@
             {
                 "action": "create",
                 "resource": "fee"
+            },
+            {
+                "action": "read",
+                "resource": "manage.entity"
+            },
+            {
+                "action": "read",
+                "resource": "limit.enterprise"
+            },
+            {
+                "action": "read",
+                "resource": "fee"
+            },
+            {
+                "action": "create",
+                "resource": "fee"
+            },
+            {
+                "action": "download",
+                "resource": "uploaded.fee"
+            },
+            {
+                "action": "download",
+                "resource": "template.fee"
             }
         ]
     },

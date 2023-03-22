@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "enterpriseId": {
+            "type": "integer"
+          },
+          "tradingName": {
+            "type": "string"
+          },
+          "enterpriseGovernmentId": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "string"
+          },
+          "available": {
+            "type": "null"
+          },
+          "blocked": {
+            "type": "null"
+          },
+          "busy": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "enterpriseId",
+          "tradingName",
+          "enterpriseGovernmentId",
+          "limit",
+          "available",
+          "blocked",
+          "busy"
+        ]
+      }
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

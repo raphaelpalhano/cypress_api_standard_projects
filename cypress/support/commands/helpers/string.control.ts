@@ -59,7 +59,7 @@ export function createInvoicesJson(numberInvoices: number) {
       invoiceNumber: `${faker.datatype.number({ min: 1, max: 1000000000 })}`,
       paymentDate: `${dateIncremented}`,
       realPaymentDate: `${dateIncremented}`,
-      paymentValue: faker.datatype.number({ min: 10, max: 10000 }),
+      paymentValue: faker.datatype.number({ min: 10, max: 15 }),
       supplierGovernmentId: '79922720000164',
       supplierName: `FERRAMENTARIA JN LTDA`,
       totalInstallment: installmentValue,
@@ -68,4 +68,24 @@ export function createInvoicesJson(numberInvoices: number) {
   }
 
   return JSON.stringify(items);
+}
+
+export function createFees(feesNumbers: number) {
+  const taxes = { taxes: [] };
+
+  for (let step = 0; step < feesNumbers; step++) {
+    let day = step + 1;
+    let value = faker.datatype.number({ min: 0.1, max: 999999 });
+
+    let object = {
+      days: day,
+      value,
+    };
+
+    if (!taxes.taxes.includes(object)) {
+      taxes.taxes.push(object);
+    }
+  }
+
+  return JSON.stringify(taxes);
 }

@@ -45,24 +45,21 @@ Cypress.Commands.add('authSystem', (userType: 'supplier' | 'manager' | 'investor
   });
 });
 
-Cypress.Commands.add('authSap', function (userType: 'supplier' | 'manager' | 'investor' | 'integrator') {
+Cypress.Commands.add('authSap', function (userType: 'supplierApi' | 'managerApi' | 'investorApi') {
   const typesUsers = {
-    supplier: {
+    supplierApi: {
       user: Cypress.env('USERS').USER_BACK_SUPPLIER,
       password: Cypress.env('USERS').SUPPLIER_PASS,
     },
-    manager: {
-      user: Cypress.env('USERS').USER_SAP_MANAGER,
-      password: Cypress.env('USERS').SAP_PASS,
-    },
-    investor: {
-      user: Cypress.env('USERS').USER_BACK_INVESTOR,
-      password: Cypress.env('USERS').INVESTOR_PASS,
-    },
-    integrator: {
+    managerApi: {
       user: Cypress.env('USERS').USER_INTEGRATOR,
       password: Cypress.env('USERS').PASSOWRD_INTEGRATOR,
     },
+    investorApi: {
+      user: Cypress.env('USERS').INVESTOR_API_USER,
+      password: Cypress.env('USERS').INVESTOR_API_PASSWORD,
+    },
+
     client_id: Cypress.env('AWS_AMPLYF').COGNITO_CLIENT_SAP,
     client_secret: Cypress.env('AWS_AMPLYF').CLIENTE_SECRET_SAP,
   };

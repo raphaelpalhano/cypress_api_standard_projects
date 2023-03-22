@@ -29,7 +29,8 @@ import './commands/services/bff.service';
 import './commands/services/integrations.service';
 import './commands/services/investors.service';
 import './commands/services/users.service';
-import './commands/services/sap.service';
+import './commands/services/sponsors.service';
+import './commands/services/buyers.service';
 
 // service-commom
 

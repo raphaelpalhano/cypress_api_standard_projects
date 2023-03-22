@@ -2,7 +2,7 @@ import { createInvoicesJson } from '../../../support/commands/helpers/string.con
 
 describe('Upload invoice SAP', function () {
   before('Auth', function () {
-    cy.authSap('integrator').then((res) => {
+    cy.authSap('managerApi').then((res) => {
       expect(res.status).to.be.eq(200);
     });
   });

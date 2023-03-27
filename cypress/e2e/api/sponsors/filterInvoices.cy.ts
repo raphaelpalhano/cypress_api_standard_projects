@@ -12,6 +12,8 @@ describe('', function () {
   it('searching invoices no filters', function () {
     cy.filterInvoices('1').then((res) => {
       const response = res.body;
+      expect(res.status).to.be.eq(200);
+
       expect(response._embedded.payables[0]).to.have.property('id');
       expect(response._embedded.payables[0]).to.have.property('createdAt');
       expect(response._embedded.payables[0]).to.have.property('updatedAt');
@@ -40,6 +42,7 @@ describe('', function () {
     cy.filterInvoices('1', 'paymentValue>5').then((res) => {
       const response = res.body;
       expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(5);
+      expect(response.status).to.be.eq(200);
     });
   });
 
@@ -53,6 +56,7 @@ describe('', function () {
       expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(3);
       expect(invoices).to.be.greaterThan(1);
       expect(first).to.be.greaterThan(second);
+      expect(res.status).to.be.eq(200);
     });
   });
 

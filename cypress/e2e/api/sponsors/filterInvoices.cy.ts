@@ -42,7 +42,7 @@ describe('', function () {
     cy.filterInvoices('1', 'paymentValue>5').then((res) => {
       const response = res.body;
       expect(+response._embedded.payables[0].paymentValue).to.be.greaterThan(5);
-      expect(response.status).to.be.eq(200);
+      expect(res.status).to.be.eq(200);
     });
   });
 

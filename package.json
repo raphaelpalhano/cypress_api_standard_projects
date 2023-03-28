@@ -9,6 +9,7 @@
     "cy:open:prod": "npx cypress open --env prod=prod",
     "cy:run:nonprod": "npx cypress run --env nonprod=nonprod",
     "cy:open:nonprod": "npx cypress open --env nonprod=nonprod",
+    "cy:ci": "npx cypress run --reporter mochawesome  --reporter-options reportDir=mochawesome-report,overwrite=false,html=false,json=true",
     "cy:dash:nonprod": "npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF",
     "cy:dash:prod": "npx currents run --env prod=prod --parallel --record --key H9ImBxO47DkUGCxF", 
     "cy:clear": "node ./cypress/support/commands/helpers/clear.ts",

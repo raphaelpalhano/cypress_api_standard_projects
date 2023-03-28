@@ -1,4 +1,4 @@
-image: cypress/base:12 #253882794486.dkr.ecr.us-east-1.amazonaws.com/build-tools:864d3610-node-18
+image: 253882794486.dkr.ecr.us-east-1.amazonaws.com/build-tools:864d3610-node-18
 
 #include:
 #  - project: 'fca/architecture/IaC/cloud-digital/common-ci'
@@ -8,12 +8,23 @@ stages:
   - test
 
 
+before_script:
+    - apt-get update && apt-get install --yes libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    - npm ci
+    - npm run cy:clear
+
 
 e2e:
   stage: test
+  when: always
   only:
-    - develop
     - master
+    - develop
   script:  
     - npm run cy:run:nonprod #npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF --ci-build-id results-e2e-${CI_COMMIT_SHA:0:8}
-
+  artifacts:
+    expire_in: 30 days
+    when: always
+    paths:
+      - reports
+  

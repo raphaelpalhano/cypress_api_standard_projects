@@ -27,5 +27,5 @@ e2e:
     expire_in: 30 days
     when: always
     paths:
-      - reports
+      - public
   

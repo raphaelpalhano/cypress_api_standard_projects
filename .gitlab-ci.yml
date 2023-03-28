@@ -22,10 +22,9 @@ e2e:
     - develop
   script:  
     - npm run cy:run:nonprod #npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF --ci-build-id results-e2e-${CI_COMMIT_SHA:0:8}
-    - mv report public
   artifacts:
     expire_in: 30 days
     when: always
     paths:
-      - public
+      - reports
   

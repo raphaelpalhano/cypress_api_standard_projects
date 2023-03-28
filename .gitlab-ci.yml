@@ -8,9 +8,6 @@ stages:
   - test
 
 
-before_script:
-    - npm run cy:clear
-
 
 e2e:
   stage: test

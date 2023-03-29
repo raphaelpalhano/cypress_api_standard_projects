@@ -13,9 +13,9 @@ before_script:
 
 api-test:
   stage: test
-  when: always
-  only: 
+  only:
     - develop
+    - master
   script:  
     - npm run cy:run:nonprod 
   artifacts:
@@ -27,10 +27,9 @@ api-test:
 
 api-test-report:
   stage: test
-  when: always
+  when: manual
   only:
     - master
-    - develop
   script:  
     - npm run cy:dash:nonprod
 

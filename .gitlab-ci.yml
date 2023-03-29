@@ -15,7 +15,6 @@ api-test:
   stage: test
   only:
     - develop
-    - master
   script:  
     - npm run cy:run:nonprod 
   artifacts:

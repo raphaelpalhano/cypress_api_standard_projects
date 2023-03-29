@@ -58,7 +58,8 @@ stages:
 # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
 # in GitLab repo → Settings → CI/CD → Variables
 variables:
-  CYPRESS_RECORD_KEY: $CYPRESS_RECORD_KEY
+    CYPRESS_RECORD_KEY: '077d3cc1-0295-4f01-9993-5cef3af25bef',
+
 # Caches dependencies using npm lock file as key
 # https://docs.cypress.io/guides/continuous-integration/introduction#Caching
 cache:

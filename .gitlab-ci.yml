@@ -1,11 +1,8 @@
 image: 253882794486.dkr.ecr.us-east-1.amazonaws.com/build-tools:864d3610-node-18
 
-#include:
-#  - project: 'fca/architecture/IaC/cloud-digital/common-ci'
-#    file: 'job-commons.yml'
-
 stages:
   - test
+
 
 
 before_script:
@@ -14,16 +11,24 @@ before_script:
     - npm run cy:clear
 
 
-e2e:
+api-test:
   stage: test
   when: always
-  only:
-    - master
+  only: 
     - develop
   script:  
-    - npm run cy:run:nonprod #npx currents run --env homolog=homolog --parallel --record --key H9ImBxO47DkUGCxF --ci-build-id results-e2e-${CI_COMMIT_SHA:0:8}
+    - npm run cy:run:nonprod 
   artifacts:
     expire_in: 30 days
     when: always
     paths:
       - reports
+
+
+api-test-report:
+  stage: test
+  when: always
+  only:
+    - master
+  script:  
+    - npm run cy:dash:nonprod

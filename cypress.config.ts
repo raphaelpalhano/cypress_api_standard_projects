@@ -9,7 +9,7 @@ dotenv.config({
 });
 
 module.exports = defineConfig({
-  projectId: 'T4Uq0n',
+  projectId: '6uxwi3',
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
@@ -39,7 +39,7 @@ module.exports = defineConfig({
   env: {
     cognito: 'https://cognito-idp.us-east-1.amazonaws.com/',
     TOKEN_BAREAR: process.env.TOKEN_BAREAR,
-
+    CYPRESS_RECORD_KEY: '077d3cc1-0295-4f01-9993-5cef3af25bef',
     TAGS: 'not @ignore',
   },
 });

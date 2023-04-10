@@ -89,3 +89,73 @@ export function createFees(feesNumbers: number) {
 
   return JSON.stringify(taxes);
 }
+
+export function createUserJson() {
+  const name = faker.name.fullName();
+  let userJson = {
+    createdByName: name,
+    createdByEmail: `${name}@gmail.com`,
+    createdByDocument: '',
+    privacyPolicyAgree: true,
+    governmentId: '46266214000105',
+    corporateName: faker.company.name(),
+    tradingName: 'tradingName2',
+    establishment: '2023-01-01',
+    cnae: '002',
+    commercialPhone: '',
+    contactName: '',
+    isHeadquarter: true,
+    headquarterGovernmentId: '',
+    socialContract: {
+      key: 'socialKey3',
+      name: 'socialName3',
+    },
+    tradeMark: {
+      key: 'tradeMark3',
+      name: 'tradeName3',
+    },
+    address: {
+      line: 'this is a test3',
+      number: 'this is a test3',
+      complement: '003',
+      zipCode: 'this is a test3',
+      city: 'this is a test3',
+      district: 'this is a test3',
+      state: 'this is a test3',
+      uf: 'this is a test3',
+      country: 'this is a test1',
+    },
+    legalEntities: [
+      {
+        name: 'legalEntityName3',
+        document: '084320344505',
+        phone: '5521999999903',
+        email: 'email4@email.com',
+        birthDate: '1975-01-01',
+        role: 'a',
+        identityDocument: {
+          key: 'identityKey4',
+          name: 'identityName4',
+        },
+        legalEntityComprobationDate: '2023-04-01',
+        legalEntityComprobation: {
+          key: 'comprobationKey4',
+          name: 'comprobationName4',
+        },
+      },
+    ],
+    bankAccounts: [
+      {
+        bank: 'bank3',
+        bankName: 'bankName3',
+        alias: '',
+        agency: 8,
+        account: 903,
+        accountDigit: 9,
+        default: true,
+      },
+    ],
+  };
+
+  return JSON.stringify(userJson);
+}

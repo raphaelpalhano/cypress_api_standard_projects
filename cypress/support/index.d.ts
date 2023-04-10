@@ -140,5 +140,11 @@ declare namespace Cypress {
     approveOrRefusedOrder(investorId: string, orderId: string, body: object): Chainable<any>;
 
     uploadTaxes(investorId: string, supplierGovernmentId: string, body: string): Chainable<any>;
+
+    approveOrUnapproveBuyOrder(investorId: string, orderId: string, changeOperation: string): Chainable<any>;
+
+    downloadTermOfCession(investorId: string, orderId: string): Chainable<any>;
+
+    postBff(endpoint: string, body: string): Chainable<any>;
   }
 }

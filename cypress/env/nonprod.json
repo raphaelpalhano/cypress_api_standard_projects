@@ -1,7 +1,6 @@
-
 {
     "$schema": "https://on.cypress.io/cypress.schema.json",
-    "baseUrl": "https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/proxy",
+    "baseUrl": "https://gw-if004-ms8-master.nonprod.mysuppliers.com.br",
     "env": {
         "sapUrl": "https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/api/v1/",
         "global_timeout": 50000,

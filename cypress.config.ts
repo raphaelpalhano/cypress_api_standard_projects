@@ -1,12 +1,6 @@
 import { defineConfig } from 'cypress';
 
-import * as dotenv from 'dotenv';
-
 const fs = require('fs');
-
-dotenv.config({
-  path: process.env.NODE_ENV_TEST === 'develop' ? '.env.dev' : '.env',
-});
 
 module.exports = defineConfig({
   projectId: '6uxwi3',
@@ -38,7 +32,6 @@ module.exports = defineConfig({
   },
   env: {
     cognito: 'https://cognito-idp.us-east-1.amazonaws.com/',
-    TOKEN_BAREAR: process.env.TOKEN_BAREAR,
     CYPRESS_RECORD_KEY: '077d3cc1-0295-4f01-9993-5cef3af25bef',
     TAGS: 'not @ignore',
   },

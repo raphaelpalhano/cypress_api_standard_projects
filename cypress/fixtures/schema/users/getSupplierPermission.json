@@ -7,7 +7,19 @@
         "id": {
           "type": "integer"
         },
-        "document": {
+        "createdByName": {
+          "type": "null"
+        },
+        "createdByEmail": {
+          "type": "null"
+        },
+        "createdByDocument": {
+          "type": "null"
+        },
+        "privacyPolicyAgree": {
+          "type": "boolean"
+        },
+        "governmentId": {
           "type": "string"
         },
         "corporateName": {
@@ -30,6 +42,12 @@
         },
         "status": {
           "type": "string"
+        },
+        "socialContract": {
+          "type": "null"
+        },
+        "tradeMark": {
+          "type": "null"
         },
         "address": {
           "type": "object",
@@ -96,6 +114,18 @@
               },
               "role": {
                 "type": "string"
+              },
+              "identityDocument": {
+                "type": "null"
+              },
+              "legalEntityComprobation": {
+                "type": "null"
+              },
+              "legalEntityComprobationDate": {
+                "type": "string"
+              },
+              "comprobationDate": {
+                "type": "null"
               }
             },
             "required": [
@@ -104,7 +134,11 @@
               "email",
               "birthDate",
               "phone",
-              "role"
+              "role",
+              "identityDocument",
+              "legalEntityComprobation",
+              "legalEntityComprobationDate",
+              "comprobationDate"
             ]
           }
         },
@@ -153,7 +187,11 @@
       },
       "required": [
         "id",
-        "document",
+        "createdByName",
+        "createdByEmail",
+        "createdByDocument",
+        "privacyPolicyAgree",
+        "governmentId",
         "corporateName",
         "tradingName",
         "establishment",
@@ -161,6 +199,8 @@
         "commercialPhone",
         "contactName",
         "status",
+        "socialContract",
+        "tradeMark",
         "address",
         "legalEntities",
         "bankAccounts"

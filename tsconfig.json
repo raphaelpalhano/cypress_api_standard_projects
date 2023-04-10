@@ -17,5 +17,5 @@
     "./**/*.ts",
     "cypress/support/e2e.ts",
     "./cypress/support/commands.js"
-  ]
+, "cypress.config.ts"  ]
 }

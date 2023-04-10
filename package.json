@@ -14,7 +14,10 @@
     "cy:clear": "node ./cypress/support/commands/helpers/clear.ts",
     "lint": "eslint . --ext .ts",
     "commit": "git-cz",
-    "prepare": "husky install"
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
+    "cy:run:buyers": "npx cypress run --env nonprod=nonprod --spec cypress/e2e/api/buyers/*.cy.ts",
+    "cy:run:bff": "npx cypress run --env nonprod=nonprod --spec cypress/e2e/api/bff/*.cy.ts"
+
   },
   "keywords": [],
   "author": "Raphael Angel",

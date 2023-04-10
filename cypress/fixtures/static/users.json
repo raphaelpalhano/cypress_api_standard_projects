@@ -58,6 +58,30 @@
             {
                 "action": "create",
                 "resource": "intermediation.fee.supplier"
+            },
+            {
+                "action": "read",
+                "resource": "invoices.list"
+            },
+            {
+                "action": "download",
+                "resource": "invoices.export"
+            },
+            {
+                "action": "read",
+                "resource": "investors"
+            },
+            {
+                "action": "read",
+                "resource": "suppliers"
+            },
+            {
+                "action": "read",
+                "resource": "invoices.by.supplier"
+            },
+            {
+                "action": "download",
+                "resource": "invoices.batch.export"
             }
         ]
     },
@@ -67,9 +91,8 @@
     {
         "entity": {
             "id": 1,
-            "createdAt": "2023-02-15T19:18:15.821Z",
-            "updatedAt": "2023-02-15T19:18:15.821Z",
-            "document": "62237425000176",
+        
+            "governmentId": "62237425000176",
             "corporateName": "BANCO FIDIS S/A",
             "tradingName": "BANCO FIDIS",
             "establishment": null,
@@ -79,8 +102,6 @@
             "contactName": "any value",
             "address": {
                 "id": 1,
-                "createdAt": "2023-02-15T19:18:15.825Z",
-                "updatedAt": "2023-02-15T19:18:15.825Z",
                 "zipCode": "32669900",
                 "line": "Av. Contorno",
                 "number": "3455",
@@ -169,6 +190,10 @@
             {
                 "action": "download",
                 "resource": "template.fee"
+            },
+            {
+                "action": "download",
+                "resource": "api.terms.cession"
             }
         ]
     },
@@ -177,7 +202,11 @@
     {
         "entity": {
             "id": 1,
-            "document": "79922720000164",
+            "createdByName": null,
+            "createdByEmail": null,
+            "createdByDocument": null,
+            "privacyPolicyAgree": false,
+            "governmentId": "79922720000164",
             "corporateName": "FERRAMENTARIA JN LTDA",
             "tradingName": "FERRAMENTARIA JN",
             "establishment": null,
@@ -185,6 +214,8 @@
             "commercialPhone": "any value",
             "contactName": "any value",
             "status": "APPROVED",
+            "socialContract": null,
+            "tradeMark": null,
             "address": {
                 "city": "Joinville",
                 "district": "Glória",
@@ -203,7 +234,11 @@
                     "email": "jair.bonatti@fjn.com.br",
                     "birthDate": "1963-07-25T03:00:00.000Z",
                     "phone": "any value",
-                    "role": "DIRECTOR"
+                    "role": "DIRECTOR",
+                    "identityDocument": null,
+                    "legalEntityComprobation": null,
+                    "legalEntityComprobationDate": "2023-04-04T02:15:21.052Z",
+                    "comprobationDate": null
                 }
             ],
             "bankAccounts": [

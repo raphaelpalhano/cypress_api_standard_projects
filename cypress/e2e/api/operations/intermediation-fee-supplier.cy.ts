@@ -36,8 +36,8 @@ describe('User operation the intermediation fees', function () {
     });
   });
 
-  it('Given I one supplier intermediation fees', function () {
-    cy.getOneOperations('intermediation-fees/suppliers?', 'page=All&search=ALLE ALUMINIO&sort=corporateName').then((res) => {
+  it('Given I have one supplier intermediation fees', function () {
+    cy.getOperations('intermediation-fees/suppliers?page=1&search=ALLE ALUMINIO&sort=corporateName').then((res) => {
       expect(res.body.data).length.above(0);
       expect(res.status).to.be.eq(200);
       expect(res.body.data[0]).to.have.property('fee');
@@ -50,8 +50,8 @@ describe('User operation the intermediation fees', function () {
     });
   });
 
-  it('Given I one intermediation fees', function () {
-    cy.getOneOperations('intermediation-fees/suppliers?', 'page=All&search=ms8&sort=corporateName').then((res) => {
+  it('Given I not found intermediation-fee', function () {
+    cy.getOperations('intermediation-fees/suppliers?page=1&search=ms8&sort=corporateName').then((res) => {
       expect(res.body.data).length.lessThan(1);
       expect(res.status).to.be.eq(200);
     });

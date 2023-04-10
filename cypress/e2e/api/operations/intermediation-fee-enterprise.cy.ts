@@ -5,7 +5,7 @@ describe.skip('User operation the intermediation fees', function () {
     cy.authSystem('manager');
     const body = {
       fee: 15,
-      supplierIds: 1,
+      supplierIds: [1],
     };
     cy.postOperations('intermediation-fees/suppliers', body).then((resp) => {
       expect(resp.status).to.be.eq(201);

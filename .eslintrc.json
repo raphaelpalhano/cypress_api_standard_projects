@@ -52,6 +52,7 @@
         "no-plusplus": "off",
         "import/no-named-as-default-member": "off",
         "operator-linebreak": "off",
+        "dot-notation": "off",
         "max-len": [
           "error",
           {

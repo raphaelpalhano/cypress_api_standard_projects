@@ -1,22 +1,95 @@
-image: 253882794486.dkr.ecr.us-east-1.amazonaws.com/build-tools:864d3610-node-18
+include:
+  - project: 'fca/architecture/IaC/cloud-digital/common-ci'
+    file: 'job-commons.yml'
 
 stages:
   - test
+  - build
 
 
-
-before_script:
-    - apt-get update && apt-get install --yes libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+.cypress_job:
+  stage: test
+  image: cypress/base:16.13.0
+  when: manual
+  script:
     - npm ci
-    - npm run cy:clear
+    - $(npm bin)/cypress run --env nonprod=nonprod --spec $TEST_FILE
+
+api-test-buyers:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/buyers/*.cy.ts
+
+
+api-test-bff:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/bff/*.cy.ts
+
+api-test-enterprises:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/enterprises/*.cy.ts
+
+
+api-test-integrations:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/integrations/*.cy.ts
+
+
+
+api-test-investors:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/investors/*.cy.ts
+
+
+api-test-operations:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/operations/*.cy.ts
+
+
+api-test-sponsors:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/sponsors/*.cy.ts
+
+
+api-test-suppliers:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/suppliers/*.cy.ts
+
+api-test-users:
+  extends:
+    - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/users/*.cy.ts
+
+api-test-all:
+  extends:
+  - .cypress_job
+  variables:
+    TEST_FILE: cypress/e2e/api/*/*.cy.ts
 
 
 api-test:
   stage: test
   only:
-    - develop
+    - master
   script:  
-    - npm run cy:run:nonprod 
+     - npm ci
+     - $(npm bin)/cypress run --env nonprod=nonprod 
   artifacts:
     expire_in: 30 days
     when: always
@@ -26,9 +99,10 @@ api-test:
 
 api-test-report:
   stage: test
-  when: manual
   only:
     - master
+  when: manual
   script:  
-    - npm run cy:dash:nonprod
+     - npm ci
+     - $(npm bin)/cypress run --env nonprod=nonprod 
 

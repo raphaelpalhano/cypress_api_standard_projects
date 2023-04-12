@@ -13,3 +13,11 @@ Cypress.Commands.add('uploadTaxes', (investorId: string, supplierGovernmentId: s
 Cypress.Commands.add('downloadTermOfCession', (investorId: string, orderId: string) => {
   cy.requestWithoutBody(`GET`, `api/v1/buyers/${investorId}/signatures/${orderId}/documents`);
 });
+
+Cypress.Commands.add('getOrdersApi', (endpoint: string) => {
+  cy.requestWithoutBody(`GET`, `api/v1/buyers/${endpoint}`);
+});
+
+Cypress.Commands.add('getInvoicesInOrdersApi', (endpoint: string) => {
+  cy.requestWithoutBody(`GET`, `api/v1/buyers/${endpoint}`);
+});

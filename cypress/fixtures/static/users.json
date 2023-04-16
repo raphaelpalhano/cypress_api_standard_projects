@@ -61,19 +61,19 @@
             },
             {
                 "action": "read",
-                "resource": "invoices.list"
-            },
-            {
-                "action": "download",
-                "resource": "invoices.export"
-            },
-            {
-                "action": "read",
                 "resource": "investors"
             },
             {
                 "action": "read",
                 "resource": "suppliers"
+            },
+            {
+                "action": "read",
+                "resource": "invoices.list"
+            },
+            {
+                "action": "download",
+                "resource": "invoices.export"
             },
             {
                 "action": "read",
@@ -85,13 +85,11 @@
             }
         ]
     },
-    
 
     "investor": 
     {
         "entity": {
             "id": 1,
-        
             "governmentId": "62237425000176",
             "corporateName": "BANCO FIDIS S/A",
             "tradingName": "BANCO FIDIS",
@@ -194,6 +192,14 @@
             {
                 "action": "download",
                 "resource": "api.terms.cession"
+            },
+            {
+                "action": "read",
+                "resource": "invoices.list"
+            },
+            {
+                "action": "download",
+                "resource": "invoices.export"
             }
         ]
     },
@@ -237,7 +243,7 @@
                     "role": "DIRECTOR",
                     "identityDocument": null,
                     "legalEntityComprobation": null,
-                    "legalEntityComprobationDate": "2023-04-04T02:15:21.052Z",
+                    "legalEntityComprobationDate": "2023-04-10T16:10:28.488Z",
                     "comprobationDate": null
                 }
             ],
@@ -286,6 +292,18 @@
             {
                 "action": "download",
                 "resource": "order.signature"
+            },
+            {
+                "action": "read",
+                "resource": "invoices.list"
+            },
+            {
+                "action": "download",
+                "resource": "invoices.export"
+            },
+            {
+                "action": "read",
+                "resource": "enterprises"
             }
         ]
     }

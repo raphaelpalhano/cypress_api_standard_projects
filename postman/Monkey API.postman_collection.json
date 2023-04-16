@@ -1,0 +1,2043 @@
+{
+	"info": {
+		"_postman_id": "6218f4e7-e552-4e98-b120-68368fa4733a",
+		"name": "Monkey API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21396195"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const now = new Date();",
+									"const jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token_type\", jsonData.token_type);",
+									"pm.collectionVariables.set(\"access_token\", jsonData.access_token);",
+									"pm.collectionVariables.set(\"refresh_token\", jsonData.refresh_token);",
+									"pm.collectionVariables.set(\"expires_at\", now.setSeconds(jsonData.expires_in));",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body with all expected keys\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"scope\");",
+									"    pm.expect(jsonData).to.have.property(\"access_token\");",
+									"    pm.expect(jsonData).to.have.property(\"token_type\");",
+									"    pm.expect(jsonData).to.have.property(\"refresh_token\");",
+									"    pm.expect(jsonData).to.have.property(\"expires_in\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "MonkeyFiat@10",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "monkeyexchangefiat@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "server",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL_API}}uaa/oauth/token",
+							"host": [
+								"{{URL_API}}uaa"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const now = new Date();",
+									"const jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"token_type\", jsonData.token_type);",
+									"pm.collectionVariables.set(\"access_token\", jsonData.access_token);",
+									"pm.collectionVariables.set(\"refresh_token\", jsonData.refresh_token);",
+									"pm.collectionVariables.set(\"expires_at\", now.setSeconds(jsonData.expires_in));",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body with all expected keys\", () => {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property(\"scope\");",
+									"    pm.expect(jsonData).to.have.property(\"access_token\");",
+									"    pm.expect(jsonData).to.have.property(\"token_type\");",
+									"    pm.expect(jsonData).to.have.property(\"refresh_token\");",
+									"    pm.expect(jsonData).to.have.property(\"expires_in\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://hmg-zuul.monkeyecx.com/uaa/oauth/token",
+							"protocol": "https",
+							"host": [
+								"hmg-zuul",
+								"monkeyecx",
+								"com"
+							],
+							"path": [
+								"uaa",
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profiles",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const client_id = pm.collectionVariables.get(\"client_id\");",
+									"// const client_secret = pm.collectionVariables.get(\"client_secret\");",
+									"// const refresh_token = pm.collectionVariables.get(\"refresh_token\");",
+									"",
+									"// const tokenExpiration = new Date(pm.collectionVariables.get(\"refresh_token\"));",
+									"",
+									"// const postRequest = {",
+									"//   url: 'https://hmg-zuul.monkeyecx.com/uaa/oauth/token',",
+									"//   method: 'POST',",
+									"//   timeout: 0,",
+									"//   header: {",
+									"//     \"Content-Type\": \"application/x-www-form-urlencoded\"",
+									"//   },",
+									"//   body: {",
+									"//     mode: 'urlencoded',",
+									"//     urlencoded: [",
+									"//         {key: \"client_id\", value: client_id},",
+									"//         {key: \"client_secret\", value: client_secret},",
+									"//         {key: \"refresh_token\", value: refresh_token},",
+									"//         {key: \"grant_type\", value: \"refresh_token\"},",
+									"//     ]}",
+									"// };",
+									"// if ((tokenExpiration - new Date()) < 0) {",
+									"//     console.log(\"Expired token\");",
+									"//     pm.sendRequest(postRequest, function (err, res) {",
+									"//         try {",
+									"//             const jsonData = res.json();",
+									"//             pm.collectionVariables.set(\"token_type\", jsonData.token_type);",
+									"//             pm.collectionVariables.set(\"access_token\", jsonData.access_token);",
+									"//             pm.collectionVariables.set(\"refresh_token\", jsonData.refresh_token);",
+									"//         } catch(err) {",
+									"//             console.log(err)",
+									"//         }",
+									"//     });",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"console.log(jsonData)",
+									"pm.collectionVariables.set(\"seller_id\", jsonData.companies[1].id);",
+									"pm.collectionVariables.set(\"sponsor_id\", jsonData.companies[3].id);",
+									"pm.collectionVariables.set(\"buyer_id\", jsonData.companies[0].id);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "program",
+								"value": "{{program}}",
+								"type": "default"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_API}}uaa/profiles",
+							"host": [
+								"{{URL_API}}uaa"
+							],
+							"path": [
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ANCORA",
+			"item": [
+				{
+					"name": "Suppliers",
+					"item": [
+						{
+							"name": "Listar fornecedor",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "FIAT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/sponsors/6710915/suppliers?search=",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"sponsors",
+										"6710915",
+										"suppliers"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar rebate",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sponsorTax\": 2.0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sponsors/1676299999/suppliers",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sponsors",
+										"1676299999",
+										"suppliers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Empresa",
+					"item": [
+						{
+							"name": "Títulos",
+							"item": [
+								{
+									"name": "Listar títulos",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_type}} {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "program",
+												"value": "{{program}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://hmg-zuul.monkeyecx.com/v2/sponsors/6710934/payables?search=&page=&sort=",
+											"protocol": "https",
+											"host": [
+												"hmg-zuul",
+												"monkeyecx",
+												"com"
+											],
+											"path": [
+												"v2",
+												"sponsors",
+												"6710934",
+												"payables"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": ""
+												},
+												{
+													"key": "page",
+													"value": ""
+												},
+												{
+													"key": "sort",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Upload de títulos",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.collectionVariables.set(\"ITEMS\", createInvoices(10));",
+													"",
+													"function dataIncrement(day){",
+													"    let today = new Date();",
+													"    today.setDate(today.getDate() + day);",
+													"    let dd = String(today.getDate()).padStart(2, '0');",
+													"    let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!",
+													"    let yyyy = today.getFullYear();",
+													"  ",
+													"    let formatToday = `${yyyy}-${mm}-${dd}`;",
+													"  ",
+													"    return formatToday;",
+													"};",
+													"",
+													"function dataDecrease(day){",
+													"    let today = new Date();",
+													"    today.setDate(today.getDate() - day);",
+													"    let dd = String(today.getDate()).padStart(2, '0');",
+													"    let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!",
+													"    let yyyy = today.getFullYear();",
+													"  ",
+													"    let formatToday = `${yyyy}-${mm}-${dd}`;",
+													"  ",
+													"    return formatToday;",
+													"};",
+													"",
+													"function getRandomArbitrary(min, max) {",
+													"    return parseInt(Math.random() * (max - min) + min);",
+													"}",
+													"",
+													"function getRandomInt(max) {",
+													"    return parseInt(Math.floor(Math.random() * max));",
+													"}",
+													"",
+													"function createInvoices(numberInvoices){",
+													"    const dateIncremented = dataIncrement(10);",
+													"    const dateDecresed = dataDecrease(10)",
+													"    const items = {items: []};",
+													"    ",
+													"    for(let step = 0; step < numberInvoices; step++){",
+													"        let installmentValue = getRandomArbitrary(1, 1000);",
+													"        let object =  {",
+													"            assetType: 'DIREITOS_CREDITORIOS',",
+													"            externalId: getRandomInt(10000000).toString(),",
+													"            installment: installmentValue,",
+													"            invoiceDate: `${dateDecresed}`,",
+													"            invoiceKey: 'TEST9',",
+													"            invoiceNumber: getRandomArbitrary(1, 20000).toString(),",
+													"            paymentDate: `${dateIncremented}`,",
+													"            realPaymentDate: `2023-02-23`,",
+													"            paymentValue: getRandomArbitrary(10, 2000),",
+													"            supplierGovernmentId: '02865246000585',",
+													"            supplierName: 'MARELLI COFAP DO BRASIL LTDA.',",
+													"            totalInstallment: installmentValue,",
+													"        };",
+													"        items.items.push(object);",
+													"        ",
+													"    }",
+													"    console.log(JSON.stringify(items))",
+													"",
+													"    return JSON.stringify(items)        ",
+													"}",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token_type}} {{access_token}}",
+												"type": "text"
+											},
+											{
+												"key": "program",
+												"value": "{{program}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"items\": [\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"2906216\",\n            \"installment\": 815,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"4494\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 907,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 815\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"1318967\",\n            \"installment\": 103,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"4639\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 299,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 103\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"995071\",\n            \"installment\": 864,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"13032\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 610,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 864\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"4767064\",\n            \"installment\": 385,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"3162\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 909,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 385\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"5735155\",\n            \"installment\": 165,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"7432\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 276,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 165\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"2437233\",\n            \"installment\": 473,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"8926\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 1645,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 473\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"2348264\",\n            \"installment\": 80,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"5747\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 398,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 80\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"7345112\",\n            \"installment\": 532,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"6829\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 25,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 532\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"8706677\",\n            \"installment\": 57,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"6463\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 625,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 57\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"5057406\",\n            \"installment\": 399,\n            \"invoiceDate\": \"2023-03-04\",\n            \"invoiceKey\": \"TEST9\",\n            \"invoiceNumber\": \"5837\",\n            \"paymentDate\": \"2023-03-24\",\n            \"realPaymentDate\": \"2023-02-23\",\n            \"paymentValue\": 1268,\n            \"supplierGovernmentId\": \"02865246000585\",\n            \"supplierName\": \"MARELLI COFAP DO BRASIL LTDA.\",\n            \"totalInstallment\": 399\n        }\n    ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://hmg-zuul.monkeyecx.com/v2/sponsors/6710924/payables",
+											"protocol": "https",
+											"host": [
+												"hmg-zuul",
+												"monkeyecx",
+												"com"
+											],
+											"path": [
+												"v2",
+												"sponsors",
+												"6710924",
+												"payables"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Documents",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sponsors/6710934/signatures/ohGCJB2O1V/documents",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sponsors",
+										"6710934",
+										"signatures",
+										"ohGCJB2O1V",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "lista de notas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sponsors/6710890/payables",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sponsors",
+										"6710890",
+										"payables"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "operações",
+					"item": [
+						{
+							"name": "cadastrar operacao",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"sellers\": [\n          \"35766169850\"\n     ],\n     \"buyers\": [\n          \"62237425002381\"\n     ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_API}}v2/sponsors/6710934/operations",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"sponsors",
+										"6710934",
+										"operations"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "INVESTOR",
+			"item": [
+				{
+					"name": "fees",
+					"item": [
+						{
+							"name": "List fees",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/543581816/sponsors/10553386000112/taxes?search=sponsorGovernmentId:10553386000112&pageable=",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"543581816",
+										"sponsors",
+										"10553386000112",
+										"taxes"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "sponsorGovernmentId:10553386000112"
+										},
+										{
+											"key": "pageable",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "registry fee sacado",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"taxes\": [\n          {\n               \"days\": 10,\n               \"value\": 0.0000001,\n               \"risk\": \"Grupo 1\",\n               \"validity\": \"2023-04-10\"\n          }\n     ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/543581816/sponsors/10553386000112/taxes",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"543581816",
+										"sponsors",
+										"10553386000112",
+										"taxes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user investor",
+					"item": [
+						{
+							"name": "Buscar usuário",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v1/buyers/1617323778/users/guilherme.amaral@avenuecode.com",
+									"host": [
+										"{{URL_API}}v1"
+									],
+									"path": [
+										"buyers",
+										"1617323778",
+										"users",
+										"guilherme.amaral@avenuecode.com"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v1/buyers/1617323778/users?search=&pageable=",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v1",
+										"buyers",
+										"1617323778",
+										"users"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": ""
+										},
+										{
+											"key": "pageable",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sponsors",
+					"item": [
+						{
+							"name": "Sponsors list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set('SponsorgovernmentId')"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/buyers/543581807/sponsors",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"buyers",
+										"543581807",
+										"sponsors"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buys",
+					"item": [
+						{
+							"name": "approve or repprove",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/1617323778/purchases/custodies-response",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"1617323778",
+										"purchases",
+										"custodies-response"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "https://hmg-zuul.monkeyecx.com/v2/buyers/543581807",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/buyers/543581807",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"buyers",
+										"543581807"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "https://hmg-zuul.monkeyecx.com/v2/buyers/543581816/sponsors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/buyers/543581816/sponsors",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"buyers",
+										"543581816",
+										"sponsors"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "document and signatures",
+					"item": [
+						{
+							"name": "termos de cessao",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/161732623/signatures/Yx07a2soAL/documents",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"161732623",
+										"signatures",
+										"Yx07a2soAL",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signature buy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/543581816/signatures/123/approve",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"543581816",
+										"signatures",
+										"123",
+										"approve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signature buy Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/543581816/signatures/123/unapprove",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"543581816",
+										"signatures",
+										"123",
+										"unapprove"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "operaçào",
+					"item": [
+						{
+							"name": "List fees Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/543581816/purchases/312/purchase-items",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"543581816",
+										"purchases",
+										"312",
+										"purchase-items"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list orde",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_API}}v2/buyers/543581816/purchases",
+									"host": [
+										"{{URL_API}}v2"
+									],
+									"path": [
+										"buyers",
+										"543581816",
+										"purchases"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SUPPLIER",
+			"item": [
+				{
+					"name": "Investors",
+					"item": [
+						{
+							"name": "List investors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/1617323778/buyers",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"1617323778",
+										"buyers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Contas a Receber",
+					"item": [
+						{
+							"name": "Listar contas a receber",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/receivables",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"receivables"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Contas Bancárias",
+					"item": [
+						{
+							"name": "Contas Bancárias",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "fiat",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/bank-accounts",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"bank-accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Contas Bancárias",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "fiat",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"alias\": \"Teste Cadastro API\",\n    \"bank\": \"\",\n    \"bankName\": \"Santander\",\n    \"agency\": \"123\",\n    \"account\": \"456789\",\n    \"accountDigit\": \"0\",\n    \"main\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/bank-accounts",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"bank-accounts"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Documentos e Assinaturas",
+					"item": [
+						{
+							"name": "Listar assinaturas",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/signatures",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"signatures"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Eventos",
+					"item": [
+						{
+							"name": "Eventos",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/events",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Investidores",
+					"item": [
+						{
+							"name": "Investidores",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/1617323660/buyers",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"1617323660",
+										"buyers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Operações",
+					"item": [
+						{
+							"name": "Listar ofertas de antecipação",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"There is at least one user linked to the entity\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData._embedded).to.have.property(\"offers\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/offers",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"offers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Status Mercado",
+					"item": [
+						{
+							"name": "Horário leilão",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"const date = new Date();",
+											"pm.test(`Body with key 'today' equal ${date.toISOString().slice(0,10)}`, () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData.today).to.eql(date.toISOString().slice(0,10));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/markets",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"markets"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuários",
+					"item": [
+						{
+							"name": "Usuários",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"There is at least one user linked to the entity\", () => {",
+											"    const jsonData = pm.response.json();",
+											"    pm.expect(jsonData._embedded.profiles).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "fiat",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/uaa/v1/sellers/{{seller_id}}/users",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"uaa",
+										"v1",
+										"sellers",
+										"{{seller_id}}",
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "create simulation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"sponsorId\": {{sponsor_id}},\n     \"paymentDateMinimum\": \"2023-02-25\",\n     \"paymentDateMaximum\": \"2023-03-05\",\n     \"amount\": 6\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/orders",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "adicionar nota na simulação",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"sponsorId\": {{sponsor_id}},\n     \"paymentDateMinimum\": \"2023-02-25\",\n     \"paymentDateMaximum\": \"2023-03-05\",\n     \"amount\": 12\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/orders/bQUcUnIjdM/items/{itemId}",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"orders",
+										"bQUcUnIjdM",
+										"items",
+										"{itemId}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create simulation Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n     \"createUserId\": \"guilherme.amaral@avenuecode.com\",\n     \"createUserIp\": \"34.206.129.226\",\n     \"lastUserId\": \"guilherme.amaral@avenuecode.com\",\n     \"lastUserIp\": \"34.206.129.226\",\n     \"bankAccountId\": 101,\n     \"passNumber1\": \"12\",\n     \"passNumber2\": \"23\",\n     \"passNumber3\": 34,\n     \"passNumber4\": \"45\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/orders/Ci64OU9BUn/offers",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"orders",
+										"Ci64OU9BUn",
+										"offers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar orders",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/1617323778/orders/ZrzKA4LnDq",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"1617323778",
+										"orders",
+										"ZrzKA4LnDq"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "https://hmg-zuul.monkeyecx.com/v2/sellers/1617323778/orders/6TGi3ACBow Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									},
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/{{seller_id}}/orders/bQUcUnIjdM",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"{{seller_id}}",
+										"orders",
+										"bQUcUnIjdM"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Status da operação",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "program",
+										"value": "{{program}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://hmg-zuul.monkeyecx.com/v2/sellers/1617323778/processes/XlysgbBtPj",
+									"protocol": "https",
+									"host": [
+										"hmg-zuul",
+										"monkeyecx",
+										"com"
+									],
+									"path": [
+										"v2",
+										"sellers",
+										"1617323778",
+										"processes",
+										"XlysgbBtPj"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "token_type",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "client_id",
+			"value": "zQKQPjnSaJ",
+			"type": "default"
+		},
+		{
+			"key": "client_secret",
+			"value": "3d8af789-ba41-4fcf-95e9-e56118a38dd1",
+			"type": "default"
+		},
+		{
+			"key": "user_pwd",
+			"value": "@GA!Webxyz136",
+			"type": "default"
+		},
+		{
+			"key": "user_email",
+			"value": "guilherme.amaral@avenuecode.com",
+			"type": "string"
+		},
+		{
+			"key": "program",
+			"value": "FIAT",
+			"type": "string"
+		},
+		{
+			"key": "expires_at",
+			"value": ""
+		},
+		{
+			"key": "seller_id",
+			"value": ""
+		},
+		{
+			"key": "enterprise_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "URL_API",
+			"value": "https://hmg-zuul.monkeyecx.com/",
+			"type": "string"
+		},
+		{
+			"key": "sponsor_id",
+			"value": ""
+		},
+		{
+			"key": "buyer_id",
+			"value": ""
+		},
+		{
+			"key": "ITEMS",
+			"value": ""
+		}
+	]
+}

@@ -1,0 +1,4884 @@
+{
+	"info": {
+		"_postman_id": "56c8b74b-bbfc-4488-b0e1-bbe460f5efeb",
+		"name": "fidis-ms8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21396195"
+	},
+	"item": [
+		{
+			"name": "BFF",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body(\"ok\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "States",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"data\");",
+									"});",
+									"pm.test(\"Body has items\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).length.gte(1);",
+									"});",
+									"pm.test(\"Body's first item is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"name\");",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"abbreviation\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/places/ufs",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"ufs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities by state",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"data\");",
+									"});",
+									"pm.test(\"Body has items\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).length.gte(1);",
+									"});",
+									"pm.test(\"Body's first item is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"name\");",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"code\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/places/ufs/AC/cities",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"ufs",
+								"AC",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"zipCode\");",
+									"    pm.expect(jsonData).ownProperty(\"line\");",
+									"    pm.expect(jsonData).ownProperty(\"city\");",
+									"    pm.expect(jsonData).ownProperty(\"uf\");",
+									"    pm.expect(jsonData).ownProperty(\"district\");",
+									"    pm.expect(jsonData).ownProperty(\"country\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/addresses/cep/88106102",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"addresses",
+								"cep",
+								"88106102"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CNPJ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"corporateName\");",
+									"    pm.expect(jsonData).ownProperty(\"tradingName\");",
+									"    pm.expect(jsonData).ownProperty(\"establishment\");",
+									"    pm.expect(jsonData).ownProperty(\"cnae\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/documents/cnpj/16701716000159",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"documents",
+								"cnpj",
+								"16701716000159"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register suppliers Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"data\");",
+									"});",
+									"pm.test(\"Body has items\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).length.gte(1);",
+									"});",
+									"pm.test(\"Body's first item is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"name\");",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"abbreviation\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"createdByName\": \"Roberto 3\",\n    \"createdByEmail\": \"roberto3@gmail.com\",\n    \"createdByDocument\": \"\",\n    \"privacyPolicyAgree\": true,\n    \"governmentId\": 3249023740325,\n    \"corporateName\": \"this is a test2\",\n    \"tradingName\": \"tradingName2\",\n    \"establishment\": \"2023-01-01\",\n    \"cnae\": \"002\",\n    \"commercialPhone\": \"\",\n    \"contactName\": \"\",\n    \"isHeadquarter\": true,\n    \"headquarterGovernmentId\": 3249023740324,\n    \"socialContract\": {\n      \"key\": \"socialKey3\",\n      \"name\": \"socialName3\"\n    },\n    \"tradeMark\": {\n      \"key\": \"tradeMark3\",\n      \"name\": \"tradeName3\"\n    },\n    \"address\": {\n        \"line\": \"this is a test3\",\n        \"number\": \"this is a test3\",\n        \"complement\": \"003\",\n        \"zipCode\": \"this is a test3\",\n        \"city\": \"this is a test3\",\n        \"district\": \"this is a test3\",\n        \"state\": \"this is a test3\",\n        \"uf\": \"this is a test3\",\n        \"country\": \"this is a test1\"\n    },\n    \"legalEntities\": [\n        {\n            \"name\": \"legalEntityName3\",\n            \"document\": \"084320344505\",\n            \"phone\": \"5521999999903\",\n            \"email\": \"email4@email.com\",\n            \"birthDate\": \"1975-01-01\",\n            \"role\": \"a\",\n            \"identityDocument\": {\n              \"key\": \"identityKey4\",\n              \"name\": \"identityName4\"\n            },\n            \"legalEntityComprobationDate\": \"2023-04-01\",\n            \"legalEntityComprobation\": {\n              \"key\": \"comprobationKey4\",\n              \"name\": \"comprobationName4\"\n            }\n        }\n    ],\n    \"bankAccounts\": [\n        {\n            \"bank\": \"bank3\",\n            \"bankName\": \"bankName3\",\n            \"alias\": \"\",\n            \"agency\": 8,\n            \"account\": 903, \n            \"accountDigit\": 9,\n            \"default\": true\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/suppliers/register",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"suppliers",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify supplier exist Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"data\");",
+									"});",
+									"pm.test(\"Body has items\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).length.gte(1);",
+									"});",
+									"pm.test(\"Body's first item is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"name\");",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"abbreviation\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/suppliers/cnpj/check/32449687000133",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"suppliers",
+								"cnpj",
+								"check",
+								"32449687000133"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get banks Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).ownProperty(\"data\");",
+									"});",
+									"pm.test(\"Body has items\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data).length.gte(1);",
+									"});",
+									"pm.test(\"Body's first item is valid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"name\");",
+									"    pm.expect(jsonData.data[1]).ownProperty(\"abbreviation\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}bff/api/v1/banks",
+							"host": [
+								"{{API_GATEWAY}}bff"
+							],
+							"path": [
+								"api",
+								"v1",
+								"banks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enterprises",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body(\"ok\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}enterprises/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}enterprises"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Empresas",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Set first value of list as ENTERPRISESERVICE_ID variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (pm.response.code == 200 && jsonData.data.length > 0) {",
+									"        pm.collectionVariables.set(\"ENTERPRISESERVICE_ID\", jsonData.data[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}enterprises/api/v1/enterprises?search=",
+							"host": [
+								"{{API_GATEWAY}}enterprises"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enterprises"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Empresa",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}enterprises/api/v1/enterprises/1",
+							"host": [
+								"{{API_GATEWAY}}enterprises"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enterprises",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Empresa",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"\",\n    \"corporateName\": \"\",\n    \"tradingName\": \"\",\n    \"establishment\": \"\",\n    \"cnae\": \"\",\n    \"address\": {\n        \"zipCode\": \"\",\n        \"line\": \"\",\n        \"number\": \"\",\n        \"city\": \"\",\n        \"district\": \"\",\n        \"state\": \"\",\n        \"uf\": \"\",\n        \"country\": \"\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}enterprises/api/v1/enterprises",
+							"host": [
+								"{{API_GATEWAY}}enterprises"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enterprises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Empresas",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\"16694812000114\"]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}enterprises/api/v1/enterprises/retrieve-id",
+							"host": [
+								"{{API_GATEWAY}}enterprises"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enterprises",
+								"retrieve-id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Integrations",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Body is correct\", function () {",
+									"    pm.response.to.have.body(\"ok\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Integrações",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Set first value of list as INTEGRATIONSERVICE_ID and INTEGRATIONSERVICE_CREDENTIAL_ID variables\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (pm.response.code == 200 && jsonData.data.length > 0) {",
+									"        pm.collectionVariables.set(\"INTEGRATIONSERVICE_ID\", jsonData.data[0].id);",
+									"        pm.collectionVariables.set(\"INTEGRATIONSERVICE_CREDENTIAL_ID\", jsonData.data[0].credentials[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/integrations",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"integrations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Integrações",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/integrations/4294967295",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"integrations",
+								"4294967295"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Integração",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Set response id as value of INTEGRATIONSERVICE_ID and INTEGRATIONSERVICE_CREDENTIAL_ID variables\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (pm.response.code == 200 && jsonData.id) {",
+									"        pm.collectionVariables.set(\"INTEGRATIONSERVICE_ID\", jsonData.id);",
+									"        pm.collectionVariables.set(\"INTEGRATIONSERVICE_CREDENTIAL_ID\", jsonData.credentials[0].id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"A\",\n    \"credentials\": [\n        {\n            \"type\": \"TEXT\",\n            \"key\": \"B\",\n            \"value\": \"C\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/integrations",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"integrations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Integração",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"intrega-youtube\",\n    \"credentials\": [\n        {\n            \"type\": \"URL\",\n            \"key\": \"youtube\",\n            \"value\": \"https://www.youtube.com\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/integrations/11",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"integrations",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Integração",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/integrations/{{INTEGRATIONSERVICE_ID}}",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"integrations",
+								"{{INTEGRATIONSERVICE_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Credencial da Integração",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Set response id as value of INTEGRATION_ID variable\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (pm.response.code == 200 && jsonData.id) {",
+									"        pm.collectionVariables.set(\"INTEGRATION_ID\", jsonData.id);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"\",\n    \"credentials\": [\n        {\n            \"type\": \"\",\n            \"key\": \"\",\n            \"value\": \"\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}integrations/api/v1/integrations/{{INTEGRATIONSERVICE_ID}}/credentials/{{INTEGRATIONSERVICE_CREDENTIAL_ID}}",
+							"host": [
+								"{{API_GATEWAY}}integrations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"integrations",
+								"{{INTEGRATIONSERVICE_ID}}",
+								"credentials",
+								"{{INTEGRATIONSERVICE_CREDENTIAL_ID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Investors",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body is correct\", function () {",
+									"    const jsonData = pm.response.json()",
+									"    pm.expect(jsonData.version).to.not.empty;",
+									"    pm.expect(jsonData.database).equals(\"ok\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Investidores",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Investidor",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}/investors/api/v1/investors/1",
+							"host": [
+								"{{API_GATEWAY}}"
+							],
+							"path": [
+								"investors",
+								"api",
+								"v1",
+								"investors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Limite por Investidor",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/limits",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"1",
+								"limits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Taxas e Limite para Empresa",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/order?enterpriseId=1&document=16694812000114",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"order"
+							],
+							"query": [
+								{
+									"key": "enterpriseId",
+									"value": "1"
+								},
+								{
+									"key": "document",
+									"value": "16694812000114"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar limite",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Statuscode is 200', function() {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('response have specific properties', function() {",
+									"   const body = {",
+									"    \"investorId\": \"0dc9055a-5480-4577-857e-3e3fefb3318c\",",
+									"    \"limits\": [",
+									"        {",
+									"            \"id\": \"f3cf95cd-caf4-41b1-a13a-978e1a06212f\",",
+									"            \"enterpriseId\": \"eed6cf42-e6e1-4c4a-9339-9675f5c177d9\",",
+									"            \"limit\": \"60000.00\"",
+									"        }",
+									"    ],",
+									"    \"fees\": [",
+									"        {",
+									"            \"enterpriseId\": \"c566b177-e47b-488f-8d5f-0bbd4476e4fb\",",
+									"            \"days\": 5,",
+									"            \"fee\": \"0.43210000\",",
+									"            \"group\": 1",
+									"        }",
+									"    ]",
+									"    }",
+									"    pm.response.to.have.jsonBody(body)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n    \"limit\":10000000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/limits/1",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"1",
+								"limits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Investidor",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"\",\n    \"corporateName\": \"\",\n    \"tradingName\": \"\",\n    \"establishment\": \"\",\n    \"cnae\": \"\",\n    \"address\": {\n        \"zipCode\": \"\",\n        \"line\": \"\",\n        \"number\": \"\",\n        \"city\": \"\",\n        \"district\": \"\",\n        \"state\": \"\",\n        \"uf\": \"\",\n        \"country\": \"\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update limite",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"enterpriseId\": \"1\",\n    \"limit\": 13000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/limits/1",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"1",
+								"limits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload fee",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/raphael.arevalos/Downloads/data/fees.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/upload-fee-file",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"1",
+								"upload-fee-file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List history taxes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/history-fee?page=1&sort=-createdAt",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"1",
+								"history-fee"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "-createdAt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list limits",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_investor}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/limits",
+							"host": [
+								"{{API_GATEWAY}}investors"
+							],
+							"path": [
+								"api",
+								"v1",
+								"investors",
+								"1",
+								"limits"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status inside body is ok\", function () {",
+									"    const jsonData = pm.response.json()",
+									"    pm.expect(jsonData.status).equal(\"ok\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_supplier}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}suppliers/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}suppliers"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Fornecedor",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_supplier}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}suppliers/api/v1/suppliers/1",
+							"host": [
+								"{{API_GATEWAY}}suppliers"
+							],
+							"path": [
+								"api",
+								"v1",
+								"suppliers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status inside body is ok\", function () {",
+									"    const jsonData = pm.response.json()",
+									"    pm.expect(jsonData.status).equal(\"ok\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_supplier}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}users/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}users"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Permissão/Menu",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_supplier}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}users/api/v1/permissions",
+							"host": [
+								"{{API_GATEWAY}}users"
+							],
+							"path": [
+								"api",
+								"v1",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Policy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}users/api/v1/policy?entity_type=manager&role=admin",
+							"host": [
+								"{{API_GATEWAY}}users"
+							],
+							"path": [
+								"api",
+								"v1",
+								"policy"
+							],
+							"query": [
+								{
+									"key": "entity_type",
+									"value": "manager"
+								},
+								{
+									"key": "role",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Operations",
+			"item": [
+				{
+					"name": "intermediation-fees",
+					"item": [
+						{
+							"name": "global-intermediation (GET)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/global-intermediation-fees",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"global-intermediation-fees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "global-intermediation (PUT)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"fee\": 12.0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/global-intermediation-fees/1",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"global-intermediation-fees",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "global-intermediation (PUT) Copy",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"fee\": -12.0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/global-intermediation-fees/",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"global-intermediation-fees",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "buscar limites por empresa",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_investor}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}investors/api/v1/investors/1/limits?page=1&sort=tradingName",
+									"host": [
+										"{{API_GATEWAY}}investors"
+									],
+									"path": [
+										"api",
+										"v1",
+										"investors",
+										"1",
+										"limits"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "sort",
+											"value": "tradingName"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "intermediaton/supplier/search",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/intermediation-fees/suppliers?page=All&search=ALLE ALUMINIO&sort=corporateName",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"intermediation-fees",
+										"suppliers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "All"
+										},
+										{
+											"key": "search",
+											"value": "ALLE ALUMINIO"
+										},
+										{
+											"key": "sort",
+											"value": "corporateName"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar rebate por supplier",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"supplierIds\": [\n        1\n    ],\n    \"fee\": 0.2523\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/intermediation-fees/suppliers",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"intermediation-fees",
+										"suppliers"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const entitys = ['investidor', 'gestor', 'fornecedor']",
+									"",
+									"const typesUsers = {",
+									"    investidor: 'investidor_back_test@mailinator.com',",
+									"    gestor: 'gestor_back_test@mailinator.com',",
+									"    fornecedor: 'fornecedor_back_test@mailinator.com'",
+									"}",
+									"",
+									"const body = {",
+									"    AuthFlow: 'USER_PASSWORD_AUTH',",
+									"    ClientId: 'o9od3jf3nqmfb0s8k8v3p1hcg',",
+									"    AuthParameters: { USERNAME: '', PASSWORD: 'backBack55221@'",
+									"    },",
+									"    ClientMetadata: {},",
+									"  };",
+									"",
+									"entitys.forEach((entity) => {",
+									"    if (typesUsers[entity]) body.AuthParameters.USERNAME = typesUsers[entity];",
+									"    pm.sendRequest({",
+									"        url: 'https://cognito-idp.us-east-1.amazonaws.com',",
+									"        method: 'POST',",
+									"        header: {",
+									"        'authority': 'cognito-idp.us-east-1.amazonaws.com', ",
+									"        'content-type': 'application/x-amz-json-1.1',",
+									"        'sec-fetch-mode': 'cors', ",
+									"        'sec-fetch-site': 'cross-site', ",
+									"        'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth', ",
+									"        'x-amz-user-agent': 'aws-amplify/5.0.4 js' ",
+									"",
+									"        },",
+									"        body:{",
+									"            mode: 'raw',",
+									"            raw: JSON.stringify(body)",
+									"        ",
+									"        }",
+									"    }, function(err, res){",
+									"            varResponse = res.json();",
+									"            console.log(res.json().AuthenticationResult.AccessToken);",
+									"            pm.environment.set(`token_${entity}`, res.json().AuthenticationResult.AccessToken);",
+									"        })",
+									"})",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "invoices",
+					"item": [
+						{
+							"name": "Invoices upload notas (POST)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "enterpriseId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/raphael.arevalos/Downloads/invoicesBack.csv"
+										},
+										{
+											"key": "entityid",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/invoices/upload-file",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"upload-file"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invoices (GET)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_supplier}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/invoices?page=1&perPage=10&status=",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "perPage",
+											"value": "10"
+										},
+										{
+											"key": "status",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const entitys = ['investidor', 'gestor', 'fornecedor']",
+									"",
+									"const typesUsers = {",
+									"    investidor: 'investidor_back_test@mailinator.com',",
+									"    gestor: 'gestor_back_test@mailinator.com',",
+									"    fornecedor: 'fornecedor_back_test@mailinator.com'",
+									"}",
+									"",
+									"const body = {",
+									"    AuthFlow: 'USER_PASSWORD_AUTH',",
+									"    ClientId: 'o9od3jf3nqmfb0s8k8v3p1hcg',",
+									"    AuthParameters: { USERNAME: '', PASSWORD: 'backBack55221@'",
+									"    },",
+									"    ClientMetadata: {},",
+									"  };",
+									"",
+									"entitys.forEach((entity) => {",
+									"    if (typesUsers[entity]) body.AuthParameters.USERNAME = typesUsers[entity];",
+									"    pm.sendRequest({",
+									"        url: 'https://cognito-idp.us-east-1.amazonaws.com',",
+									"        method: 'POST',",
+									"        header: {",
+									"        'authority': 'cognito-idp.us-east-1.amazonaws.com', ",
+									"        'content-type': 'application/x-amz-json-1.1',",
+									"        'sec-fetch-mode': 'cors', ",
+									"        'sec-fetch-site': 'cross-site', ",
+									"        'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth', ",
+									"        'x-amz-user-agent': 'aws-amplify/5.0.4 js' ",
+									"",
+									"        },",
+									"        body:{",
+									"            mode: 'raw',",
+									"            raw: JSON.stringify(body)",
+									"        ",
+									"        }",
+									"    }, function(err, res){",
+									"            varResponse = res.json();",
+									"            console.log(res.json().AuthenticationResult.AccessToken);",
+									"            pm.environment.set(`token_${entity}`, res.json().AuthenticationResult.AccessToken);",
+									"        })",
+									"})",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "market status",
+					"item": [
+						{
+							"name": "Market Status",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/market-status",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"market-status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "orders",
+					"item": [
+						{
+							"name": "create new_order",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.environment.set(\"orderId\", jsonData.id);",
+											"pm.collectionVariables.set(\"orderId\", jsonData.id)",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_supplier}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"supplierGovernmentId\": \"79922720000164\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order submit",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {},
+								"followOriginalHttpMethod": false,
+								"followAuthorizationHeader": false
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_supplier}}",
+										"type": "text"
+									},
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bankAccountId\": \"1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders/5/submit",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"5",
+										"submit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list orders",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_investor}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update-status",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_investor}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"APPROVED\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders/90/update-status",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"90",
+										"update-status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update payment",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_investor}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"PAID\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders/90/update-payment",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"90",
+										"update-payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "summary",
+					"item": [
+						{
+							"name": "Operations summary",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_supplier}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/summary",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"summary"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "signatures",
+					"item": [
+						{
+							"name": "signatures",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders/signatures",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"signatures"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get url",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders/signatures/1/document",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"signatures",
+										"1",
+										"document"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signatures document (url)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/orders/signatures",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"signatures"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "invoices Copy",
+					"item": [
+						{
+							"name": "Invoices upload notas (POST)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "Cache-Control",
+										"value": "no-cache",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "enterpriseId",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/raphael.arevalos/Downloads/invoicesBack1.csv"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/invoices/upload-file",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"upload-file"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invoices (GET)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}/operations/api/v1/invoices?page=1&perPage=10",
+									"host": [
+										"{{API_GATEWAY}}"
+									],
+									"path": [
+										"operations",
+										"api",
+										"v1",
+										"invoices"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "perPage",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invoices-report-manager",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/invoices/report",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"report"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invoices-report-investor",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_investor}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/invoices/report?search=79922720000164&sort=-invoices.updated_at",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"report"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "79922720000164"
+										},
+										{
+											"key": "sort",
+											"value": "-invoices.updated_at"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invoices-report-supplier",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_supplier}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}operations/api/v1/invoices/report",
+									"host": [
+										"{{API_GATEWAY}}operations"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"report"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invoices",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_GATEWAY}}/operations/api/v1/suppliers/1",
+									"host": [
+										"{{API_GATEWAY}}"
+									],
+									"path": [
+										"operations",
+										"api",
+										"v1",
+										"suppliers",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const entitys = ['investidor', 'gestor', 'fornecedor']",
+									"",
+									"const typesUsers = {",
+									"    investidor: 'investidor_back_test@mailinator.com',",
+									"    gestor: 'gestor_back_test@mailinator.com',",
+									"    fornecedor: 'fornecedor_back_test@mailinator.com'",
+									"}",
+									"",
+									"const body = {",
+									"    AuthFlow: 'USER_PASSWORD_AUTH',",
+									"    ClientId: 'o9od3jf3nqmfb0s8k8v3p1hcg',",
+									"    AuthParameters: { USERNAME: '', PASSWORD: 'backBack55221@'",
+									"    },",
+									"    ClientMetadata: {},",
+									"  };",
+									"",
+									"entitys.forEach((entity) => {",
+									"    if (typesUsers[entity]) body.AuthParameters.USERNAME = typesUsers[entity];",
+									"    pm.sendRequest({",
+									"        url: 'https://cognito-idp.us-east-1.amazonaws.com',",
+									"        method: 'POST',",
+									"        header: {",
+									"        'authority': 'cognito-idp.us-east-1.amazonaws.com', ",
+									"        'content-type': 'application/x-amz-json-1.1',",
+									"        'sec-fetch-mode': 'cors', ",
+									"        'sec-fetch-site': 'cross-site', ",
+									"        'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth', ",
+									"        'x-amz-user-agent': 'aws-amplify/5.0.4 js' ",
+									"",
+									"        },",
+									"        body:{",
+									"            mode: 'raw',",
+									"            raw: JSON.stringify(body)",
+									"        ",
+									"        }",
+									"    }, function(err, res){",
+									"            varResponse = res.json();",
+									"            console.log(res.json().AuthenticationResult.AccessToken);",
+									"            pm.environment.set(`token_${entity}`, res.json().AuthenticationResult.AccessToken);",
+									"        })",
+									"})",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Health Check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status inside body is ok\", function () {",
+									"    const jsonData = pm.response.json()",
+									"    pm.expect(jsonData.status).equal(\"ok\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_supplier}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}operations/api/v1/healthcheck",
+							"host": [
+								"{{API_GATEWAY}}operations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sponsor (API)",
+			"item": [
+				{
+					"name": "payables",
+					"item": [
+						{
+							"name": "healthcheck",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{sponsor_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy/invoices/api/v1/healthcheck",
+									"protocol": "https",
+									"host": [
+										"8xbha0ib2d",
+										"execute-api",
+										"us-east-1",
+										"amazonaws",
+										"com"
+									],
+									"path": [
+										"proxy",
+										"invoices",
+										"api",
+										"v1",
+										"healthcheck"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload nota",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.collectionVariables.set(\"ITEMS\", createInvoices(2));",
+											"",
+											"function dataIncrement(day){",
+											"    let today = new Date();",
+											"    today.setDate(today.getDate() + day);",
+											"    let dd = String(today.getDate()).padStart(2, '0');",
+											"    let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!",
+											"    let yyyy = today.getFullYear();",
+											"  ",
+											"    let formatToday = `${yyyy}-${mm}-${dd}`;",
+											"  ",
+											"    return formatToday;",
+											"};",
+											"",
+											"function dataDecrease(day){",
+											"    let today = new Date();",
+											"    today.setDate(today.getDate() - day);",
+											"    let dd = String(today.getDate()).padStart(2, '0');",
+											"    let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!",
+											"    let yyyy = today.getFullYear();",
+											"  ",
+											"    let formatToday = `${yyyy}-${mm}-${dd}`;",
+											"  ",
+											"    return formatToday;",
+											"};",
+											"",
+											"function getRandomArbitrary(min, max) {",
+											"    return parseInt(Math.random() * (max - min) + min);",
+											"}",
+											"",
+											"function getRandomInt(max) {",
+											"    return parseInt(Math.floor(Math.random() * max));",
+											"}",
+											"",
+											"function createInvoices(numberInvoices){",
+											"    const dateIncremented = dataIncrement(11);",
+											"    const dateDecresed = dataDecrease(10)",
+											"    const items = {items: []};",
+											"    ",
+											"    for(let step = 0; step < numberInvoices; step++){",
+											"        let installmentValue = getRandomArbitrary(1, 1000);",
+											"        let object =  {",
+											"            assetType: 'DIREITOS_CREDITORIOS',",
+											"            externalId: getRandomInt(10000000).toString(),",
+											"            installment: installmentValue,",
+											"            invoiceDate: `${dateDecresed}`,",
+											"            invoiceKey: 'TEST000124',",
+											"            invoiceNumber: getRandomArbitrary(1, 20000).toString(),",
+											"            paymentDate: `${dateIncremented}`,",
+											"            realPaymentDate: `2023-04-13`,",
+											"            paymentValue: getRandomArbitrary(10, 2000),",
+											"            supplierGovernmentId: '79922720000164',",
+											"            supplierName: 'FERRAMENTARIA JN LTDA',",
+											"            totalInstallment: installmentValue,",
+											"        };",
+											"        items.items.push(object);",
+											"        ",
+											"    }",
+											"    console.log(items)",
+											"",
+											"    return JSON.stringify(items)        ",
+											"}",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{managerApi_token}}"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"items\": [\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"554431231239\",\n            \"installment\": 143,\n            \"invoiceDate\": \"2023-04-03\",\n            \"invoiceKey\": \"TEST000124\",\n            \"invoiceNumber\": \"441293123312\",\n            \"paymentDate\": \"2023-04-24\",\n            \"realPaymentDate\": \"2023-04-13\",\n            \"paymentValue\": 337,\n            \"supplierGovernmentId\": \"79922720000164\",\n            \"supplierName\": \"FERRAMENTARIA JN LTDA\",\n            \"totalInstallment\": 143\n        },\n        {\n            \"assetType\": \"DIREITOS_CREDITORIOS\",\n            \"externalId\": \"33224488343990201321\",\n            \"installment\": 268,\n            \"invoiceDate\": \"2023-04-03\",\n            \"invoiceKey\": \"TEST000124\",\n            \"invoiceNumber\": \"112233100493823\",\n            \"paymentDate\": \"2023-04-24\",\n            \"realPaymentDate\": \"2023-04-13\",\n            \"paymentValue\": 743,\n            \"supplierGovernmentId\": \"79922720000164\",\n            \"supplierName\": \"FERRAMENTARIA JN LTDA\",\n            \"totalInstallment\": 268\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SAP_GATEWAY}}sponsors/1/payables",
+									"host": [
+										"{{SAP_GATEWAY}}sponsors"
+									],
+									"path": [
+										"1",
+										"payables"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "list invoices",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"const jsonData = pm.response.json();",
+											"const list = jsonData._embedded.payables;",
+											"let valorTotal = 0;",
+											"list.forEach((res) => {",
+											"    valorTotal += parseFloat(res.paymentValue);",
+											"",
+											"})",
+											"",
+											"console.log(valorTotal);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{managerApi_token}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{SAP_GATEWAY}}sponsors/1/payables?search=supplierGovernmentId:79922720000164",
+									"host": [
+										"{{SAP_GATEWAY}}sponsors"
+									],
+									"path": [
+										"1",
+										"payables"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "supplierGovernmentId:79922720000164"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "webhook",
+					"item": [
+						{
+							"name": "webhook reenvio",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{managerApi_token}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"items\": [\n    {\n          \"date\": \"2023-04-13\",\n          \"eventType\": \"PayableDuplicatedEvent\", \n          \"identification\": \"2598236\" \n    },\n    {\n          \"date\": \"2023-04-13\",\n          \"eventType\": \"PayableDuplicatedEvent\", \n          \"identification\": \"2572471\" \n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SAP_GATEWAY}}sponsors/1/webhooks-deliveries",
+									"host": [
+										"{{SAP_GATEWAY}}sponsors"
+									],
+									"path": [
+										"1",
+										"webhooks-deliveries"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "report",
+			"item": [
+				{
+					"name": "export summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}operations/api/v1/reports/invoices?enterpriseId=1",
+							"host": [
+								"{{API_GATEWAY}}operations"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "enterpriseId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "buyers (API)",
+			"item": [
+				{
+					"name": "custodies-response",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "role",
+								"value": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "entityType",
+								"value": "investor",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"APPROVED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/purchases/5/custodies-response",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"purchases",
+								"5",
+								"custodies-response"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve order buy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "role",
+								"value": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "entityType",
+								"value": "investor",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"APPROVED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/signatures/5/approve",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"signatures",
+								"5",
+								"approve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "repprove order buy Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "role",
+								"value": "admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "entityType",
+								"value": "investor",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"APPROVED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/signatures/1/unapprove",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"signatures",
+								"1",
+								"unapprove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buyers-taxes",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"TAXES_RAND\", createFees(1))",
+									"",
+									"",
+									"function getRandomArbitrary(min, max) {",
+									"    return parseInt(Math.random() * (max - min) + min);",
+									"}",
+									"",
+									"function getRandomInt(max) {",
+									"    return parseInt(Math.floor(Math.random() * max));",
+									"}",
+									"",
+									"function createFees(feesNumbers){",
+									"    const taxes = {taxes: []};",
+									"    ",
+									"    for(let step = 0; step < feesNumbers; step++){",
+									"        ",
+									"        let day = step +1;",
+									"        let value = getRandomArbitrary(0.1, 10000);",
+									"",
+									"        let object =  {",
+									"            days: day,",
+									"            value: value,",
+									"            ",
+									"        };",
+									"        ",
+									"        if(!taxes.taxes.includes(object)){",
+									"            taxes.taxes.push(object);",
+									"",
+									"        }",
+									"        ",
+									"    }",
+									"",
+									"    console.log(taxes)",
+									"",
+									"    return JSON.stringify(taxes)        ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{TAXES_RAND}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/sponsors/16701716000156/taxes",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"sponsors",
+								"16701716000156",
+								"taxes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List taxes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/sponsors/16701716000156/taxes?search=",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"sponsors",
+								"16701716000156",
+								"taxes"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/purchases",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list invoices in orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/purchases/1/purchase-items?search=paymentValue>10&size=1",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"purchases",
+								"1",
+								"purchase-items"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "paymentValue>10"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get invoice in order",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/purchases/1/purchase-items/1",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"purchases",
+								"1",
+								"purchase-items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search orderId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/purchases/1",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"purchases",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "download term of cession",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{investorApi_token}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{SAP_GATEWAY}}buyers/1/signatures/1/documents",
+							"host": [
+								"{{SAP_GATEWAY}}buyers"
+							],
+							"path": [
+								"1",
+								"signatures",
+								"1",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "webhook",
+			"item": [
+				{
+					"name": "webhook tax",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "3i8uTStDH0arEFtPdbGhN9Dmog1qVNig7ogVBsI0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"taxFileId\": 1, \n    \"buyerId\": 1, \n    \"success\": true, \n    \"detail\":  null,\n    \"eventType\": \"TaxFileProcessedSuccessEvent\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ubfka0oph7.execute-api.us-east-1.amazonaws.com/api/tax-file",
+							"protocol": "https",
+							"host": [
+								"ubfka0oph7",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"api",
+								"tax-file"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "invoices",
+			"item": [
+				{
+					"name": "Invoices/suppliers",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_GATEWAY}}invoices/api/v1/suppliers/1?search=79922720000164",
+							"host": [
+								"{{API_GATEWAY}}invoices"
+							],
+							"path": [
+								"api",
+								"v1",
+								"suppliers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "79922720000164"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invoices/export",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token_type}} {{access_token_manager}}",
+								"type": "text"
+							},
+							{
+								"key": "entityid",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"supplierGovernmentId\": [\"79922720000164\"],\n  \"startAt\": \"2023-03-23\",\n  \"endAt\": \"2023-12-09 23:59:00\",\n  \"enterprise\": {\n    \"governmentId\": \"213\",\n    \"corporateName\": \"EMPRESA PEDRO CARDOSA\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_GATEWAY}}invoices/api/v1/invoices/1/export",
+							"host": [
+								"{{API_GATEWAY}}invoices"
+							],
+							"path": [
+								"api",
+								"v1",
+								"invoices",
+								"1",
+								"export"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Invoices/export",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{token_type}} {{access_token_manager}}",
+										"type": "text"
+									},
+									{
+										"key": "entityid",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"supplierGovernmentId\": [\"79922720000165\", \"79922720000164\"],\n  \"startAt\": \"2023-03-23\",\n  \"endAt\": \"2023-12-09 23:59:00\",\n  \"enterprise\": {\n    \"governmentId\": \"213\",\n    \"corporateName\": \"EMPRESA FEDORENTA\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_GATEWAY}}invoices/api/v1/invoices/1/export",
+									"host": [
+										"{{API_GATEWAY}}invoices"
+									],
+									"path": [
+										"api",
+										"v1",
+										"invoices",
+										"1",
+										"export"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "raw",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "xlsx"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7004"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Apr 2023 21:34:30 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "d2834acc-a31a-449d-80b7-fda4b588a3f6"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "attachment; filename=\"export.xlsx\""
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "7004"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "C0fv8ENRIAMF8hA="
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Mon, 03 Apr 2023 21:34:30 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 f0fd7737e3c0e85f1a8cdfd470beddcc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GRU3-P3"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "3fjxG7WpzwQfe2J68_7Z_8TUHfPoKEZu7NXrHe3kjrvJoMwuVHhPyQ=="
+								}
+							],
+							"cookie": [],
+							"body": "PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V���\tY\u0001\u0000\u0000�\u0004\u0000\u0000\u0013\u0000\u0000\u0000[Content_Types].xml��Mn�0\u0010��=E�-J\f]TUE¢��\u0016��\u0000�xB,\u001c���w\u0012(�* �`\u0013+�7�{��\u0019O��I�\u0018H;��Q6\u0014\t��)m\u0017������\"�\bV�q\u0016s�C\u0012��n<�y���-墎�?IIe�\rP�<Z�T.4\u0010�6,��r\t\u000b����,��hc\u001a[\u000fQ��X����eˏ�A\u0002\u001a\u0012��^زr\u0001�\u001b]B�\\[���\u001e\b\u0019wv\u001a���\u0001\u000b�<Ih+�\u0001��w�L�\n�\u0019��\u0006\r���ȍ\u000b�/��e�\u0013)]U�\u0012�+W\r�d�\u0003��\u001a16&�֬\u0001m\u0007��NL�[F7\u000er���\u0011�}��z}�Φ\u0007Hqg�n=�δ�\\C@�\u0011\u0003\u001f��\u0007��}�]_I��i�\rS�m����<�\u0011\r��]����;�l�!�ˣ=\u0012���b;+��\u0004[v?��\u001bPK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0006\u0000\u0000\u0000_rels/PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V�I��\u0000\u0000\u0000K\u0002\u0000\u0000\u000b\u0000\u0000\u0000_rels/.rels���N�0\f@�|E���nH\b��� ��&4>�$n\u001b���ă�@\f�i\u0007�q��g���<��R�\u001c\f,�\u001a\u0014\u0005�·����iq\u000f*\u000b\u0006�#\u00072p�\f��f�L#J�ɽ�Y\u0015H�\u0006z���u�=M�+�\u0014�O�iB)���v������t�ɀ愩��@ں%��1�5ln[o��a� gZ��(dL\u001d��y�W�*P��]V׻�=��HС���h\u0011S�N��Z�u\u001c�]\t�όKB���\u001c���#wY\tc�2�'7�|\u0000PK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0000\u0000\u0000xl/PK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000xl/_rels/PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V�$�V�\u0000\u0000\u0000�\u0002\u0000\u0000\u001a\u0000\u0000\u0000xl/_rels/workbook.xml.rels���j�0\u0010D��\n��ZvZJ)�s)�\\[�\u0003���LlIh7m��U\u001bH\u001c\b�\u0007�Ĭؙ�H���8�OL�\u0007��*J\u0010�M���\u0014|4��g\u0010��[=\u0004�\n&$��w�7\u001c4�\u001dr}$�M<)p��EJ2\u000eGME���M\u001bҨ9��ɨ�^w(We�$��\u0003�\u000bO��\n��V �)��C��\u0006_�9���J�$���/\u001a�:d\u0005G]d\u001f���WK�s��s��<\u000e�[\f\u000f�V�tB��)?���\u0016��0_!��!�\u0019�4�E�ǩ\u0019y���\u001fPK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000e\u0000\u0000\u0000xl/worksheets/PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V��v\u0012\u0000\u0003\u0000\u0000�\n\u0000\u0000\u0018\u0000\u0000\u0000xl/worksheets/sheet1.xml��]o�0\u0014���+\"ߗ|\u0007�\bUKF�ڤi�k78`5�#�@�_�\u0013���E^�P���>�q������\u0003Ⴒ&C��C\u000ei\n���6C���7\u0013�\b��\r�XC2�F\u0004���\u001d\u0019\u0011;B�\u0003\u0006���N�v꺢ؑ\u001a�\u0011kI\u0003J�x�%\f��\u0015-'x����\r</qkL\u001b�;L�g<XY҂��פ��\t'\u0015�����V����3v5�/���`u\u000b\u0016ϴ��M�\"�.��m�8~���W?���[\r>�״�L�R���=я5�n��|��PAG���Н?}L�;��w�*�\u001f�ِ\u0012�+��\u001dW�nw\u0012�(F\u000e�ˊ6�\u001b9�\n�\fy�܂UjN%:ݼ�D\u0014�+Cq�-Q�J��NM�M�b�+|Cđn�\u000e\u001e\u0001@�\u0017���'�8�\u000fT\u0019�X�����Õ�hqw\n��i]o\u0014�Psѽ|\u0007oÔ��a���Cg���\u000f5_�\u0016C-е|����u�E��\u001cj��=\f�D�VCm�k�6ѵǡ��5\u00178�a\u0006W�\f��L��U�;���\u000b\r}�\u0005\u001b�sM4x�D\u0003�R\u0013\r�\u000f�h _i��|\u001d�D͠G��(�x���Wq\r��\u0018;|\u001f���\u0016l\u001c�<�q\rm\\C\u001b���U\u0013S�k؟b\u0003�c�9��UX��o�<���5\u001e�}/�&~�1�[hN�ٍl�#\u001b���8�1�\u00122�\\Gƍ�!��B\u0018\u000f�1ҿ��A�9\u0019��\ralC\u0018�\u0010�6�ZB���m\b��\u0010&6��5\b\u0013\u001b�Ć0�!�l�5\u001f4Ѹ�V�h\\=��\"Bw�\u000f��[�\u001d�-m�S�R�\u001b#����z��UO�Y�LB�p\u001a���!�\u001b��Q2&O\u0003���E�u\u0018��!�a�P˸�J\b���\f�*o)�*A\u001a��8H�\u0017�SI�\u000b��I��-��%�O�ܬ��sˤ��s�:�\u0007PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V��v��\u0001\u0000\u0000�\u0003\u0000\u0000\u0014\u0000\u0000\u0000xl/sharedStrings.xml���n�0\u0010���\u0014�\u000f��a\u000b\u0006\u0002x\u0017�P\u0002R�\rE$ۻ\u0005�\u0006\t��vV����\u0017�Q�U\u000bD�����5��D7O}���T��1&�6F�kѴ�!����\u0010#�\u0019oX'8��\u0019\u0014�I�EJid�\\�����e��\u0000=S��\bܐ{!{��Q>X�(�5�\u0000���rl۷z�r�jq�:��\u0002�\u0013o\u001fO�<\u0017\u001c��H�I�����\u0007)P�G�N\"k��Ɋi�\u001a@wf�\u0007�Ÿ��\f-g�˲ؠ�7S)6f���\u0012[\u0016�\u0006�Br��\u0011rVz\u0019gO\u001a$g\u001dZ�ƨd�����57��!͏qS\u0005�+���Lt\u0018c\u0012:�;.~<\t��\u0004>=��C&�l[V�.Ey����b��\u001b\u0002J\u001d'0�h����4Ϫ*�\u000e�j��M���W\u0013\u000b�P'�\u0016�\b�xb�\u001e!$�\th�ہ\u001bN�\u001c�[�AH�M���ͻz�=��A�ݹ���9�.��_�\u000f�\u0019�O\u001b��a�ٺJ���og^\u0002��Y0uH��~-��&oPK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000xl/theme/PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��Vv�0�!\u0006\u0000\u0000\u0019\u001f\u0000\u0000\u0013\u0000\u0000\u0000xl/theme/theme1.xml�YMo�6\u0018��W\u0010���R'�SĎ�nm� q;�HK�Ć\u0012\u0005�N���\u001e\u0007\f\u0018�\r�\f�m�a[�\u0016إ�5�:l\u001dп�Wև)�j�&�P 98\"�<�\u0017��%i_�q\u001c2tH��<�X��5\u000b���\u001e���u8�Ҷ�T8�0�\u0011�XS\"�\u001b�\u001f]�\u001b* !A@��\u0006�X�R�mK\u0017����c\u0012��1\u0017!V0\u0014��\t|\u0004bCf7j�5;�4�P�C�zo<�.A�D���r�}\u0006\u001f���\u0019��}w�S�h�>�/���\u0004:Ĭc�.�\u001f\rɱ�\u0010�R���U��Y6��9��*�F\u001d��rjN�\u000e\u001a)U���[\u001f�֯mϵ42-\u0006h�����s�)\u0004�.�]_��\u0006�z�����g��^ͩ�\u0016(���2e���:�eJS���)��Zk�Q��4�c��뭕)�FY[�\f����\u0016(),`4:X&$�=_�9h��-3�\r�v�!\u001a��R0�\u0011�ʌ\f�#.\u0006�H�\u001e+\u001a!5��\u0018����p$(�i�\u001b\u0004k��9W.�%\n�t\u0005�U��$�P>s̛�?�y�\u001c�y����ǿ�<yr��\u0017\u0013�\u0016�|����/���3����_?��� u�\u001f?��o_U ��|�ͳ?_<{��\u0017��Ԅ�\u0012x��4$\u0012�%Gh����I\u0005\u0019�3R�\u0001�%\n\u000e\u0000jB�UPBޝbf\u0004vI9�\u000f\u0004�\u000b#���Q���@L\u00145!o\u0007a\t��9�ra��v�N�i\u0012�\u0015��D\u0007�a|hT�[X��$�ܦF����L�e���'\u0011Q(y�\u000f\b1�\u001eRZ��\u000eu\u0005�|��C����\u00033�#efݢ!,��h#�z)B;\u000fP�3��mrX�B�`f\u0014JX)�7�D��l5\u000e�\u000e��U`4t*�RूE�\t��\u0011)��{bZ2�6�6e΀\u001d6\r�P��\u0011z\u0007s�C��A/�al��F�\u000e�X\u001e@�b�˕�\u000e^��d\f\u000b���@�:c�ߧ~`N���D\u0018k��r�N�\u0018�(�\u0004ʽ<��[;;���/;�Bg߂��XQ���\u0012��v�m<�v\tT�e\u0013�l�M�m\u0015�>Z�֬m�ȞJ\n�\u000f�c�ؾ�2rG��^���\u0000f�ьW�\u001a�\u0000\u001es�e�/�l�\u0004W�R\u0015�\u00078\u0006]�T�/s��D1�pe��\u0015�Wc\n��&��2\u000bx�v���7K��BR:�eI]3\u0011����󫬧ؕu֝\n��i:m=�P[\b'_k��\u001a�\u0005�E�\u0011/Y�LH�X�{��5}�\u0002�\u0011Ӽ�k�����і��{�\u0010w�P{,Z\u0018�����4\u001c\u000b�8�Xc8��c\u0018�L�4(���c�*�u��]�~�\"��5�����XH��e�\u0012g�/z\"͑��J�rQ�\u0018�Ъ�4����\u0016{i��xL\\U5���|���\u000f�#4b\u0013����V�z\u001e��m4��oeYY.�\u0016�N�+\u000b�8�YA���H\t頰#\u001d�F�U>��O�\u000b�ɹ�)��]8\u00137�ٳ\u000b\u0007\u0005�Q��\u001d�\u000b\u0015ph]q@݁��E�\u0011�CP:�i�%_�'6�C�ݥR���\u0007j��HPh�*\u0010�������\u001b�]7\u0017�����2�\u001eF䐰aR�kI0,\u0014��'�J�\\ZH�X�#�\u0001\u001c�Z／�յζ����C�T��o�j����Q�~�y�N����p�A�\u0007�\u0000T�L;'\u000f�\u001ed\u0006*�\u0012\br�J;+�br\u0004��u?\u0013a����]�\t\u0017~z��߬���J�\u0013�\u0010~���ۆ����R:\\�q��\u001e�\u0005�p\t��lJ�0̞vE���{���ɴ�d�)6\b\u0016�1��q��\u000bQ�~��\u001f\u0019�2=I(\nns\u0015n��6���X�_p6�i���<�2��?ed\u00190o��ر��Q\\ɓ�(��|�(����\u0014Eu|j\u0014�����$�J�^��\u001e���%��PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V�GUÐ\u0002\u0000\u0000X\u0006\u0000\u0000\r\u0000\u0000\u0000xl/styles.xml��]o�0\u0014���+,�S\u0003\r,� ��\u0014�RWMj&��\u0001�X�\u00072�#���w\f$\u0010u�Gwe��9�y}0�ܴR�\u0017fj�U��+\u001f#�r]p�O��m��1�-U\u0005\u0015Z�\u0014\u001fY�oV��\u001e\u0005{:0f\u0011\u0010T�⃵Ւ�:?0I�+]1\u0005;�6�ZX�=�+�hQ�$)H��1��+�\u0013�2�\u001b��湩�\\ˊZ���c��H����҆�\u00048m�\u0019�Q\u001b�&<U�WE$ύ�ui�\u0000JtY��� \u000bB�\u0004ط����a�URjek��FY�>Н���_U涜�G��\\\u000bm��R��\u0004t*�8�\u0017*R\u001c:�3�zArhE'~녠�Q�\u0014pK\u0005�\u0019�D�W�\u001a�\\���\u0010��*��[fT\u0006\u000b4̷�\n�(�\u001a=���C���c\u0010F��n��;m\n��c?N�*\u0011���`���F�+�6��F���ӽVT8�)c�\u00006gB<�����`�%R�̤�/R\f\u0017ߝ�4\u0005Cô��\u000bǟ�z�\u0004\u001b�\t���̿�\u000ef���hU��c#w�d�;3\\\u00142؜��\u0013g\u0015���G�,&�]Å��\u0017]\u0000fю\r�v�{\u0003/�\u0000�`%m�ݞ7S<�?��72<G}�/�\u000eQ���=� v5Xk\u001fjۍ�1<�����\u0017��,���z�ͮY�-��Ƌf���&[���c�)��\u000f���\u0002dY\u000b�2�a\u0007�O���ɢ���\u000flO�/���\u0010\u0005��]��7��ܛ�ב�EA��g�(�&ޣ7~z|\u0012\u0004��hi�d�+vi;U�!��7� �'A���'PK\u0003\u0004\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000docProps/PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��V7☲�\u0001\u0000\u0000$\u0003\u0000\u0000\u0010\u0000\u0000\u0000docProps/app.xml��Ao�0\f���\u0015���(�@VQ�+zh�\u0000I�3+ӱPY2D�H��';��;��H><��n���z�d�/E��E�ބ��])^��\u0017?DF\f�\u0002\u0017<��$n�7�����\u0016)K\t�J�0wK)�4�\u0002-�اI\u001db\u000b�ʸ������`>Z�,/��Z��WX]tS�8&.{���*���^��.�iu�u�\u001a����ɚ\u0018(Ԝ��\u001btJ·*\u0005m�|D�\u0007�+9/�ƀ�U\n�58B%?\u001b�\u0001a��\u001al$�z^�h8Č�ﴵK��\u0001�S�\u001e�\u0005��h;\u0016�v\u001dqԿB|�\u0006�Iɩ9ʹw��.FC\u0012�F9�$}���쐞�5D�\u0007q1'\u001e\u0019Čq3�e�\u0017�ӧ�\n_��\u0003�6('�\u0004\u001ev8x'�h�;�t�p\u0007��\u0015�7զ��Uz��\t��zH��\r�U\u0003~����u0\u001c����uq�ȿ��x\u0007�������\u0000PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��Vg�4\u0003^\u0001\u0000\u0000�\u0002\u0000\u0000\u0011\u0000\u0000\u0000docProps/core.xml�R�n�0\u0010��+\"߃\u0013��*\nAj+NE�TP��\\{\t.�m�KC��΃\u0000*��vvf��p�8Ve�\u0003�I��$�D$\u0000ŵ�����z\u0019>��!S��Z��4��\"�˸I���j�\u0001�\u0012\\���K���\u001d�I)u|\u0007\u0015s\u0013�P��j[1��\u0016�0�g\u0005�i\u0014��\n�\t�����\u0019\u001d�`)�hi\u000e��\f\u0004�PB\u0005\n\u001d�'1=k\u0011l�n\u0016t̅���\u0018�)=�����(��zR'���\u001fӏ��[7j(U�*\u000e$�\u0004O�\u0005���\u001b�W�V\u0019�ȵ<J,!��C�#w��\u0006�}z\u0004>\u0016ต\u0006��z�*�ϱ���V8�^��R\f�ж�3�d\u000eW��[\t�9���ʆ��3�\b�N�~�'�=yz^/I>��I\u0018��(YO�4��I���|U6��G��x2\u0018����/PK\u0003\u0004\n\u0000\u0000\u0000\b\u0000O��Vs���Y\u0001\u0000\u0000r\u0002\u0000\u0000\u000f\u0000\u0000\u0000xl/workbook.xml��Ko�0\f���\u0014Q�\u0006\u0018l\u0015-ҴM�2!�q\u000f�K#�R����s\u000b�4q�\u0012�N���N�����\u0000!*g\u000b��\u0019%`����\u0015���}�DIL�VB;\u000b\u0005=C���ayta�unO0�Ƃ6)���(\u001b0\"��\u0007�'�\u000bF$tÎE\u001f@T�\u0001HF�I�͙\u0011��\u000b!\u000f�0\\]+\t�N�\u0006l�@\u0002h�P}l��\u0003��{pF�}�G�\u0019����*�{(%F��uAl5v}�\u0003\u0019�7h�dp��i���ț~y�8��\\.k���2u\"��\u0010���)�\"��J%�\n�5�;¿@h�K�4:��lJY��\u0012�@*�E��\u0017�\u001a����Y�9%X2A�\u0004u\u0010��.�W\u0017�����Έ�\u0015}�q����AE�\u0003A\u0019��{a]�:\f\u001b8Rh�::�s\u0016<�,�\u001b���\u0017PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V���\tY\u0001\u0000\u0000�\u0004\u0000\u0000\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000[Content_Types].xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0006\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000�\u0001\u0000\u0000_rels/PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V�I��\u0000\u0000\u0000K\u0002\u0000\u0000\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0001\u0000\u0000_rels/.relsPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000�\u0002\u0000\u0000xl/PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000�\u0002\u0000\u0000xl/_rels/PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V�$�V�\u0000\u0000\u0000�\u0002\u0000\u0000\u001a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\b\u0003\u0000\u0000xl/_rels/workbook.xml.relsPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000e\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000)\u0004\u0000\u0000xl/worksheets/PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V��v\u0012\u0000\u0003\u0000\u0000�\n\u0000\u0000\u0018\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000U\u0004\u0000\u0000xl/worksheets/sheet1.xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V��v��\u0001\u0000\u0000�\u0003\u0000\u0000\u0014\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0007\u0000\u0000xl/sharedStrings.xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000b\t\u0000\u0000xl/theme/PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��Vv�0�!\u0006\u0000\u0000\u0019\u001f\u0000\u0000\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\t\u0000\u0000xl/theme/theme1.xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V�GUÐ\u0002\u0000\u0000X\u0006\u0000\u0000\r\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u000f\u0000\u0000xl/styles.xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\u0000\u0000O��V\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010\u0000\u0000\u0000�\u0012\u0000\u0000docProps/PK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��V7☲�\u0001\u0000\u0000$\u0003\u0000\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0012\u0000\u0000docProps/app.xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��Vg�4\u0003^\u0001\u0000\u0000�\u0002\u0000\u0000\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000m\u0014\u0000\u0000docProps/core.xmlPK\u0001\u0002\u0014\u0000\n\u0000\u0000\u0000\b\u0000O��Vs���Y\u0001\u0000\u0000r\u0002\u0000\u0000\u000f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000�\u0015\u0000\u0000xl/workbook.xmlPK\u0005\u0006\u0000\u0000\u0000\u0000\u0010\u0000\u0010\u0000�\u0003\u0000\u0000�\u0017\u0000\u0000\u0000\u0000"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SAP",
+			"item": [
+				{
+					"name": "webhook payables paid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-ibm-client-id",
+								"value": "1cb744f3-7db0-4e7a-aa55-8234e66c8f23",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"entityId\": 1,\n    \"requestHttpWebHookPayload\": {\n        \"eventType\": \"PayableDuplicatedEvent\",\n        \"items\": [\n            {\n                \"externalId\": \"2598236\",\n                \"paymentDate\": \"2023-04-24T00:00:00.000Z\",\n                \"realPaymentDate\": \"2023-04-13T00:00:00.000Z\",\n                \"paymentValue\": 337,\n                \"supplierName\": \"FERRAMENTARIA JN LTDA\",\n                \"supplierGovernmentId\": \"79922720000164\",\n                \"invoiceNumber\": \"19189\",\n                \"invoiceDate\": \"2023-04-03T00:00:00.000Z\",\n                \"invoiceKey\": \"TEST000124\",\n                \"assetType\": \"DIREITOS_CREDITORIOS\",\n                \"installment\": 143,\n                \"totalInstallment\": 143,\n                \"compositeKey\": \"191892023-04-13799227200001641432598236\",\n                \"ipAddress\": \"189.4.78.246\",\n                \"sponsorId\": \"1\",\n                \"insertMethod\": \"SAP\",\n                \"status\": \"ACTIVE\",\n                \"createdAt\": \"2023-04-13T20:29:32.548Z\",\n                \"updatedAt\": \"2023-04-13T20:29:32.548Z\"\n            },\n            {\n                \"externalId\": \"2572471\",\n                \"paymentDate\": \"2023-04-24T00:00:00.000Z\",\n                \"realPaymentDate\": \"2023-04-13T00:00:00.000Z\",\n                \"paymentValue\": 743,\n                \"supplierName\": \"FERRAMENTARIA JN LTDA\",\n                \"supplierGovernmentId\": \"79922720000164\",\n                \"invoiceNumber\": \"8600\",\n                \"invoiceDate\": \"2023-04-03T00:00:00.000Z\",\n                \"invoiceKey\": \"TEST000124\",\n                \"assetType\": \"DIREITOS_CREDITORIOS\",\n                \"installment\": 268,\n                \"totalInstallment\": 268,\n                \"compositeKey\": \"86002023-04-13799227200001642682572471\",\n                \"ipAddress\": \"189.4.78.246\",\n                \"sponsorId\": \"1\",\n                \"insertMethod\": \"SAP\",\n                \"status\": \"ACTIVE\",\n                \"createdAt\": \"2023-04-13T20:29:32.548Z\",\n                \"updatedAt\": \"2023-04-13T20:29:32.548Z\"\n            }\n        ],\n        \"sponsorId\": \"1\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gw.latam.fcagroup.com.br/fca-latam/fca-latam-external/negotiating-documents-ms8-xfca/v1/payables",
+							"protocol": "https",
+							"host": [
+								"gw",
+								"latam",
+								"fcagroup",
+								"com",
+								"br"
+							],
+							"path": [
+								"fca-latam",
+								"fca-latam-external",
+								"negotiating-documents-ms8-xfca",
+								"v1",
+								"payables"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/*",
+					"Caso queira mudar o ambiente, basta alterar as",
+					"variável pm.collectionVariables.set(\"ENV\", \"NONPROD\");",
+					"",
+					"As opções para `cognitoEnvironment` são:",
+					"  - COGNITO_NONPROD",
+					"  - COGNITO_PROD",
+					"",
+					"As opções para `apiGatewayEnvironment`são:",
+					"  - APIGATEWAY_NONPROD",
+					"  - APIGATEWAY_PROD",
+					"*/",
+					"",
+					"const api = pm.collectionVariables.get(\"API_GATEWAY\");",
+					"",
+					"if(api){",
+					"    pm.collectionVariables.clear();",
+					"",
+					"}",
+					"",
+					"",
+					"const now = new Date();",
+					"",
+					"pm.collectionVariables.set(\"ENV\", \"NONPROD\");",
+					"",
+					"const expireSupplier = pm.collectionVariables.get(\"token_expires_at_supplier\");",
+					"const expireManager = pm.collectionVariables.get(\"token_expires_at_manager\");",
+					"const expireInvestor = pm.collectionVariables.get(\"token_expires_at_investor\");",
+					"",
+					"const ENV = pm.collectionVariables.get(\"ENV\");",
+					"",
+					"",
+					"",
+					"switch(ENV){",
+					"    case \"NONPROD\":",
+					"        pm.collectionVariables.set(\"API_GATEWAY\", \"https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/proxy/\");",
+					"        pm.collectionVariables.set(\"SAP_GATEWAY\", \"https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/api/v1/\");",
+					"        pm.collectionVariables.set(\"COGNITO_ID\", \"26ubdj8n0vfnni0aujrq91pqo3\");",
+					"        pm.collectionVariables.set(\"SUPPLIER_USER\", \"fornecedor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"SUPPLIER_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"INVESTOR_API_USER\", \"investidor.api@mailinator.com\");",
+					"        pm.collectionVariables.set(\"INVESTOR_API_PASSWORD\", \"InvbackApi@2023\");",
+					"        // pm.collectionVariables.set(\"INVESTOR_VIWER_USER\", \"investidorviewer.nonprod@mailinator.com\"),",
+					"        // pm.collectionVariables.set(\"INVESTOR_VIWER_PASSWORD\", \"Test@123456\"),",
+					"        pm.collectionVariables.set(\"MANAGER_USER\", \"gestor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"MANAGER_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"INVESTOR_USER\", \"investidor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"INVESTOR_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"MANAGER_API_USER\", \"integracao.api@mailinator.com\");",
+					"        pm.collectionVariables.set(\"MANAGER_API_PASSWORD\", \"backApi@2023\");",
+					"",
+					"        break;",
+					"",
+					"    // case \"PROD\":",
+					"    //     pm.collectionVariables.set(\"API_GATEWAY\", \"https://wiizbeoq3c.execute-api.us-east-1.amazonaws.com/proxy/\");",
+					"    //    pm.collectionVariables.set(\"SAP_GATEWAY\", \"https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/\");",
+					"    //     pm.collectionVariables.set(\"COGNITO\", \"58puf365od0jvoje6kifjtkf3l\");",
+					"    //     pm.collectionVariables.set(\"SUPPLIER_USER\", \"fornecedor.prod@mailinator.com\");",
+					"    //     pm.collectionVariables.set(\"SUPPLIER_PASSWORD\", \"Teste@1234\");",
+					"    //     pm.collectionVariables.set(\"MANAGER_USER\", \"gestor.prod@mailinator.com\");",
+					"    //     pm.collectionVariables.set(\"MANAGER_PASSWORD\", \"Teste@12345\");",
+					"    //     pm.collectionVariables.set(\"INVESTOR_USER\", \"investidor.prod@mailinator.com\");",
+					"    //     pm.collectionVariables.set(\"INVESTOR_PASSWORD\", \"Teste@123\");",
+					"    //     pm.collectionVariables.set(\"SPONSOR_USER\", \"integracao.api@mailinator.com\");",
+					"    //     pm.collectionVariables.set(\"SPONSOR_PASSWORD\", \"backApi@2023\");",
+					"    //     break;",
+					"    case \"DEVELOP\":",
+					"        pm.collectionVariables.set(\"API_GATEWAY\", \"https://prcqbdxqwd.execute-api.us-east-1.amazonaws.com/proxy/\");",
+					"        pm.collectionVariables.set(\"SAP_GATEWAY\", \"https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/api/v1/\");",
+					"        pm.collectionVariables.set(\"COGNITO_ID\", \"o9od3jf3nqmfb0s8k8v3p1hcg\");",
+					"        pm.collectionVariables.set(\"SUPPLIER_USER\", \"fornecedor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"SUPPLIER_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"MANAGER_USER\", \"gestor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"MANAGER_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"INVESTOR_USER\", \"investidor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"INVESTOR_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"SPONSOR_USER\", \"integracao.api@mailinator.com\");",
+					"        pm.collectionVariables.set(\"SPONSOR_PASSWORD\", \"backApi@2023\");",
+					"        break;",
+					"",
+					"    case \"LOCAL\":",
+					"        pm.collectionVariables.set(\"API_GATEWAY\", \"https://prcqbdxqwd.execute-api.us-east-1.amazonaws.com/proxy/\");",
+					"        pm.collectionVariables.set(\"SAP_GATEWAY\", \"https://8xbha0ib2d.execute-api.us-east-1.amazonaws.com/proxy/\");",
+					"        pm.collectionVariables.set(\"COGNITO_ID\", \"o9od3jf3nqmfb0s8k8v3p1hcg\");",
+					"        pm.collectionVariables.set(\"SUPPLIER_USER\", \"fornecedor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"SUPPLIER_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"MANAGER_USER\", \"gestor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"MANAGER_PASSWORD\", \"backBack55221@\");",
+					"        pm.collectionVariables.set(\"INVESTOR_USER\", \"investidor_back_test@mailinator.com\");",
+					"        pm.collectionVariables.set(\"INVESTOR_PASSWORD\", \"backBack55221@\");",
+					"        break;",
+					"",
+					"    default:",
+					"        console.log(\"Ambiente não existe!\")",
+					"",
+					"}",
+					"",
+					"",
+					"const typesUsers = {",
+					"    supplier: {",
+					"      user: pm.collectionVariables.get(\"SUPPLIER_USER\"),",
+					"      password: pm.collectionVariables.get(\"SUPPLIER_PASSWORD\")",
+					"    },",
+					"    manager: {",
+					"       user: pm.collectionVariables.get(\"MANAGER_USER\"),",
+					"       password: pm.collectionVariables.get(\"MANAGER_PASSWORD\")",
+					"    },",
+					"    investor: {",
+					"       user: pm.collectionVariables.get(\"INVESTOR_USER\"),",
+					"       password: pm.collectionVariables.get(\"INVESTOR_PASSWORD\")",
+					"    }",
+					"    // investor_viewer: {",
+					"    //     user: pm.collectionVariables.get(\"INVESTOR_VIWER_USER\"),",
+					"    //     password: pm.collectionVariables.get(\"INVESTOR_VIWER_PASSWORD\")",
+					"    // }",
+					"};",
+					"",
+					"const body = {",
+					"    \"AuthFlow\": \"USER_PASSWORD_AUTH\",",
+					"    \"ClientId\": `${pm.collectionVariables.get(\"COGNITO_ID\")}`,",
+					"    \"AuthParameters\": {",
+					"        \"USERNAME\": ``,",
+					"        \"PASSWORD\": ``",
+					"    }",
+					"}",
+					"",
+					"",
+					"",
+					"for(const user in typesUsers){",
+					"    if (typesUsers[user]) {",
+					"        body.AuthParameters.USERNAME = typesUsers[user].user;",
+					"        body.AuthParameters.PASSWORD = typesUsers[user].password;",
+					"    }",
+					"    let options = {",
+					"        url: 'https://cognito-idp.us-east-1.amazonaws.com/',",
+					"        method: 'POST',",
+					"        header: {",
+					"            'authority': 'cognito-idp.us-east-1.amazonaws.com',",
+					"            'content-type': 'application/x-amz-json-1.1',",
+					"            'sec-fetch-mode': 'cors',",
+					"            'sec-fetch-site': 'cross-site',",
+					"            'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth',",
+					"            'x-amz-user-agent': 'aws-amplify/5.0.4 js'",
+					"        },",
+					"        body: {",
+					"            mode: 'raw',",
+					"            raw: JSON.stringify(body)",
+					"        }",
+					"    };",
+					"    if (expireSupplier === undefined || now > expireSupplier) {",
+					"        pm.sendRequest(options, function (err, response) {",
+					"                if (err) console.error(err);",
+					"                tokenExpiresAt = now.setSeconds(response.json().AuthenticationResult.ExpiresIn)",
+					"                pm.collectionVariables.set(`token_expires_at_${user}`, tokenExpiresAt)",
+					"                pm.collectionVariables.set(`access_token_${user}`, response.json().AuthenticationResult.AccessToken);",
+					"                pm.collectionVariables.set(\"token_type\", response.json().AuthenticationResult.TokenType);",
+					"                pm.collectionVariables.set(`id_token_${user}`, response.json().AuthenticationResult.IdToken);",
+					"        });",
+					"",
+					"            ",
+					"",
+					"    }",
+					"    ",
+					"}",
+					"",
+					"const typesUsersApi = {",
+					"    managerApi: {",
+					"      user:  pm.collectionVariables.get(\"MANAGER_API_USER\"),",
+					"      password:  pm.collectionVariables.get(\"MANAGER_API_PASSWORD\"),",
+					"    },",
+					"    investorApi: {",
+					"      user:  pm.collectionVariables.get(\"INVESTOR_API_USER\"),",
+					"      password:  pm.collectionVariables.get(\"INVESTOR_API_PASSWORD\"),",
+					"    },",
+					"    ",
+					"};",
+					"",
+					"",
+					"const bodyIntegrators = [",
+					"    ",
+					"            {",
+					"                'key': 'client_id', ",
+					"                'value': \"6rvt8s8sjnh3tfsj5tfhrvhl65\"",
+					"            },",
+					"            {",
+					"                    'key': 'client_secret',",
+					"                    'value':\"1vn9t622hi74d2g218v45580j73pb7liqtddkpdjs9ccvnkm04n6\" ",
+					"            },",
+					"            {",
+					"                'key': 'username',",
+					"                'value': '',",
+					"                ",
+					"            },",
+					"            {",
+					"                'key':  'password',",
+					"                'value': ''",
+					"            }",
+					"    ",
+					"];",
+					"",
+					"",
+					"for(const user in typesUsersApi){",
+					"    if (typesUsersApi[user]) {",
+					"        bodyIntegrators[2].value = typesUsersApi[user].user;",
+					"        bodyIntegrators[3].value = typesUsersApi[user].password;",
+					"    }",
+					"    let options = {",
+					"       url: `${pm.collectionVariables.get(\"SAP_GATEWAY\")}auth/token`,",
+					"    method: 'POST',",
+					"    header: {",
+					"    'Accept': '*/*',",
+					"    //'authority': 'cognito-idp.us-east-1.amazonaws.com', ",
+					"    'content-type': 'application/x-www-form-urlencoded',",
+					"    //'sec-fetch-mode': 'cors', ",
+					"    //'sec-fetch-site': 'cross-site', ",
+					"    //'x-amz-target': 'AWSCognitoIdentityProviderService.InitiateAuth', ",
+					"    //'x-amz-user-agent': 'aws-amplify/5.0.4 js' ",
+					"",
+					"    },",
+					"    body:{",
+					"        mode: 'urlencoded',",
+					"        urlencoded: bodyIntegrators",
+					"       ",
+					"    }",
+					"    };",
+					"    ",
+					"    pm.sendRequest(options, function (err, response) {",
+					"        if (err) console.error(err);",
+					"        pm.collectionVariables.set(`${user}_token`, response.json().access_token);",
+					"",
+					"    });",
+					"",
+					"            ",
+					"",
+					"}",
+					"    ",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ENV",
+			"value": ""
+		},
+		{
+			"key": "API_GATEWAY",
+			"value": "https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/proxy/"
+		},
+		{
+			"key": "SAP_GATEWAY",
+			"value": "https://gw-if004-ms8-master.nonprod.mysuppliers.com.br/api/v1/"
+		},
+		{
+			"key": "SUPPLIER_USER",
+			"value": ""
+		},
+		{
+			"key": "SUPPLIER_PASSWORD",
+			"value": "backBack55221@"
+		},
+		{
+			"key": "MANAGER_USER",
+			"value": "gestor_back_test@mailinator.com"
+		},
+		{
+			"key": "MANAGER_PASSWORD",
+			"value": "backBack55221@"
+		},
+		{
+			"key": "INVESTOR_USER",
+			"value": "investidor_back_test@mailinator.com"
+		},
+		{
+			"key": "INVESTOR_PASSWORD",
+			"value": "backBack55221@"
+		},
+		{
+			"key": "token_expires_at_investor",
+			"value": 1677626940852
+		},
+		{
+			"key": "access_token_investor",
+			"value": ""
+		},
+		{
+			"key": "token_type",
+			"value": "Bearer"
+		},
+		{
+			"key": "id_token_investor",
+			"value": ""
+		},
+		{
+			"key": "token_expires_at_manager",
+			"value": ""
+		},
+		{
+			"key": "access_token_manager",
+			"value": ""
+		},
+		{
+			"key": "id_token_manager",
+			"value": ""
+		},
+		{
+			"key": "token_expires_at_supplier",
+			"value": ""
+		},
+		{
+			"key": "access_token_supplier",
+			"value": ""
+		},
+		{
+			"key": "id_token_supplier",
+			"value": ""
+		},
+		{
+			"key": "INVESTOR_API_USER",
+			"value": ""
+		},
+		{
+			"key": "INVESTOR_API_PASSWORD",
+			"value": ""
+		},
+		{
+			"key": "MANAGER_API_USER",
+			"value": ""
+		},
+		{
+			"key": "MANAGER_API_PASSWORD",
+			"value": ""
+		},
+		{
+			"key": "managerApi_token",
+			"value": ""
+		},
+		{
+			"key": "investorApi_token",
+			"value": ""
+		},
+		{
+			"key": "COGNITO_ID",
+			"value": ""
+		}
+	]
+}

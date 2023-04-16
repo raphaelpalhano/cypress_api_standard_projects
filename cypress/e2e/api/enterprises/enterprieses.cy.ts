@@ -8,10 +8,25 @@ describe('Given the operator want supplier informations', function () {
 
   it('When I have a list enterprises', () => {
     cy.getListOfEnterprises('enterprises').then((res) => {
-      expect(res.status).to.be.eq(403);
-      // cy.schemaValidation('enterprises/listEnterprises.json', res.body).then((validation) => {
-      //   expect(validation).to.be.eq('Schema validated successfully!');
-      // });
+      expect(res.status).to.be.eq(200);
+      expect(res.body.data[0]).to.have.property('corporateName');
+      expect(res.body.data[0]).to.have.property('tradingName');
+      expect(res.body.data[0]).to.have.property('governmentId');
+
+      cy.schemaValidation('enterprises/listEnterprises.json', res.body).then((validation) => {
+        expect(validation).to.be.eq('Schema validated successfully!');
+      });
+    });
+  });
+
+  it('When I research for TEKSID', () => {
+    cy.getListOfEnterprises('enterprises?search=TEKSID DO BRASIL').then((res) => {
+      expect(res.status).to.be.eq(200);
+      expect(res.body.data).length.to.eq(1);
+
+      cy.schemaValidation('enterprises/getOneInlistEnterprises.json', res.body).then((validation) => {
+        expect(validation).to.be.eq('Schema validated successfully!');
+      });
     });
   });
 

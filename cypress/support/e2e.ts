@@ -31,6 +31,7 @@ import './commands/services/investors.service';
 import './commands/services/users.service';
 import './commands/services/sponsors.service';
 import './commands/services/buyers.service';
+import './commands/services/invoices.service';
 
 // service-commom
 

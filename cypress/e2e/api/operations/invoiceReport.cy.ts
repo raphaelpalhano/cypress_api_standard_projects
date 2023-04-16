@@ -11,7 +11,7 @@ describe('Report invoice each Entity', () => {
     cy.authSystem('investor')
       .getOperations('invoices/report')
       .then((res) => {
-        expect(res).to.be.eq(200);
+        expect(res.status).to.be.eq(200);
         cy.schemaValidation('buyers/orderApi.json', res.body).then((validation) => {
           expect(validation).to.be.eq('Schema validated successfully!');
         });
@@ -22,7 +22,7 @@ describe('Report invoice each Entity', () => {
     cy.authSystem('manager')
       .getOperations('invoices/report')
       .then((res) => {
-        expect(res).to.be.eq(200);
+        expect(res.status).to.be.eq(200);
       });
   });
 });

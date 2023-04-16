@@ -14,7 +14,7 @@ describe('In invoices service I want to export suppliers invoices', () => {
       },
     };
     cy.postInvoices('invoices/1/export', body).then((res) => {
-      expect(res).to.be.eq(201);
+      expect(res.status).to.be.eq(201);
     });
   });
 
@@ -29,7 +29,7 @@ describe('In invoices service I want to export suppliers invoices', () => {
       },
     };
     cy.postInvoices('invoices/32322/export', body).then((res) => {
-      expect(res).to.be.eq(201);
+      expect(res.status).to.be.eq(404);
     });
   });
 
@@ -44,7 +44,7 @@ describe('In invoices service I want to export suppliers invoices', () => {
       },
     };
     cy.postInvoices('invoices/1/export', body).then((res) => {
-      expect(res).to.be.eq(201);
+      expect(res.status).to.be.eq(404);
     });
   });
 });

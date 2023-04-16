@@ -31,8 +31,8 @@ module.exports = defineConfig({
     },
   },
   env: {
-    cognito: 'https://cognito-idp.us-east-1.amazonaws.com/',
-    CYPRESS_RECORD_KEY: '077d3cc1-0295-4f01-9993-5cef3af25bef',
+    cognito: 'https://cognito-idp/',
+    CYPRESS_RECORD_KEY: '...',
     TAGS: 'not @ignore',
   },
 });

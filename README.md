@@ -95,3 +95,19 @@ test:
 ## CI Build
 
 **command:** `docker build -t gitlab.fcalatam.com:4567/fca/banco-fidis/ms8/api-test-ms8:latest -f docker/dockerfile .`
+
+
+## Problema em executar o cypress localmente
+
+### Limpe o binário
+
+`npx cypress cache clea`
+
+### Instale
+
+npx cypress install
+
+
+
+
+ 

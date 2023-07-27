@@ -4,20 +4,19 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "prettier-format": "prettier --config .prettierrc '**/*.ts' --write",
+    "prettier-format": "prettier --config .prettierrc '*/*.ts' --write",
     "cy:run:prod": "npx cypress run --env prod=prod",
     "cy:open:prod": "npx cypress open --env prod=prod",
     "cy:run:nonprod": "npx cypress run --env nonprod=nonprod",
     "cy:open:nonprod": "npx cypress open --env nonprod=nonprod",
     "cy:dash:nonprod": "npx cypress run --env nonprod=nonprod --record --key 077d3cc1-0295-4f01-9993-5cef3af25bef",
-    "cy:dash:prod": "npx currents run --env prod=prod --parallel --record --key H9ImBxO47DkUGCxF", 
+    "cy:dash:prod": "npx currents run --env prod=prod --parallel --record --key H9ImBxO47DkUGCxF",
     "cy:clear": "node ./cypress/support/commands/helpers/clear.ts",
     "lint": "eslint . --ext .ts",
     "commit": "git-cz",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
     "cy:run:buyers": "npx cypress run --env nonprod=nonprod --spec cypress/e2e/api/buyers/*.cy.ts",
     "cy:run:bff": "npx cypress run --env nonprod=nonprod --spec cypress/e2e/api/bff/*.cy.ts"
-
   },
   "keywords": [],
   "author": "Raphael Angel",
@@ -44,7 +43,7 @@
     "@faker-js/faker": "^7.5.0",
     "ajv": "^8.11.0",
     "aws-amplify": "^5.0.4",
-    "cypress": "^10.11.0",
+    "cypress": "^12.17.2",
     "cypress-failed-log": "^2.10.0",
     "cypress-mochawesome-reporter": "^3.2.0",
     "dotenv": "^16.0.1",
@@ -58,7 +57,6 @@
   },
   "lint-staged": {
     "*.{ts,js,tsx}": [
-      "npm run prettier-format",
       "npm run lint --fix"
     ]
   },

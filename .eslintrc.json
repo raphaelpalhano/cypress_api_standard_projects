@@ -53,6 +53,7 @@
         "import/no-named-as-default-member": "off",
         "operator-linebreak": "off",
         "dot-notation": "off",
+        "linebreak-style": "off",
         "max-len": [
           "error",
           {

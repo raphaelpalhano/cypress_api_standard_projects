@@ -1,6 +1,6 @@
 {
     "$schema": "https://on.cypress.io/cypress.schema.json",
-    "baseUrl": "https://nonprod.com",
+    "baseUrl": "https://swapi.dev/api",
     "env": {
         "global_timeout": 50000,
         "environment": "nonprod",
